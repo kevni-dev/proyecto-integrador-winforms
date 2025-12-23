@@ -38,9 +38,14 @@
             btnModulo2 = new Button();
             btnModulo1 = new Button();
             plContenido = new Panel();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             plTitulo.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             plModulos.SuspendLayout();
+            plContenido.SuspendLayout();
             SuspendLayout();
             // 
             // plTitulo
@@ -153,11 +158,51 @@
             // 
             // plContenido
             // 
+            plContenido.Controls.Add(label4);
+            plContenido.Controls.Add(label3);
+            plContenido.Controls.Add(label2);
+            plContenido.Controls.Add(label1);
             plContenido.Dock = DockStyle.Fill;
             plContenido.Location = new Point(220, 60);
             plContenido.Name = "plContenido";
             plContenido.Size = new Size(580, 390);
             plContenido.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(108, 70);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(281, 157);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 15);
+            label2.TabIndex = 1;
+            label2.Text = "label2";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(361, 226);
+            label3.Name = "label3";
+            label3.Size = new Size(38, 15);
+            label3.TabIndex = 2;
+            label3.Text = "label3";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(103, 281);
+            label4.Name = "label4";
+            label4.Size = new Size(38, 15);
+            label4.TabIndex = 3;
+            label4.Text = "label4";
             // 
             // forMain
             // 
@@ -174,6 +219,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             plModulos.ResumeLayout(false);
+            plContenido.ResumeLayout(false);
+            plContenido.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -189,5 +236,9 @@
         private Button btnModulo2;
         private Label lblTituloPrincipal;
         private TableLayoutPanel tableLayoutPanel1;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
     }
 }
