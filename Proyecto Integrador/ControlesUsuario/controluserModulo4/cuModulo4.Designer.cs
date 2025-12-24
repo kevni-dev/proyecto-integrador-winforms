@@ -91,6 +91,7 @@
             btnInteraccion.TabIndex = 3;
             btnInteraccion.Text = "Interaccion equino-humano";
             btnInteraccion.UseVisualStyleBackColor = true;
+            btnInteraccion.Click += btnInteraccion_Click;
             // 
             // btnRendimiento
             // 

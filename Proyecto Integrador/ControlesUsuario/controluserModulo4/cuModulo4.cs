@@ -42,5 +42,10 @@ namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
         {
 
         }
+
+        private void btnInteraccion_Click(object sender, EventArgs e)
+        {
+            CargarUserControl(new Interaccion());
+        }
     }
 }
