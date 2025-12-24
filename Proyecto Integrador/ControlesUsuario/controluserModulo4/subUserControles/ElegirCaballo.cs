@@ -6,13 +6,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Proyecto_Integrador.ControlesUsuario
+namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
 {
-    public partial class cuModulo4 : UserControl
+    public partial class ElegirCaballo : UserControl
     {
-        public cuModulo4()
+        public ElegirCaballo()
         {
             InitializeComponent();
+        }
+
+        private void elegirCaballo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

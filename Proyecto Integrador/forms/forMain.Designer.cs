@@ -38,15 +38,9 @@
             btnModulo2 = new Button();
             btnModulo1 = new Button();
             plContenido = new Panel();
-            label4 = new Label();
-            label3 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            listBox1 = new ListBox();
             plTitulo.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             plModulos.SuspendLayout();
-            plContenido.SuspendLayout();
             SuspendLayout();
             // 
             // plTitulo
@@ -159,60 +153,11 @@
             // 
             // plContenido
             // 
-            plContenido.Controls.Add(listBox1);
-            plContenido.Controls.Add(label6);
-            plContenido.Controls.Add(label5);
-            plContenido.Controls.Add(label4);
-            plContenido.Controls.Add(label3);
             plContenido.Dock = DockStyle.Fill;
             plContenido.Location = new Point(220, 60);
             plContenido.Name = "plContenido";
             plContenido.Size = new Size(580, 390);
             plContenido.TabIndex = 2;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(103, 281);
-            label4.Name = "label4";
-            label4.Size = new Size(38, 15);
-            label4.TabIndex = 3;
-            label4.Text = "label4";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(361, 226);
-            label3.Name = "label3";
-            label3.Size = new Size(38, 15);
-            label3.TabIndex = 2;
-            label3.Text = "label3";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(198, 60);
-            label5.Name = "label5";
-            label5.Size = new Size(38, 15);
-            label5.TabIndex = 4;
-            label5.Text = "label5";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(214, 184);
-            label6.Name = "label6";
-            label6.Size = new Size(38, 15);
-            label6.TabIndex = 5;
-            label6.Text = "label6";
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(56, 128);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(120, 94);
-            listBox1.TabIndex = 6;
             // 
             // forMain
             // 
@@ -229,8 +174,6 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             plModulos.ResumeLayout(false);
-            plContenido.ResumeLayout(false);
-            plContenido.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -246,10 +189,5 @@
         private Button btnModulo2;
         private Label lblTituloPrincipal;
         private TableLayoutPanel tableLayoutPanel1;
-        private Label label4;
-        private Label label3;
-        private ListBox listBox1;
-        private Label label6;
-        private Label label5;
     }
 }
