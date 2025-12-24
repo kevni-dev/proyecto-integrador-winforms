@@ -8,16 +8,11 @@ using System.Windows.Forms;
 
 namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControles
 {
-    public partial class ElegirCaballo : UserControl
+    public partial class RegistroEmocional : UserControl
     {
-        public ElegirCaballo()
+        public RegistroEmocional()
         {
             InitializeComponent();
-        }
-
-        private void elegirCaballo_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

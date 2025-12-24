@@ -1,4 +1,4 @@
-﻿using Proyecto_Integrador.ControlesUsuario.cuModulo4;
+﻿using Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,13 +25,22 @@ namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
 
         private void cuModulo4_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void btnElegirCaballo_Click(object sender, EventArgs e)
+        private void btnElegirCaballo_Click_1(object sender, EventArgs e)
         {
             CargarUserControl(new ElegirCaballo());
         }
 
+        private void btnRegistroEmocional_Click(object sender, EventArgs e)
+        {
+            CargarUserControl(new RegistroEmocional());
+        }
+
+        private void cuModulo4_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

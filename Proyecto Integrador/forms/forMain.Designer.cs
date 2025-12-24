@@ -72,11 +72,11 @@
             lblTituloPrincipal.Anchor = AnchorStyles.None;
             lblTituloPrincipal.AutoSize = true;
             lblTituloPrincipal.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTituloPrincipal.Location = new Point(213, 17);
+            lblTituloPrincipal.Location = new Point(261, 17);
             lblTituloPrincipal.Name = "lblTituloPrincipal";
-            lblTituloPrincipal.Size = new Size(423, 25);
+            lblTituloPrincipal.Size = new Size(328, 25);
             lblTituloPrincipal.TabIndex = 0;
-            lblTituloPrincipal.Text = "MANEJO CLINICO Y CUIDADO DE CABALLOS";
+            lblTituloPrincipal.Text = "MANEJO INTEGRAL DE CABALLOS";
             lblTituloPrincipal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnIconoMenu

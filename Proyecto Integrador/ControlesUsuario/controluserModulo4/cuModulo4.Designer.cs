@@ -71,6 +71,7 @@
             btnElegirCaballo.TabIndex = 1;
             btnElegirCaballo.Text = "Elegir caballo";
             btnElegirCaballo.UseVisualStyleBackColor = true;
+            btnElegirCaballo.Click += btnElegirCaballo_Click_1;
             // 
             // btnRegistroEmocional
             // 
@@ -80,6 +81,7 @@
             btnRegistroEmocional.TabIndex = 2;
             btnRegistroEmocional.Text = "Registro emocional";
             btnRegistroEmocional.UseVisualStyleBackColor = true;
+            btnRegistroEmocional.Click += btnRegistroEmocional_Click;
             // 
             // btnInteraccion
             // 
@@ -144,10 +146,9 @@
             // 
             // panel3
             // 
-            panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 140);
             panel3.Name = "panel3";
-            panel3.Size = new Size(850, 383);
+            panel3.Size = new Size(777, 316);
             panel3.TabIndex = 2;
             // 
             // cuModulo4
@@ -159,6 +160,7 @@
             Controls.Add(panel1);
             Name = "cuModulo4";
             Size = new Size(850, 523);
+            Load += cuModulo4_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
