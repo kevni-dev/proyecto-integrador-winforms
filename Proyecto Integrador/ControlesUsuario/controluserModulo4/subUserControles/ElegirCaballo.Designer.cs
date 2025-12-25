@@ -72,10 +72,9 @@
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(flowLayoutPanel1);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 100);
+            panel2.Location = new Point(0, 106);
             panel2.Name = "panel2";
-            panel2.Size = new Size(564, 362);
+            panel2.Size = new Size(547, 356);
             panel2.TabIndex = 1;
             // 
             // panel6
