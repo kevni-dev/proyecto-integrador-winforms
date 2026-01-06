@@ -147,9 +147,10 @@
             // 
             // panel3
             // 
+            panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 140);
             panel3.Name = "panel3";
-            panel3.Size = new Size(777, 316);
+            panel3.Size = new Size(850, 383);
             panel3.TabIndex = 2;
             // 
             // cuModulo4
