@@ -33,11 +33,6 @@ namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
             CargarUserControl(new ElegirCaballo());
         }
 
-        private void btnRegistroEmocional_Click(object sender, EventArgs e)
-        {
-            CargarUserControl(new RegistroEmocional());
-        }
-
         private void cuModulo4_Load_1(object sender, EventArgs e)
         {
 
@@ -46,6 +41,11 @@ namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
         private void btnInteraccion_Click(object sender, EventArgs e)
         {
             CargarUserControl(new Interaccion());
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

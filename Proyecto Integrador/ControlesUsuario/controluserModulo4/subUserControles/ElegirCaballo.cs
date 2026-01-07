@@ -19,5 +19,15 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         {
 
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tablaPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

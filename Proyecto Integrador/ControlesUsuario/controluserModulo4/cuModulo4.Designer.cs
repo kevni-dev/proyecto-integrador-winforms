@@ -31,7 +31,6 @@
             panel1 = new Panel();
             label1 = new Label();
             btnElegirCaballo = new Button();
-            btnRegistroEmocional = new Button();
             btnInteraccion = new Button();
             btnRendimiento = new Button();
             panel2 = new Panel();
@@ -52,6 +51,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(850, 80);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // label1
             // 
@@ -69,23 +69,13 @@
             btnElegirCaballo.Name = "btnElegirCaballo";
             btnElegirCaballo.Size = new Size(150, 40);
             btnElegirCaballo.TabIndex = 1;
-            btnElegirCaballo.Text = "Elegir caballo";
+            btnElegirCaballo.Text = "Eleccion y registro";
             btnElegirCaballo.UseVisualStyleBackColor = true;
             btnElegirCaballo.Click += btnElegirCaballo_Click_1;
             // 
-            // btnRegistroEmocional
-            // 
-            btnRegistroEmocional.Location = new Point(159, 3);
-            btnRegistroEmocional.Name = "btnRegistroEmocional";
-            btnRegistroEmocional.Size = new Size(150, 40);
-            btnRegistroEmocional.TabIndex = 2;
-            btnRegistroEmocional.Text = "Registro emocional";
-            btnRegistroEmocional.UseVisualStyleBackColor = true;
-            btnRegistroEmocional.Click += btnRegistroEmocional_Click;
-            // 
             // btnInteraccion
             // 
-            btnInteraccion.Location = new Point(315, 3);
+            btnInteraccion.Location = new Point(159, 3);
             btnInteraccion.Name = "btnInteraccion";
             btnInteraccion.Size = new Size(150, 40);
             btnInteraccion.TabIndex = 3;
@@ -95,7 +85,7 @@
             // 
             // btnRendimiento
             // 
-            btnRendimiento.Location = new Point(471, 3);
+            btnRendimiento.Location = new Point(315, 3);
             btnRendimiento.Name = "btnRendimiento";
             btnRendimiento.Size = new Size(150, 40);
             btnRendimiento.TabIndex = 4;
@@ -115,7 +105,6 @@
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Controls.Add(btnElegirCaballo);
-            flowLayoutPanel1.Controls.Add(btnRegistroEmocional);
             flowLayoutPanel1.Controls.Add(btnInteraccion);
             flowLayoutPanel1.Controls.Add(btnRendimiento);
             flowLayoutPanel1.Controls.Add(btnBienestar);
@@ -129,7 +118,7 @@
             // 
             // btnBienestar
             // 
-            btnBienestar.Location = new Point(627, 3);
+            btnBienestar.Location = new Point(471, 3);
             btnBienestar.Name = "btnBienestar";
             btnBienestar.Size = new Size(150, 40);
             btnBienestar.TabIndex = 2;
@@ -138,7 +127,7 @@
             // 
             // btnJuego
             // 
-            btnJuego.Location = new Point(783, 3);
+            btnJuego.Location = new Point(627, 3);
             btnJuego.Name = "btnJuego";
             btnJuego.Size = new Size(150, 40);
             btnJuego.TabIndex = 2;
@@ -174,7 +163,6 @@
 
         private Panel panel1;
         private Button btnElegirCaballo;
-        private Button btnRegistroEmocional;
         private Button btnInteraccion;
         private Button btnRendimiento;
         private Panel panel2;
