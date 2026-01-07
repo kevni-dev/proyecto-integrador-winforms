@@ -13,6 +13,8 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         public ElegirCaballo()
         {
             InitializeComponent();
+            plRegistro.Enabled = false;
+            continuar2.Enabled = false;
         }
 
         private void elegirCaballo_Load(object sender, EventArgs e)
@@ -26,6 +28,21 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         }
 
         private void tablaPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void registroEmocional_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gbTemperamento_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void plRegistro_Paint(object sender, PaintEventArgs e)
         {
 
         }

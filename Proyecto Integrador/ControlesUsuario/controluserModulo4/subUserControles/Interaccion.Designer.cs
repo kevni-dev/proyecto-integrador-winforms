@@ -56,7 +56,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 112F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(664, 425);
+            tableLayoutPanel1.Size = new Size(763, 482);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -65,7 +65,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(658, 54);
+            panel1.Size = new Size(757, 54);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -83,7 +83,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(3, 63);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(658, 106);
+            groupBox1.Size = new Size(757, 106);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Datos";
@@ -147,7 +147,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
             Name = "Interaccion";
-            Size = new Size(664, 425);
+            Size = new Size(763, 482);
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
