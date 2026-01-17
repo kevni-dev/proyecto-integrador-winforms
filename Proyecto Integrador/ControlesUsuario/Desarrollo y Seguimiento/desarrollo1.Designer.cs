@@ -1,6 +1,6 @@
-﻿namespace Proyecto_Integrador.ControlesUsuario
+﻿namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
 {
-    partial class cuModulo2
+    partial class desarrollo1
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -34,19 +34,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(208, 172);
+            label1.Location = new Point(75, 64);
             label1.Name = "label1";
-            label1.Size = new Size(66, 15);
+            label1.Size = new Size(73, 15);
             label1.TabIndex = 0;
-            label1.Text = "Selena Vera";
+            label1.Text = "seguimiento";
             // 
-            // cuModulo2
+            // desarrollo1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label1);
-            Name = "cuModulo2";
-            Size = new Size(531, 398);
+            Name = "desarrollo1";
+            Size = new Size(1006, 504);
+            Load += desarrollo1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

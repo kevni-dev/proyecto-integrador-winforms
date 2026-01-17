@@ -1,6 +1,6 @@
 using Proyecto_Integrador.ControlesUsuario.cuModulo4;
 using Proyecto_Integrador.ControlesUsuario;
-
+using Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento;
 namespace Proyecto_Integrador
 {
     public partial class forMain : Form
@@ -47,7 +47,7 @@ namespace Proyecto_Integrador
 
         private void btnModulo2_Click(object sender, EventArgs e)
         {
-            CargarUserControl(new cuModulo2());
+            CargarUserControl(new desarrollo1());
         }
 
         private void btnModulo3_Click(object sender, EventArgs e)
