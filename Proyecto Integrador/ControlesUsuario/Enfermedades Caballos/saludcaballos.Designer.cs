@@ -1,6 +1,6 @@
-﻿namespace Proyecto_Integrador.ControlesUsuario
+﻿namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 {
-    partial class cuModulo3
+    partial class saludcaballos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -34,19 +34,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(274, 173);
+            label1.Location = new Point(253, 118);
             label1.Name = "label1";
-            label1.Size = new Size(90, 15);
+            label1.Size = new Size(38, 20);
             label1.TabIndex = 0;
-            label1.Text = "Solano Jheremy";
+            label1.Text = "hola";
             // 
-            // cuModulo3
+            // saludcaballos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label1);
-            Name = "cuModulo3";
-            Size = new Size(663, 434);
+            Name = "saludcaballos";
+            Size = new Size(1000, 541);
+            Load += saludcaballos_Load;
             ResumeLayout(false);
             PerformLayout();
         }
