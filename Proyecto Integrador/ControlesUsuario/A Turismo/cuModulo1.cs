@@ -34,7 +34,19 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private void TurismoButtonRegistrar_Click(object sender, EventArgs e)
         {
+            // Limpiar lo que haya antes
+            TurismopanelContenido.Controls.Clear();
+
+            // Crear el UserControl de registro
+            TurismoRegistrarCaballo registro = new TurismoRegistrarCaballo();
+
+            // Que ocupe todo el panel
+            registro.Dock = DockStyle.Fill;
+
+            // Agregar al panel
+            TurismopanelContenido.Controls.Add(registro);
         }
+
 
         private void TurismoButtonVer_Click(object sender, EventArgs e)
         {
