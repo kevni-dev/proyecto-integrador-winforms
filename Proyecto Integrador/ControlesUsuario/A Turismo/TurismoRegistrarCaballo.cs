@@ -6,18 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Proyecto_Integrador.ControlesUsuario
+namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
 {
-    public partial class cuModulo1 : UserControl
+    public partial class TurismoRegistrarCaballo : UserControl
     {
-        public cuModulo1()
+        public TurismoRegistrarCaballo()
         {
             InitializeComponent();
-        }
-
-        private void cuModulo1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

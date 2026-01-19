@@ -1,6 +1,6 @@
-﻿namespace Proyecto_Integrador.ControlesUsuario
+﻿namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
 {
-    partial class cuModulo1
+    partial class TurismoRegistrarCaballo
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,32 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(230, 161);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Tenecela Norman";
-            // 
-            // cuModulo1
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
-            Name = "cuModulo1";
-            Size = new Size(614, 372);
-            Load += cuModulo1_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion
-
-        private Label label1;
     }
 }
