@@ -1,47 +1,53 @@
 ﻿using System;
 using System.Windows.Forms;
+using Proyecto_Integrador.Datos;
 
 namespace Proyecto_Integrador.ControlesUsuario
 {
     public partial class TurismoRegistrarCaballo : UserControl
     {
+        // EVENTOS
+        public event EventHandler? CancelarPresionado;
+        public event EventHandler? RegistroExitoso;
+
         public TurismoRegistrarCaballo()
         {
             InitializeComponent();
-            this.Load += TurismoRegistrarCaballo_Load;
+            CargarCombos();
         }
 
-        private void TurismoRegistrarCaballo_Load(object sender, EventArgs e)
+        private void CargarCombos()
         {
-            // Llenar combos (solo una vez)
-            comboBoxSexo.Items.Clear();
             comboBoxSexo.Items.Add("Macho");
             comboBoxSexo.Items.Add("Hembra");
 
-            comboBoxRaza.Items.Clear();
-            comboBoxRaza.Items.Add("Pura sangre");
-            comboBoxRaza.Items.Add("Árabe");
-            comboBoxRaza.Items.Add("Criollo");
-
-            comboBoxTemperamento.Items.Clear();
             comboBoxTemperamento.Items.Add("Tranquilo");
             comboBoxTemperamento.Items.Add("Nervioso");
-            comboBoxTemperamento.Items.Add("Activo");
+            comboBoxTemperamento.Items.Add("Agresivo");
+
+            comboBoxRaza.Items.Add("Árabe");
+            comboBoxRaza.Items.Add("Criollo");
+            comboBoxRaza.Items.Add("Cuarto de milla");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            // 🔥 Avisamos al módulo que se canceló
+            CancelarPresionado?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (textBoxNombre.Text.Trim() == "")
+            // VALIDACIONES
+            if (string.IsNullOrWhiteSpace(textBoxNombre.Text))
             {
-                MessageBox.Show("Ingrese el nombre del caballo");
+                MessageBox.Show("Ingrese el nombre");
                 return;
             }
 
-            int edad;
-            if (!int.TryParse(textBoxEdad.Text, out edad))
+            if (!int.TryParse(textBoxEdad.Text, out int edad))
             {
-                MessageBox.Show("La edad debe ser un número válido");
-                textBoxEdad.Focus();
+                MessageBox.Show("Edad inválida");
                 return;
             }
 
@@ -49,29 +55,31 @@ namespace Proyecto_Integrador.ControlesUsuario
                 comboBoxSexo.SelectedIndex == -1 ||
                 comboBoxTemperamento.SelectedIndex == -1)
             {
-                MessageBox.Show("Seleccione todos los campos");
+                MessageBox.Show("Seleccione todos los datos");
                 return;
             }
 
-            // Aquí luego puedes guardar en BD o lista
-            MessageBox.Show(
-                "Caballo registrado correctamente\n\n" +
-                "Nombre: " + textBoxNombre.Text + "\n" +
-                "Edad: " + edad + "\n" +
-                "Raza: " + comboBoxRaza.Text + "\n" +
-                "Sexo: " + comboBoxSexo.Text + "\n" +
-                "Temperamento: " + comboBoxTemperamento.Text
-            );
-        }
+            Caballo nuevo = new Caballo
+            {
+                Nombre = textBoxNombre.Text!,
+                Edad = edad,
+                Raza = comboBoxRaza.Text!,
+                Sexo = comboBoxSexo.Text!,
+                Temperamento = comboBoxTemperamento.Text!
+            };
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-        }
+            bool agregado = RepositorioCaballos.Agregar(nuevo);
 
-        private void comboBoxRaza_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Puedes dejarlo vacío por ahora
+            if (!agregado)
+            {
+                MessageBox.Show("No se pudo registrar el caballo");
+                return;
+            }
+
+            MessageBox.Show("Caballo registrado correctamente");
+
+            // 🔥 SOLO avisamos, NO navegamos aquí
+            RegistroExitoso?.Invoke(this, EventArgs.Empty);
         }
     }
 }

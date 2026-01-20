@@ -113,7 +113,7 @@
             comboBoxRaza.Name = "comboBoxRaza";
             comboBoxRaza.Size = new Size(150, 23);
             comboBoxRaza.TabIndex = 15;
-            comboBoxRaza.SelectedIndexChanged += comboBoxRaza_SelectedIndexChanged;
+          
             // 
             // textBoxEdad
             // 

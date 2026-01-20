@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Proyecto_Integrador.ControlesUsuario.A_Turismo;
+
 
 namespace Proyecto_Integrador.ControlesUsuario
 {
@@ -22,6 +24,7 @@ namespace Proyecto_Integrador.ControlesUsuario
                 (TurismopanelContenido.Height - TurismotablaCentro.Height) / 2;
         }
 
+
         private void cuModulo1_Load(object sender, EventArgs e)
         {
             CentrarTabla();
@@ -34,22 +37,37 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private void TurismoButtonRegistrar_Click(object sender, EventArgs e)
         {
-            // Limpiar lo que haya antes
-            TurismopanelContenido.Controls.Clear();
+            TurismotablaCentro.Visible = false;
 
-            // Crear el UserControl de registro
             TurismoRegistrarCaballo registro = new TurismoRegistrarCaballo();
+            registro.CancelarPresionado += Registro_Cancelado;
+            registro.RegistroExitoso += Registro_Exitoso;
 
-            // Que ocupe todo el panel
             registro.Dock = DockStyle.Fill;
-
-            // Agregar al panel
             TurismopanelContenido.Controls.Add(registro);
         }
 
 
+
+
+
         private void TurismoButtonVer_Click(object sender, EventArgs e)
         {
+            TurismotablaCentro.Visible = false;
+
+            TurismoVerRegistro vista = new TurismoVerRegistro();
+            vista.Dock = DockStyle.Fill;
+            TurismopanelContenido.Controls.Add(vista);
+        }
+
+
+
+
+        private void CargarControl(UserControl control)
+        {
+            TurismopanelContenido.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            TurismopanelContenido.Controls.Add(control);
         }
 
         private void TurismoButtonAgenda_Click(object sender, EventArgs e)
@@ -59,5 +77,34 @@ namespace Proyecto_Integrador.ControlesUsuario
         private void TurismoButtonMinijuego_Click(object sender, EventArgs e)
         {
         }
+
+        private void Registro_Exitoso(object? sender, EventArgs e)
+        {
+            if (sender is Control control)
+            { 
+                  TurismopanelContenido.Controls.Remove((Control)sender);
+            }
+            TurismotablaCentro.Visible = true;
+            CentrarTabla();
+        }
+
+
+        private void Registro_Cancelado(object? sender, EventArgs e)
+        {
+            if (sender is Control control)
+            {
+                TurismopanelContenido.Controls.Remove(control);
+            }
+
+            TurismotablaCentro.Visible = true;
+            CentrarTabla();
+        }
+
+
     }
+
+
+
+
+
 }
