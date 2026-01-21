@@ -1,9 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using Proyecto_Integrador.ControlesUsuario.A_Turismo;
-using Proyecto_Integrador.Datos;
-
-
 
 namespace Proyecto_Integrador.ControlesUsuario
 {
@@ -12,103 +10,151 @@ namespace Proyecto_Integrador.ControlesUsuario
         public cuModulo1()
         {
             InitializeComponent();
+
+            // Anti-parpadeo en el control
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+
+            // Anti-parpadeo en el panel contenedor
+            ActivarDoubleBuffer(TurismopanelContenido);
+            ActivarDoubleBuffer(panelMenu);
         }
 
-        private void CentrarTabla()
+        // Reduce parpadeo cuando hay BackgroundImage (puede bajar FPS, pero para tu caso suele ayudar)
+        protected override CreateParams CreateParams
         {
-            if (TurismopanelContenido == null || TurismotablaCentro == null)
-                return;
-
-            TurismotablaCentro.Left =
-                (TurismopanelContenido.Width - TurismotablaCentro.Width) / 2;
-
-            TurismotablaCentro.Top =
-                (TurismopanelContenido.Height - TurismotablaCentro.Height) / 2;
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                return cp;
+            }
         }
-
 
         private void cuModulo1_Load(object sender, EventArgs e)
         {
-            RepositorioCaballos.Inicializar();
-            CentrarTabla();
+            MostrarMenu();
+            CentrarMenu();
         }
-
 
         private void TurismopanelContenido_Resize(object sender, EventArgs e)
         {
-            CentrarTabla();
+            CentrarMenu();
+        }
+
+        private void CentrarMenu()
+        {
+            if (panelMenu == null || TurismopanelContenido == null) return;
+
+            panelMenu.Left = (TurismopanelContenido.Width - panelMenu.Width) / 2;
+            panelMenu.Top = (TurismopanelContenido.Height - panelMenu.Height) / 2;
+        }
+
+        private void MostrarMenu()
+        {
+            panelMenu.Visible = true;
+            CentrarMenu();
+
+            // Borra todo lo que NO sea el menú
+            for (int i = TurismopanelContenido.Controls.Count - 1; i >= 0; i--)
+            {
+                Control c = TurismopanelContenido.Controls[i];
+                if (c != panelMenu)
+                    TurismopanelContenido.Controls.RemoveAt(i);
+            }
+
+            panelMenu.BringToFront();
+        }
+
+        private void OcultarMenu()
+        {
+            panelMenu.Visible = false;
+        }
+
+        private void CambiarPantalla(UserControl pantalla)
+        {
+            TurismopanelContenido.SuspendLayout();
+            try
+            {
+                // Quitar todo excepto el menú
+                for (int i = TurismopanelContenido.Controls.Count - 1; i >= 0; i--)
+                {
+                    Control c = TurismopanelContenido.Controls[i];
+                    if (c != panelMenu)
+                        TurismopanelContenido.Controls.RemoveAt(i);
+                }
+
+                pantalla.Dock = DockStyle.Fill;
+                TurismopanelContenido.Controls.Add(pantalla);
+                pantalla.BringToFront();
+            }
+            finally
+            {
+                TurismopanelContenido.ResumeLayout(true);
+            }
         }
 
         private void TurismoButtonRegistrar_Click(object sender, EventArgs e)
         {
-            TurismotablaCentro.Visible = false;
+            OcultarMenu();
 
-            TurismoRegistrarCaballo registro = new TurismoRegistrarCaballo();
+            var registro = new TurismoRegistrarCaballo();
             registro.CancelarPresionado += Registro_Cancelado;
             registro.RegistroExitoso += Registro_Exitoso;
 
-            registro.Dock = DockStyle.Fill;
-            TurismopanelContenido.Controls.Add(registro);
+            CambiarPantalla(registro);
         }
-
-
-
-
 
         private void TurismoButtonVer_Click(object sender, EventArgs e)
         {
-            TurismotablaCentro.Visible = false;
+            OcultarMenu();
 
-            TurismoVerRegistro vista = new TurismoVerRegistro();
-            vista.Dock = DockStyle.Fill;
-            TurismopanelContenido.Controls.Add(vista);
-        }
-
-
-
-
-        private void CargarControl(UserControl control)
-        {
-            TurismopanelContenido.Controls.Clear();
-            control.Dock = DockStyle.Fill;
-            TurismopanelContenido.Controls.Add(control);
+            var vista = new TurismoVerRegistro();
+            CambiarPantalla(vista);
         }
 
         private void TurismoButtonAgenda_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Agenda (pendiente)");
         }
 
         private void TurismoButtonMinijuego_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Minijuego (pendiente)");
+        }
+
+        private void TurismoButtonRutas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rutas Turísticas (pendiente)");
         }
 
         private void Registro_Exitoso(object? sender, EventArgs e)
         {
-            if (sender is Control control)
-            { 
-                  TurismopanelContenido.Controls.Remove((Control)sender);
-            }
-            TurismotablaCentro.Visible = true;
-            CentrarTabla();
-        }
+            if (sender is Control control && TurismopanelContenido.Controls.Contains(control))
+                TurismopanelContenido.Controls.Remove(control);
 
+            MostrarMenu();
+        }
 
         private void Registro_Cancelado(object? sender, EventArgs e)
         {
-            if (sender is Control control)
-            {
+            if (sender is Control control && TurismopanelContenido.Controls.Contains(control))
                 TurismopanelContenido.Controls.Remove(control);
-            }
 
-            TurismotablaCentro.Visible = true;
-            CentrarTabla();
+            MostrarMenu();
         }
 
-
+        private static void ActivarDoubleBuffer(Control control)
+        {
+            try
+            {
+                typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
+                    ?.SetValue(control, true, null);
+            }
+            catch { }
+        }
     }
-
-
-
-
-
 }

@@ -21,215 +21,189 @@ namespace Proyecto_Integrador.ControlesUsuario
             TurismoButtonVer = new Button();
             TurismoButtonAgenda = new Button();
             TurismoButtonMinijuego = new Button();
+            TurismoButtonRutas = new Button();
             TurismoPictureRegistrar = new PictureBox();
             TurismoPictureVer = new PictureBox();
             TurismoPictureAgenda = new PictureBox();
             TurismoPictureMinijuego = new PictureBox();
+            TurismoPictureRutas = new PictureBox();
             TurismopanelContenido = new Panel();
-            TurismotablaCentro = new TableLayoutPanel();
-            Turismopanel4 = new Panel();
-            Turismopanel3 = new Panel();
-            Turismopanel2 = new Panel();
-            Turismopanel1 = new Panel();
+            panelMenu = new Panel();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureRegistrar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureVer).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureAgenda).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureMinijuego).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TurismoPictureRutas).BeginInit();
             TurismopanelContenido.SuspendLayout();
-            TurismotablaCentro.SuspendLayout();
-            Turismopanel4.SuspendLayout();
-            Turismopanel3.SuspendLayout();
-            Turismopanel2.SuspendLayout();
-            Turismopanel1.SuspendLayout();
+            panelMenu.SuspendLayout();
             SuspendLayout();
             // 
             // TurismoButtonRegistrar
             // 
-            TurismoButtonRegistrar.Dock = DockStyle.Bottom;
-            TurismoButtonRegistrar.Location = new Point(0, 171);
+            TurismoButtonRegistrar.Location = new Point(-15, 264);
             TurismoButtonRegistrar.Name = "TurismoButtonRegistrar";
-            TurismoButtonRegistrar.Size = new Size(330, 50);
-            TurismoButtonRegistrar.TabIndex = 0;
+            TurismoButtonRegistrar.Size = new Size(360, 55);
+            TurismoButtonRegistrar.TabIndex = 1;
             TurismoButtonRegistrar.Text = "Registrar Caballo";
+            TurismoButtonRegistrar.UseVisualStyleBackColor = true;
             TurismoButtonRegistrar.Click += TurismoButtonRegistrar_Click;
             // 
             // TurismoButtonVer
             // 
-            TurismoButtonVer.Dock = DockStyle.Bottom;
-            TurismoButtonVer.Location = new Point(0, 171);
+            TurismoButtonVer.Location = new Point(946, 236);
             TurismoButtonVer.Name = "TurismoButtonVer";
-            TurismoButtonVer.Size = new Size(330, 50);
-            TurismoButtonVer.TabIndex = 1;
+            TurismoButtonVer.Size = new Size(360, 55);
+            TurismoButtonVer.TabIndex = 3;
             TurismoButtonVer.Text = "Ver Caballos";
+            TurismoButtonVer.UseVisualStyleBackColor = true;
             TurismoButtonVer.Click += TurismoButtonVer_Click;
             // 
             // TurismoButtonAgenda
             // 
-            TurismoButtonAgenda.Dock = DockStyle.Bottom;
-            TurismoButtonAgenda.Location = new Point(0, 172);
+            TurismoButtonAgenda.Location = new Point(-15, 585);
             TurismoButtonAgenda.Name = "TurismoButtonAgenda";
-            TurismoButtonAgenda.Size = new Size(330, 50);
-            TurismoButtonAgenda.TabIndex = 2;
+            TurismoButtonAgenda.Size = new Size(360, 55);
+            TurismoButtonAgenda.TabIndex = 5;
             TurismoButtonAgenda.Text = "Agenda";
+            TurismoButtonAgenda.UseVisualStyleBackColor = true;
             TurismoButtonAgenda.Click += TurismoButtonAgenda_Click;
             // 
             // TurismoButtonMinijuego
             // 
-            TurismoButtonMinijuego.Dock = DockStyle.Bottom;
-            TurismoButtonMinijuego.Location = new Point(0, 172);
+            TurismoButtonMinijuego.Location = new Point(946, 569);
             TurismoButtonMinijuego.Name = "TurismoButtonMinijuego";
-            TurismoButtonMinijuego.Size = new Size(330, 50);
-            TurismoButtonMinijuego.TabIndex = 3;
+            TurismoButtonMinijuego.Size = new Size(360, 55);
+            TurismoButtonMinijuego.TabIndex = 7;
             TurismoButtonMinijuego.Text = "Minijuego";
+            TurismoButtonMinijuego.UseVisualStyleBackColor = true;
             TurismoButtonMinijuego.Click += TurismoButtonMinijuego_Click;
+            // 
+            // TurismoButtonRutas
+            // 
+            TurismoButtonRutas.Location = new Point(459, 585);
+            TurismoButtonRutas.Name = "TurismoButtonRutas";
+            TurismoButtonRutas.Size = new Size(360, 55);
+            TurismoButtonRutas.TabIndex = 9;
+            TurismoButtonRutas.Text = "Rutas Turísticas";
+            TurismoButtonRutas.UseVisualStyleBackColor = true;
+            TurismoButtonRutas.Click += TurismoButtonRutas_Click;
             // 
             // TurismoPictureRegistrar
             // 
-            TurismoPictureRegistrar.Dock = DockStyle.Top;
             TurismoPictureRegistrar.Image = Properties.Resources.registrar;
-            TurismoPictureRegistrar.Location = new Point(0, 0);
+            TurismoPictureRegistrar.Location = new Point(108, 98);
             TurismoPictureRegistrar.Name = "TurismoPictureRegistrar";
-            TurismoPictureRegistrar.Size = new Size(330, 120);
+            TurismoPictureRegistrar.Size = new Size(160, 160);
             TurismoPictureRegistrar.SizeMode = PictureBoxSizeMode.Zoom;
-            TurismoPictureRegistrar.TabIndex = 4;
+            TurismoPictureRegistrar.TabIndex = 0;
             TurismoPictureRegistrar.TabStop = false;
             // 
             // TurismoPictureVer
             // 
-            TurismoPictureVer.Dock = DockStyle.Top;
             TurismoPictureVer.Image = Properties.Resources.ver_registro;
-            TurismoPictureVer.Location = new Point(0, 0);
+            TurismoPictureVer.Location = new Point(1046, 66);
             TurismoPictureVer.Name = "TurismoPictureVer";
-            TurismoPictureVer.Size = new Size(330, 120);
+            TurismoPictureVer.Size = new Size(160, 160);
             TurismoPictureVer.SizeMode = PictureBoxSizeMode.Zoom;
-            TurismoPictureVer.TabIndex = 5;
+            TurismoPictureVer.TabIndex = 2;
             TurismoPictureVer.TabStop = false;
             // 
             // TurismoPictureAgenda
             // 
-            TurismoPictureAgenda.Dock = DockStyle.Top;
             TurismoPictureAgenda.Image = Properties.Resources.agenda;
-            TurismoPictureAgenda.Location = new Point(0, 0);
+            TurismoPictureAgenda.Location = new Point(85, 415);
             TurismoPictureAgenda.Name = "TurismoPictureAgenda";
-            TurismoPictureAgenda.Size = new Size(330, 120);
+            TurismoPictureAgenda.Size = new Size(160, 160);
             TurismoPictureAgenda.SizeMode = PictureBoxSizeMode.Zoom;
-            TurismoPictureAgenda.TabIndex = 6;
+            TurismoPictureAgenda.TabIndex = 4;
             TurismoPictureAgenda.TabStop = false;
             // 
             // TurismoPictureMinijuego
             // 
-            TurismoPictureMinijuego.Dock = DockStyle.Top;
             TurismoPictureMinijuego.Image = Properties.Resources.minijuego;
-            TurismoPictureMinijuego.Location = new Point(0, 0);
+            TurismoPictureMinijuego.Location = new Point(1046, 399);
             TurismoPictureMinijuego.Name = "TurismoPictureMinijuego";
-            TurismoPictureMinijuego.Size = new Size(330, 120);
+            TurismoPictureMinijuego.Size = new Size(160, 160);
             TurismoPictureMinijuego.SizeMode = PictureBoxSizeMode.Zoom;
-            TurismoPictureMinijuego.TabIndex = 7;
+            TurismoPictureMinijuego.TabIndex = 6;
             TurismoPictureMinijuego.TabStop = false;
+            // 
+            // TurismoPictureRutas
+            // 
+            TurismoPictureRutas.Image = Properties.Resources.agenda;
+            TurismoPictureRutas.Location = new Point(583, 425);
+            TurismoPictureRutas.Name = "TurismoPictureRutas";
+            TurismoPictureRutas.Size = new Size(130, 130);
+            TurismoPictureRutas.SizeMode = PictureBoxSizeMode.Zoom;
+            TurismoPictureRutas.TabIndex = 8;
+            TurismoPictureRutas.TabStop = false;
             // 
             // TurismopanelContenido
             // 
             TurismopanelContenido.BackColor = Color.Transparent;
             TurismopanelContenido.BackgroundImage = Properties.Resources._2;
-            TurismopanelContenido.Controls.Add(TurismotablaCentro);
+            TurismopanelContenido.BackgroundImageLayout = ImageLayout.Stretch;
+            TurismopanelContenido.Controls.Add(panelMenu);
             TurismopanelContenido.Dock = DockStyle.Fill;
             TurismopanelContenido.Location = new Point(0, 0);
             TurismopanelContenido.Name = "TurismopanelContenido";
-            TurismopanelContenido.Size = new Size(800, 500);
-            TurismopanelContenido.TabIndex = 8;
+            TurismopanelContenido.Size = new Size(1374, 665);
+            TurismopanelContenido.TabIndex = 0;
             TurismopanelContenido.Resize += TurismopanelContenido_Resize;
             // 
-            // TurismotablaCentro
+            // panelMenu
             // 
-            TurismotablaCentro.ColumnCount = 2;
-            TurismotablaCentro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            TurismotablaCentro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            TurismotablaCentro.Controls.Add(Turismopanel4, 1, 1);
-            TurismotablaCentro.Controls.Add(Turismopanel3, 0, 1);
-            TurismotablaCentro.Controls.Add(Turismopanel2, 1, 0);
-            TurismotablaCentro.Controls.Add(Turismopanel1, 0, 0);
-            TurismotablaCentro.Location = new Point(41, 23);
-            TurismotablaCentro.Name = "TurismotablaCentro";
-            TurismotablaCentro.RowCount = 2;
-            TurismotablaCentro.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            TurismotablaCentro.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            TurismotablaCentro.Size = new Size(672, 455);
-            TurismotablaCentro.TabIndex = 8;
-            // 
-            // Turismopanel4
-            // 
-            Turismopanel4.Controls.Add(TurismoButtonMinijuego);
-            Turismopanel4.Controls.Add(TurismoPictureMinijuego);
-            Turismopanel4.Dock = DockStyle.Fill;
-            Turismopanel4.Location = new Point(339, 230);
-            Turismopanel4.Name = "Turismopanel4";
-            Turismopanel4.Size = new Size(330, 222);
-            Turismopanel4.TabIndex = 3;
-            // 
-            // Turismopanel3
-            // 
-            Turismopanel3.Controls.Add(TurismoPictureAgenda);
-            Turismopanel3.Controls.Add(TurismoButtonAgenda);
-            Turismopanel3.Dock = DockStyle.Fill;
-            Turismopanel3.Location = new Point(3, 230);
-            Turismopanel3.Name = "Turismopanel3";
-            Turismopanel3.Size = new Size(330, 222);
-            Turismopanel3.TabIndex = 2;
-            // 
-            // Turismopanel2
-            // 
-            Turismopanel2.Controls.Add(TurismoPictureVer);
-            Turismopanel2.Controls.Add(TurismoButtonVer);
-            Turismopanel2.Dock = DockStyle.Fill;
-            Turismopanel2.Location = new Point(339, 3);
-            Turismopanel2.Name = "Turismopanel2";
-            Turismopanel2.Size = new Size(330, 221);
-            Turismopanel2.TabIndex = 1;
-            // 
-            // Turismopanel1
-            // 
-            Turismopanel1.Controls.Add(TurismoPictureRegistrar);
-            Turismopanel1.Controls.Add(TurismoButtonRegistrar);
-            Turismopanel1.Dock = DockStyle.Fill;
-            Turismopanel1.Location = new Point(3, 3);
-            Turismopanel1.Name = "Turismopanel1";
-            Turismopanel1.Size = new Size(330, 221);
-            Turismopanel1.TabIndex = 0;
+            panelMenu.Anchor = AnchorStyles.None;
+            panelMenu.BackColor = Color.Transparent;
+            panelMenu.Controls.Add(TurismoPictureRegistrar);
+            panelMenu.Controls.Add(TurismoButtonRegistrar);
+            panelMenu.Controls.Add(TurismoPictureVer);
+            panelMenu.Controls.Add(TurismoButtonVer);
+            panelMenu.Controls.Add(TurismoPictureAgenda);
+            panelMenu.Controls.Add(TurismoButtonAgenda);
+            panelMenu.Controls.Add(TurismoPictureMinijuego);
+            panelMenu.Controls.Add(TurismoButtonMinijuego);
+            panelMenu.Controls.Add(TurismoPictureRutas);
+            panelMenu.Controls.Add(TurismoButtonRutas);
+            panelMenu.Location = new Point(3, 3);
+            panelMenu.Name = "panelMenu";
+            panelMenu.Size = new Size(1368, 659);
+            panelMenu.TabIndex = 0;
             // 
             // cuModulo1
             // 
-            BackgroundImage = Properties.Resources._2;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(TurismopanelContenido);
             Name = "cuModulo1";
-            Size = new Size(800, 500);
+            Size = new Size(1374, 665);
             Load += cuModulo1_Load;
             ((System.ComponentModel.ISupportInitialize)TurismoPictureRegistrar).EndInit();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureVer).EndInit();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureAgenda).EndInit();
             ((System.ComponentModel.ISupportInitialize)TurismoPictureMinijuego).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TurismoPictureRutas).EndInit();
             TurismopanelContenido.ResumeLayout(false);
-            TurismotablaCentro.ResumeLayout(false);
-            Turismopanel4.ResumeLayout(false);
-            Turismopanel3.ResumeLayout(false);
-            Turismopanel2.ResumeLayout(false);
-            Turismopanel1.ResumeLayout(false);
+            panelMenu.ResumeLayout(false);
             ResumeLayout(false);
         }
 
+        // Botones
         private Button TurismoButtonRegistrar;
         private Button TurismoButtonVer;
         private Button TurismoButtonAgenda;
         private Button TurismoButtonMinijuego;
+        private Button TurismoButtonRutas;
 
+        // Imágenes
         private PictureBox TurismoPictureRegistrar;
         private PictureBox TurismoPictureVer;
         private PictureBox TurismoPictureAgenda;
         private PictureBox TurismoPictureMinijuego;
+        private PictureBox TurismoPictureRutas;
+
+        // Contenedores
         private Panel TurismopanelContenido;
-        private TableLayoutPanel TurismotablaCentro;
-        private Panel Turismopanel4;
-        private Panel Turismopanel3;
-        private Panel Turismopanel2;
-        private Panel Turismopanel1;
+        private Panel panelMenu;
     }
 }
