@@ -54,6 +54,7 @@ namespace Proyecto_Integrador
         private void btnModulo3_Click(object sender, EventArgs e)
         {
             CargarUserControl(new saludcaballos());
+
         }
 
         private void btnModulo4_Click(object sender, EventArgs e)
