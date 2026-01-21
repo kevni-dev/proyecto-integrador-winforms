@@ -1,0 +1,50 @@
+﻿[
+  {
+    "Nombre": "Luna",
+    "Edad": 6,
+    "Raza": "Criollo",
+    "Sexo": "Hembra",
+    "Temperamento": "Tranquilo",
+    "ImagenRecurso": "Caballo_Criollo"
+  },
+  {
+    "Nombre": "Tornado",
+    "Edad": 8,
+    "Raza": "Cuarto de milla",
+    "Sexo": "Macho",
+    "Temperamento": "Activo",
+    "ImagenRecurso": "Caballo_Cuarto"
+  },
+  {
+    "Nombre": "Estrellado",
+    "Edad": 5,
+    "Raza": "Árabe",
+    "Sexo": "Macho",
+    "Temperamento": "Nervioso",
+    "ImagenRecurso": "Caballo_Arabe"
+  },
+  {
+    "Nombre": "Don Zanahorio",
+    "Edad": 7,
+    "Raza": "Criollo",
+    "Sexo": "Macho",
+    "Temperamento": "Tranquilo",
+    "ImagenRecurso": "Caballo_Criollo"
+  },
+  {
+    "Nombre": "Relámpago Lento",
+    "Edad": 10,
+    "Raza": "Cuarto de milla",
+    "Sexo": "Macho",
+    "Temperamento": "Agresivo",
+    "ImagenRecurso": "Caballo_Cuarto"
+  },
+  {
+    "Nombre": "Sir ComePastito",
+    "Edad": 4,
+    "Raza": "Árabe",
+    "Sexo": "Hembra",
+    "Temperamento": "Activo",
+    "ImagenRecurso": "Caballo_Arabe"
+  }
+]
