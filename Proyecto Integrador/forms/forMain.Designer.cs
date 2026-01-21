@@ -48,23 +48,25 @@
             plTitulo.Controls.Add(tableLayoutPanel1);
             plTitulo.Dock = DockStyle.Top;
             plTitulo.Location = new Point(0, 0);
+            plTitulo.Margin = new Padding(3, 4, 3, 4);
             plTitulo.Name = "plTitulo";
-            plTitulo.Size = new Size(800, 60);
+            plTitulo.Size = new Size(914, 80);
             plTitulo.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 57F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(lblTituloPrincipal, 1, 0);
             tableLayoutPanel1.Controls.Add(btnIconoMenu, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(800, 60);
+            tableLayoutPanel1.Size = new Size(914, 80);
             tableLayoutPanel1.TabIndex = 2;
             // 
             // lblTituloPrincipal
@@ -72,9 +74,9 @@
             lblTituloPrincipal.Anchor = AnchorStyles.None;
             lblTituloPrincipal.AutoSize = true;
             lblTituloPrincipal.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTituloPrincipal.Location = new Point(261, 17);
+            lblTituloPrincipal.Location = new Point(278, 24);
             lblTituloPrincipal.Name = "lblTituloPrincipal";
-            lblTituloPrincipal.Size = new Size(328, 25);
+            lblTituloPrincipal.Size = new Size(415, 32);
             lblTituloPrincipal.TabIndex = 0;
             lblTituloPrincipal.Text = "MANEJO INTEGRAL DE CABALLOS";
             lblTituloPrincipal.TextAlign = ContentAlignment.MiddleCenter;
@@ -83,9 +85,10 @@
             // 
             btnIconoMenu.Dock = DockStyle.Fill;
             btnIconoMenu.FlatStyle = FlatStyle.Flat;
-            btnIconoMenu.Location = new Point(3, 3);
+            btnIconoMenu.Location = new Point(3, 4);
+            btnIconoMenu.Margin = new Padding(3, 4, 3, 4);
             btnIconoMenu.Name = "btnIconoMenu";
-            btnIconoMenu.Size = new Size(44, 54);
+            btnIconoMenu.Size = new Size(51, 72);
             btnIconoMenu.TabIndex = 1;
             btnIconoMenu.Text = "☰";
             btnIconoMenu.UseVisualStyleBackColor = true;
@@ -98,18 +101,20 @@
             plModulos.Controls.Add(btnModulo2);
             plModulos.Controls.Add(btnModulo1);
             plModulos.Dock = DockStyle.Left;
-            plModulos.Location = new Point(0, 60);
+            plModulos.Location = new Point(0, 80);
+            plModulos.Margin = new Padding(3, 4, 3, 4);
             plModulos.Name = "plModulos";
-            plModulos.Size = new Size(220, 390);
+            plModulos.Size = new Size(251, 520);
             plModulos.TabIndex = 1;
             // 
             // btnModulo4
             // 
             btnModulo4.Dock = DockStyle.Top;
             btnModulo4.FlatStyle = FlatStyle.Flat;
-            btnModulo4.Location = new Point(0, 153);
+            btnModulo4.Location = new Point(0, 204);
+            btnModulo4.Margin = new Padding(3, 4, 3, 4);
             btnModulo4.Name = "btnModulo4";
-            btnModulo4.Size = new Size(220, 49);
+            btnModulo4.Size = new Size(251, 65);
             btnModulo4.TabIndex = 0;
             btnModulo4.Text = "Gestion emocional equina";
             btnModulo4.UseVisualStyleBackColor = true;
@@ -119,9 +124,10 @@
             // 
             btnModulo3.Dock = DockStyle.Top;
             btnModulo3.FlatStyle = FlatStyle.Flat;
-            btnModulo3.Location = new Point(0, 100);
+            btnModulo3.Location = new Point(0, 133);
+            btnModulo3.Margin = new Padding(3, 4, 3, 4);
             btnModulo3.Name = "btnModulo3";
-            btnModulo3.Size = new Size(220, 53);
+            btnModulo3.Size = new Size(251, 71);
             btnModulo3.TabIndex = 0;
             btnModulo3.Text = "Salud general";
             btnModulo3.UseVisualStyleBackColor = true;
@@ -131,9 +137,10 @@
             // 
             btnModulo2.Dock = DockStyle.Top;
             btnModulo2.FlatStyle = FlatStyle.Flat;
-            btnModulo2.Location = new Point(0, 48);
+            btnModulo2.Location = new Point(0, 64);
+            btnModulo2.Margin = new Padding(3, 4, 3, 4);
             btnModulo2.Name = "btnModulo2";
-            btnModulo2.Size = new Size(220, 52);
+            btnModulo2.Size = new Size(251, 69);
             btnModulo2.TabIndex = 0;
             btnModulo2.Text = "Desarrollo y alimentación";
             btnModulo2.UseVisualStyleBackColor = true;
@@ -144,8 +151,9 @@
             btnModulo1.Dock = DockStyle.Top;
             btnModulo1.FlatStyle = FlatStyle.Flat;
             btnModulo1.Location = new Point(0, 0);
+            btnModulo1.Margin = new Padding(3, 4, 3, 4);
             btnModulo1.Name = "btnModulo1";
-            btnModulo1.Size = new Size(220, 48);
+            btnModulo1.Size = new Size(251, 64);
             btnModulo1.TabIndex = 1;
             btnModulo1.Text = "Gestión y Turismo";
             btnModulo1.UseVisualStyleBackColor = true;
@@ -154,21 +162,24 @@
             // plContenido
             // 
             plContenido.Dock = DockStyle.Fill;
-            plContenido.Location = new Point(220, 60);
+            plContenido.Location = new Point(251, 80);
+            plContenido.Margin = new Padding(3, 4, 3, 4);
             plContenido.Name = "plContenido";
-            plContenido.Size = new Size(580, 390);
+            plContenido.Size = new Size(663, 520);
             plContenido.TabIndex = 2;
             // 
             // forMain
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(plContenido);
             Controls.Add(plModulos);
             Controls.Add(plTitulo);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "forMain";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             Load += forMain_Load;
             plTitulo.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
