@@ -18,6 +18,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            comboBoxImagen = new ComboBox();
+            label6 = new Label();
             btnCancelar = new Button();
             btnGuardar = new Button();
             pictureBox1 = new PictureBox();
@@ -37,6 +39,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBoxImagen);
+            panel1.Controls.Add(label6);
             panel1.Controls.Add(btnCancelar);
             panel1.Controls.Add(btnGuardar);
             panel1.Controls.Add(pictureBox1);
@@ -55,6 +59,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 500);
             panel1.TabIndex = 0;
+            // 
+            // comboBoxImagen
+            // 
+            comboBoxImagen.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxImagen.FormattingEnabled = true;
+            comboBoxImagen.Location = new Point(200, 261);
+            comboBoxImagen.Name = "comboBoxImagen";
+            comboBoxImagen.Size = new Size(150, 23);
+            comboBoxImagen.TabIndex = 24;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 14F);
+            label6.Location = new Point(40, 261);
+            label6.Name = "label6";
+            label6.Size = new Size(73, 24);
+            label6.TabIndex = 23;
+            label6.Text = "Imagen";
+            label6.Click += label6_Click;
             // 
             // btnCancelar
             // 
@@ -82,7 +106,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.caballito;
+            pictureBox1.Image = Properties.Resources.Caballo_Arabe;
             pictureBox1.Location = new Point(500, 50);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(250, 250);
@@ -93,7 +117,7 @@
             // comboBoxTemperamento
             // 
             comboBoxTemperamento.FormattingEnabled = true;
-            comboBoxTemperamento.Location = new Point(200, 330);
+            comboBoxTemperamento.Location = new Point(200, 405);
             comboBoxTemperamento.Name = "comboBoxTemperamento";
             comboBoxTemperamento.Size = new Size(150, 23);
             comboBoxTemperamento.TabIndex = 13;
@@ -101,7 +125,7 @@
             // comboBoxSexo
             // 
             comboBoxSexo.FormattingEnabled = true;
-            comboBoxSexo.Location = new Point(200, 260);
+            comboBoxSexo.Location = new Point(200, 335);
             comboBoxSexo.Name = "comboBoxSexo";
             comboBoxSexo.Size = new Size(150, 23);
             comboBoxSexo.TabIndex = 14;
@@ -113,7 +137,6 @@
             comboBoxRaza.Name = "comboBoxRaza";
             comboBoxRaza.Size = new Size(150, 23);
             comboBoxRaza.TabIndex = 15;
-          
             // 
             // textBoxEdad
             // 
@@ -133,7 +156,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 14F);
-            label5.Location = new Point(40, 330);
+            label5.Location = new Point(40, 405);
             label5.Name = "label5";
             label5.Size = new Size(140, 24);
             label5.TabIndex = 18;
@@ -143,7 +166,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 14F);
-            label4.Location = new Point(40, 260);
+            label4.Location = new Point(40, 335);
             label4.Name = "label4";
             label4.Size = new Size(54, 24);
             label4.TabIndex = 19;
@@ -179,12 +202,12 @@
             label1.TabIndex = 22;
             label1.Text = "Nombre";
             // 
-            // cuRegistrarCaballo
+            // TurismoRegistrarCaballo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
-            Name = "cuRegistrarCaballo";
+            Name = "TurismoRegistrarCaballo";
             Size = new Size(800, 500);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -208,5 +231,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private Label label6;
+        private ComboBox comboBoxImagen;
     }
 }

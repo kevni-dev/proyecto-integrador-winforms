@@ -28,6 +28,27 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxRaza.Items.Add("Árabe");
             comboBoxRaza.Items.Add("Criollo");
             comboBoxRaza.Items.Add("Cuarto de milla");
+
+            comboBoxImagen.Items.Add("Caballo_Cuarto");
+            comboBoxImagen.Items.Add("Caballo_Arabe");
+            comboBoxImagen.Items.Add("Caballo_Criollo");
+
+            comboBoxImagen.SelectedIndex = 0;
+        }
+
+        private void comboBoxImagen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxImagen.SelectedItem == null)
+                return;
+
+            string img = comboBoxImagen.SelectedItem.ToString()!;
+
+            if (img == "Caballo_Cuarto")
+                pictureBox1.Image = Properties.Resources.Caballo_Cuarto;
+            else if (img == "Caballo_Arabe")
+                pictureBox1.Image = Properties.Resources.Caballo_Arabe;
+            else if (img == "Caballo_Criollo")
+                pictureBox1.Image = Properties.Resources.Caballo_Criollo;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -65,7 +86,8 @@ namespace Proyecto_Integrador.ControlesUsuario
                 Edad = edad,
                 Raza = comboBoxRaza.Text!,
                 Sexo = comboBoxSexo.Text!,
-                Temperamento = comboBoxTemperamento.Text!
+                Temperamento = comboBoxTemperamento.Text!,
+                ImagenRecurso = comboBoxImagen.Text!
             };
 
             bool agregado = RepositorioCaballos.Agregar(nuevo);
@@ -80,6 +102,11 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             // 🔥 SOLO avisamos, NO navegamos aquí
             RegistroExitoso?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

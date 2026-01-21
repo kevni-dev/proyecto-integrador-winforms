@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Proyecto_Integrador.ControlesUsuario.A_Turismo;
+using Proyecto_Integrador.Datos;
+
 
 
 namespace Proyecto_Integrador.ControlesUsuario
@@ -27,8 +29,10 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private void cuModulo1_Load(object sender, EventArgs e)
         {
+            RepositorioCaballos.Inicializar();
             CentrarTabla();
         }
+
 
         private void TurismopanelContenido_Resize(object sender, EventArgs e)
         {

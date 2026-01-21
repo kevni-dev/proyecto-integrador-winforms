@@ -7,7 +7,7 @@
         public string Raza { get; set; } = "";
         public string Sexo { get; set; } = "";
         public string Temperamento { get; set; } = "";
-
+        public string ImagenRecurso { get; set; } = "";
         public bool EdadValida()
         {
             return Edad >= 0 && Edad <= 35;
