@@ -12,10 +12,10 @@ namespace Proyecto_Integrador.Archivo
         }
         public string[] leerArchivo(string ruta)
         {
-            MessageBox.Show(ruta);
+            
             string[] contenido = null;
             bool archivoExiste = File.Exists(ruta);
-            MessageBox.Show(archivoExiste.ToString());
+            
             if (archivoExiste)
             {
                 contenido = File.ReadAllLines(ruta);
@@ -28,8 +28,8 @@ namespace Proyecto_Integrador.Archivo
         }
         public void escribirLinea(string ruta, string linea)
         {
+            
             File.AppendAllText(ruta, linea);
-
         }
         public void editarLinea(int idEditar, string nuevaLinea, string ruta)
         {
@@ -49,7 +49,7 @@ namespace Proyecto_Integrador.Archivo
             }
             if (encontrado)
             {
-                File.WriteAllText(ruta, "");
+                
                 File.WriteAllLines(ruta, datos);
             }
         }
@@ -88,5 +88,10 @@ namespace Proyecto_Integrador.Archivo
                
             }
         }
+        public void limpiarArchivo(string ruta) 
+        {
+            File.WriteAllText(ruta, "");
+        }
+
     }       
 }
