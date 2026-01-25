@@ -45,10 +45,10 @@
             // 
             // btn_enferme
             // 
-            btn_enferme.Dock = DockStyle.Top;
-            btn_enferme.Location = new Point(0, 279);
+            btn_enferme.Font = new Font("Stencil", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_enferme.Location = new Point(0, 0);
             btn_enferme.Name = "btn_enferme";
-            btn_enferme.Size = new Size(269, 91);
+            btn_enferme.Size = new Size(269, 104);
             btn_enferme.TabIndex = 0;
             btn_enferme.Text = "Enfermedades";
             btn_enferme.UseVisualStyleBackColor = true;
@@ -56,30 +56,30 @@
             // 
             // btn_tratamiento
             // 
-            btn_tratamiento.Dock = DockStyle.Top;
-            btn_tratamiento.Location = new Point(0, 186);
+            btn_tratamiento.Font = new Font("Stencil", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_tratamiento.Location = new Point(0, 110);
             btn_tratamiento.Name = "btn_tratamiento";
-            btn_tratamiento.Size = new Size(269, 93);
+            btn_tratamiento.Size = new Size(272, 104);
             btn_tratamiento.TabIndex = 1;
             btn_tratamiento.Text = "Tratamientos";
             btn_tratamiento.UseVisualStyleBackColor = true;
             // 
             // btn_prevencion
             // 
-            btn_prevencion.Dock = DockStyle.Top;
-            btn_prevencion.Location = new Point(0, 0);
+            btn_prevencion.Font = new Font("Stencil", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_prevencion.Location = new Point(3, 220);
             btn_prevencion.Name = "btn_prevencion";
-            btn_prevencion.Size = new Size(269, 93);
+            btn_prevencion.Size = new Size(266, 104);
             btn_prevencion.TabIndex = 2;
-            btn_prevencion.Text = "Prevencion";
+            btn_prevencion.Text = "Prevención";
             btn_prevencion.UseVisualStyleBackColor = true;
             // 
             // btn_minijuego
             // 
-            btn_minijuego.Dock = DockStyle.Top;
-            btn_minijuego.Location = new Point(0, 93);
+            btn_minijuego.Font = new Font("Stencil", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_minijuego.Location = new Point(0, 330);
             btn_minijuego.Name = "btn_minijuego";
-            btn_minijuego.Size = new Size(269, 93);
+            btn_minijuego.Size = new Size(272, 104);
             btn_minijuego.TabIndex = 3;
             btn_minijuego.Text = "Minijuego";
             btn_minijuego.UseVisualStyleBackColor = true;
@@ -87,10 +87,10 @@
             // lbl_titulo
             // 
             lbl_titulo.AutoSize = true;
-            lbl_titulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_titulo.Font = new Font("Stencil", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_titulo.Location = new Point(21, 26);
             lbl_titulo.Name = "lbl_titulo";
-            lbl_titulo.Size = new Size(318, 41);
+            lbl_titulo.Size = new Size(393, 35);
             lbl_titulo.TabIndex = 4;
             lbl_titulo.Text = "Salud de los caballos ";
             // 

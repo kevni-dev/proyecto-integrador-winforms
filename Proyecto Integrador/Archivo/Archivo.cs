@@ -6,9 +6,24 @@ namespace Proyecto_Integrador.Archivo
 {
     public class Archivo
     {
+        private void crearArchivo (string ruta)
+        {
+            File.Create (ruta).Close ();
+        }
         public string[] leerArchivo(string ruta)
         {
-            string [] contenido = File.ReadAllLines(ruta);
+            MessageBox.Show(ruta);
+            string[] contenido = null;
+            bool archivoExiste = File.Exists(ruta);
+            MessageBox.Show(archivoExiste.ToString());
+            if (archivoExiste)
+            {
+                contenido = File.ReadAllLines(ruta);
+
+            }
+            else {
+                crearArchivo (ruta);
+            }
             return contenido;
         }
         public void escribirLinea(string ruta, string linea)
@@ -16,6 +31,62 @@ namespace Proyecto_Integrador.Archivo
             File.AppendAllText(ruta, linea);
 
         }
-    }
+        public void editarLinea(int idEditar, string nuevaLinea, string ruta)
+        {
+            string[] datos = leerArchivo(ruta);
+            bool encontrado = false;
+            for (int i = 0; i < datos.Length; i++)
 
+            {
+                string[] linea = datos[i].Split(';');
+                int id = int.Parse(linea[0]);
+                if (id == idEditar)
+                {
+                    datos[i] = nuevaLinea;
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (encontrado)
+            {
+                File.WriteAllText(ruta, "");
+                File.WriteAllLines(ruta, datos);
+            }
+        }
+        public void eliminarLinea(int idEliminar, string ruta)
+        {
+            string[] datos = leerArchivo(ruta);
+            
+
+            bool encontrado = false;
+            for (int i = 0; i < datos.Length; i++)
+
+            {
+                string[] linea = datos[i].Split(';');
+                int id = int.Parse(linea[0]);
+                if (id == idEliminar)
+                {
+                    
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (encontrado)
+            {
+                File.WriteAllText(ruta, "");
+                for (int i = 0; i < datos.Length; i++)
+
+                {
+                    string[] linea = datos[i].Split(';');
+                    int id = int.Parse(linea[0]);
+                    if (id != idEliminar)
+                    {
+
+                        File.AppendAllText(ruta, datos[i]+"\n");
+                    }
+                }
+               
+            }
+        }
+    }       
 }
