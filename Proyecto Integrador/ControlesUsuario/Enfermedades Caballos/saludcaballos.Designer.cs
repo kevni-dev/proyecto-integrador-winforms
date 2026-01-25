@@ -63,6 +63,7 @@
             btn_tratamiento.TabIndex = 1;
             btn_tratamiento.Text = "Tratamientos";
             btn_tratamiento.UseVisualStyleBackColor = true;
+            btn_tratamiento.Click += btn_tratamiento_Click;
             // 
             // btn_prevencion
             // 

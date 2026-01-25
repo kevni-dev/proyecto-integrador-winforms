@@ -19,13 +19,19 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         private void saludcaballos_Load(object sender, EventArgs e)
         {
             Archivo.Archivo archivo = new Archivo.Archivo();
-            
+
         }
 
         private void btn_enferme_Click(object sender, EventArgs e)
         {
             Enfermedades enfermedades = new Enfermedades();
             enfermedades.ShowDialog();
+        }
+
+        private void btn_tratamiento_Click(object sender, EventArgs e)
+        {
+            frmTratamiento tratamiento = new frmTratamiento();
+            tratamiento.ShowDialog();
         }
     }
 }
