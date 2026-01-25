@@ -36,7 +36,7 @@ namespace Proyecto_Integrador
 
         private void btnModulo1_Click(object sender, EventArgs e)
         {
-            CargarUserControl(new cuModulo1());
+            //CargarUserControl(new cuModulo1());
         }
 
         private void CargarUserControl(UserControl uc)

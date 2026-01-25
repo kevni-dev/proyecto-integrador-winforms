@@ -17,12 +17,13 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         {
             InitializeComponent();
             archivo = new Archivo.Archivo();
-            ruta = "C:\\Users\\patty\\OneDrive\\Escritorio\\Materias UTEQ\\Enfermedades.txt";
+            ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\Caballos.txt") ;
         }
         private void cargarTabla()
         {
             dtgv_enfermedades.Rows.Clear();
             string[] datos = archivo.leerArchivo(ruta);
+            if (datos == null) return;
             for (int i = 0; i < datos.Length; i++)
             {
                 dtgv_enfermedades.Rows.Add();
@@ -69,10 +70,20 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 MessageBox.Show("Rellene la descripcion");
                 return;
             }
-            int max = obtenerIdMax() + 1;
-            string datos = max + ";" + txt_enfermedad.Text + ";" + txt_sintomas.Text + ";" + txt_descripcion.Text + "\n";
-            archivo.escribirLinea(ruta, datos);
-            cargarTabla();
+            bool editar = txt_id.Text.Length > 0;
+            if (editar)
+            {
+                string datos = txt_id.Text + ";" + txt_enfermedad.Text + ";" + txt_sintomas.Text + ";" + txt_descripcion.Text;
+                archivo.editarLinea(int.Parse(txt_id.Text), datos, ruta);
+                cargarTabla();
+            }
+            else
+            {
+                int max = obtenerIdMax() + 1;
+                string datos = max + ";" + txt_enfermedad.Text + ";" + txt_sintomas.Text + ";" + txt_descripcion.Text + "\n";
+                archivo.escribirLinea(ruta, datos);
+                cargarTabla();
+            }
 
 
         }
@@ -84,11 +95,30 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void dtgv_enfermedades_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            string id = dtgv_enfermedades.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string enfermedad = dtgv_enfermedades.Rows[e.RowIndex].Cells[1].Value.ToString();
+            string sintomas = dtgv_enfermedades.Rows[e.RowIndex].Cells[2].Value.ToString();
+            string descripcion = dtgv_enfermedades.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txt_enfermedad.Text = enfermedad;
+            txt_sintomas.Text = sintomas;
+            txt_descripcion.Text = descripcion;
+            txt_id.Text = id;
         }
 
         private void Enfermedades_Load(object sender, EventArgs e)
         {
+            cargarTabla();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+      
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(txt_id.Text);
+            archivo.eliminarLinea(id, ruta);
             cargarTabla();
         }
     }

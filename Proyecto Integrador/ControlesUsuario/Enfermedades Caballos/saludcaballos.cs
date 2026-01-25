@@ -19,11 +19,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         private void saludcaballos_Load(object sender, EventArgs e)
         {
             Archivo.Archivo archivo = new Archivo.Archivo();
-            string[] contenido = archivo.leerArchivo("C:\\Users\\patty\\OneDrive\\Escritorio\\Materias UTEQ\\Caballos.txt");
-            for (int i = 0; i < contenido.Length; i++)
-            {
-                
-            }
+            
         }
 
         private void btn_enferme_Click(object sender, EventArgs e)
