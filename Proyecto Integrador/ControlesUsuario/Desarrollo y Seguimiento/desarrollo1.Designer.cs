@@ -59,6 +59,7 @@
             cmbCaballos.Name = "cmbCaballos";
             cmbCaballos.Size = new Size(179, 23);
             cmbCaballos.TabIndex = 0;
+            cmbCaballos.SelectedIndexChanged += cmbCaballos_SelectedIndexChanged;
             // 
             // lblCaballo
             // 

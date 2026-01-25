@@ -121,6 +121,21 @@
   <data name="adulto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\adulto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="agenda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agenda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="caballito" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\caballito.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Caballo_Arabe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Caballo_Arabe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Caballo_Criollo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Caballo_Criollo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Caballo_Cuarto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Caballo_Cuarto.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Girada" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Girada.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,7 +166,19 @@
   <data name="juvenil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\juvenil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="minijuego" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minijuego.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="potro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\potro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="registrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\registrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ver_registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ver registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

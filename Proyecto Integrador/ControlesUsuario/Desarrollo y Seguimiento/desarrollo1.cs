@@ -104,5 +104,10 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
             uc.Dock = DockStyle.Fill;
             parent.Controls.Add(uc);
         }
+
+        private void cmbCaballos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
