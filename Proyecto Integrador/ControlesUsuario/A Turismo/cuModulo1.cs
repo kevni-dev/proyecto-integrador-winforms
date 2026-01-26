@@ -23,7 +23,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             ActivarDoubleBuffer(panelMenu);
         }
 
-        // Reduce parpadeo cuando hay BackgroundImage (puede bajar FPS, pero para tu caso suele ayudar)
+        // Reduce parpadeo cuando hay BackgroundImage 
         protected override CreateParams CreateParams
         {
             get
