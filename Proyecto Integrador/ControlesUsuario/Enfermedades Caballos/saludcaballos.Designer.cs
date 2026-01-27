@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 {
-    partial class saludcaballos
+    partial class Saludcaballos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

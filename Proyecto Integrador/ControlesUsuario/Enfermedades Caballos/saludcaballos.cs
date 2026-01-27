@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 {
-    public partial class saludcaballos : UserControl
+    public partial class Saludcaballos : UserControl
     {
-        public saludcaballos()
+        public Saludcaballos()
         {
             InitializeComponent();
+            btn_minijuego.Click += btn_minijuego_Click;
         }
 
         private void saludcaballos_Load(object sender, EventArgs e)
@@ -32,6 +33,25 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         {
             frmTratamiento tratamiento = new frmTratamiento();
             tratamiento.ShowDialog();
+        }
+
+        private void btn_minijuego_Click(object? sender, EventArgs e)
+        {
+            panel3.Controls.Clear();
+
+            var juego = new cuSopaEnfermedades();
+            juego.Dock = DockStyle.Fill;
+
+            // Para poder salir y volver al módulo
+            juego.SalirRequested += (s, args) =>
+            {
+                panel3.Controls.Clear();
+                // Regresa a lo que tenías antes (la tabla)
+                dtgv_caballos.Dock = DockStyle.Fill;
+                panel3.Controls.Add(dtgv_caballos);
+            };
+
+            panel3.Controls.Add(juego);
         }
     }
 }

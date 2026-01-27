@@ -178,7 +178,7 @@ namespace Proyecto_Integrador
         private void btnModulo3_Click(object sender, EventArgs e)
         {
             MarcarActivo(btnModulo3);
-            CargarUserControl(new saludcaballos());
+            CargarUserControl(new Saludcaballos());
         }
 
         private void btnModulo4_Click(object sender, EventArgs e)
