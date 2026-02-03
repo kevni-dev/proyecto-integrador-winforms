@@ -29,7 +29,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             InitializeComponent();
             ConfigurarBotones();
             btnContinuar.Enabled = false;
-            // Suscribirse al evento global: si cambian de caballo en la pestaña 1, se actualiza aquí
+            // cambia caballo si eligen otro en modulo uno
             CaballoSeleccionado.CaballoActualizado += (s, e) =>
             {
                 if (CaballoSeleccionado.HayCaballoSeleccionado())
@@ -75,12 +75,10 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // El vínculo empieza bajo, pero si el caballo es "Dócil" o tiene mucha confianza, empieza mejor
             _nivelVinculo = (int)(perfil.NivelConfianza * 0.3); // Empieza al 30% de su confianza base
 
-            // 3. Actualizar textos e imágenes
             lblNombreCaballo.Text = caballo.Nombre;
             lblFeedback.Text = $"Has comenzado una sesión con {caballo.Nombre}. Su estado es: {perfil.EstadoGeneral}.";
             lblFeedback.BackColor = Color.LightBlue;
 
-            // Intentar cargar la imagen (Asumiendo que guardaste la ruta o el nombre en la propiedad Imagen)
             CargarImagenCaballo(caballo.ImagenRecurso);
 
             ActualizarBarrasUI();
@@ -102,7 +100,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             }
             else
             {
-                // Si no lo encuentra, dejamos vacío o ponemos una silueta por defecto
                 pbFotoPerfil.Image = Properties.Resources.qwer7;
             }
         }
@@ -166,7 +163,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             }
 
             _contadorInteracciones++;
-            if (_contadorInteracciones % 3 == 0) // Cambia cada 3 acciones
+            if (_contadorInteracciones % 3 == 0) 
             {
                 Random r = new Random();
                 lblDatoCurioso.Text = _datosCuriosos[r.Next(_datosCuriosos.Count)];
@@ -198,7 +195,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             pbEstresActual.Value = _nivelEstres;
             lblValEstres.Text = $"{_nivelEstres}%";
 
-            // Cambiar color de barra de estrés según peligro
             if (_nivelEstres > 70) lblValEstres.ForeColor = Color.Red;
             else if (_nivelEstres < 30) lblValEstres.ForeColor = Color.Green;
             else lblValEstres.ForeColor = Color.Black;
@@ -209,7 +205,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             pbVinculo.Value = _nivelVinculo;
             lblValVinculo.Text = $"{_nivelVinculo}%";
 
-            // Barra de progreso general de la sesión (basada en vínculo)
             pbProgresoSesion.Value = _nivelVinculo;
         }
 
@@ -217,7 +212,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         {
             if (_nivelVinculo >= 100)
             {
-                lblFeedback.Text = $"¡Felicidades! Has creado un vínculo perfecto con {_caballoActual.Nombre}. Está listo para el juego.";
+                lblFeedback.Text = $"¡Felicidades! Has creado un vínculo perfecto con {_caballoActual.Nombre}.";
                 lblFeedback.BackColor = Color.Gold;
 
                 flpAcciones.Enabled = false;
@@ -244,7 +239,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         private void ReiniciarSesion()
         {
             _nivelVinculo = 0;
-            _nivelEstres = 30; // Estado base
+            _nivelEstres = 30; 
             _nivelEnergia = 50;
             flpAcciones.Enabled = true;
             _contadorInteracciones = 0;

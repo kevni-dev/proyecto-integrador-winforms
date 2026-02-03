@@ -13,7 +13,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
     {
         private Caballo caballo;
 
-        // Evento que se dispara cuando se hace clic en la tarjeta
+        // Evento al dar click en la tarjeta
         public event EventHandler TarjetaClick;
         public TarjetaCaballo()
         {
@@ -28,7 +28,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             pnlIndicador.Click += UCTarjetaCaballo_Click;
             btnConfirmacion.Click += UCTarjetaCaballo_Click;
 
-            // Inicializar botón en rojo (no seleccionado)
             btnConfirmacion.BackColor = Color.FromArgb(200, 0, 0);
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -48,29 +47,21 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         {
             if (caballo == null) return;
 
-            // Actualizar nombre
             lblNombre.Text = caballo.Nombre;
 
-            // Actualizar edad
             lblEdad.Text = $"Edad: {caballo.Edad} años";
 
-            // Actualizar raza
             lblRaza.Text = $"Raza: {caballo.Raza}";
 
-            // Actualizar sexo
             lblSexo.Text = $"Sexo: {caballo.Sexo}";
 
-            // Actualizar temperamento
             lblTemperamento.Text = $"Temperamento: {caballo.Temperamento}";
 
-            // Cargar imagen
             CargarImagen();
 
-            // Cambiar color del indicador según temperamento
             pnlIndicador.BackColor = ObtenerColorTemperamento(caballo.Temperamento);
         }
 
-        // Carga la imagen del caballo desde Resources
         private void CargarImagen()
         {
             try
@@ -97,8 +88,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                 pbImagen.Image = null;
             }
         }
-
-        // Devuelve un color según el temperamento del caballo
         private Color ObtenerColorTemperamento(string temperamento)
         {
             return temperamento.ToLower() switch
@@ -122,23 +111,18 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             TarjetaClick?.Invoke(this, EventArgs.Empty);
         }
 
-        // Método público: seleccionar la tarjeta (resaltar)
         public void Seleccionar()
         {
             this.BackColor = Color.FromArgb(220, 200, 160); // Beige resaltado
             btnConfirmacion.BackColor = Color.FromArgb(0, 150, 0); // Verde
             btnConfirmacion.Text = "Sí";
         }
-
-        // Método público: deseleccionar la tarjeta (color normal)
         public void Deseleccionar()
         {
             this.BackColor = Color.FromArgb(245, 237, 220); // Beige normal
             btnConfirmacion.BackColor = Color.FromArgb(200, 0, 0); // Rojo
             btnConfirmacion.Text = "No";
         }
-
-        // Método público: verificar si está seleccionada
         public bool EstaSeleccionada()
         {
             return btnConfirmacion.BackColor == Color.FromArgb(0, 150, 0);

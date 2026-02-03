@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 namespace Proyecto_Integrador.Datos
@@ -8,25 +9,22 @@ namespace Proyecto_Integrador.Datos
     public static class RepositorioCaballos
     {
         private static List<Caballo> listaCaballos = new List<Caballo>();
-        private static bool cargado = false;
 
-        // Ruta REAL donde corre el programa (bin/Debug/...)
+        // Ruta del JSON (queda dentro del output: bin/Debug/.../Datos/caballos.json)
         private static string RutaJson =>
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Datos", "caballos.json");
+            Path.Combine(AppContext.BaseDirectory, "Datos", "caballos.json");
 
-        // Llamar UNA vez al iniciar
+        // Llamar 1 vez al iniciar el módulo / programa
         public static void CargarDesdeJson()
         {
-            if (cargado) return;
-            cargado = true;
-
             try
             {
-                // Si no existe, crearlo con lista vacía
-                string carpeta = Path.GetDirectoryName(RutaJson)!;
-                if (!Directory.Exists(carpeta))
+                // Asegurar carpeta Datos en output
+                string? carpeta = Path.GetDirectoryName(RutaJson);
+                if (!string.IsNullOrWhiteSpace(carpeta) && !Directory.Exists(carpeta))
                     Directory.CreateDirectory(carpeta);
 
+                // Si no existe el archivo, lo crea con lista vacía
                 if (!File.Exists(RutaJson))
                 {
                     listaCaballos = new List<Caballo>();
@@ -47,63 +45,126 @@ namespace Proyecto_Integrador.Datos
             }
             catch
             {
-                // Si el JSON está dañado, no crashear:
                 listaCaballos = new List<Caballo>();
             }
         }
 
         private static void GuardarEnJson()
         {
-            var opciones = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(listaCaballos, opciones);
-            File.WriteAllText(RutaJson, json);
+            try
+            {
+                var opciones = new JsonSerializerOptions { WriteIndented = true };
+                string json = JsonSerializer.Serialize(listaCaballos, opciones);
+                File.WriteAllText(RutaJson, json);
+            }
+            catch
+            {
+                // no revienta
+            }
         }
 
-        // --- CRUD ---
+        public static List<Caballo> ObtenerTodos()
+        {
+            return listaCaballos;
+        }
 
         public static bool Agregar(Caballo caballo)
         {
-            CargarDesdeJson();
+            if (caballo == null) return false;
 
-            if (caballo.Edad < 0 || caballo.Edad > 30) return false;
+            // ✅ CONSISTENTE con Caballo.EdadValida() (0..35)
+            if (!caballo.EdadValida())
+                return false;
 
-            for (int i = 0; i < listaCaballos.Count; i++)
-            {
-                if (string.Equals(listaCaballos[i].Nombre, caballo.Nombre, StringComparison.OrdinalIgnoreCase))
-                    return false;
-            }
+            string nombreNuevo = (caballo.Nombre ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(nombreNuevo))
+                return false;
+
+            bool repetido = listaCaballos.Any(c =>
+                string.Equals((c.Nombre ?? "").Trim(), nombreNuevo, StringComparison.OrdinalIgnoreCase));
+
+            if (repetido)
+                return false;
+
+            caballo.Nombre = nombreNuevo;
 
             listaCaballos.Add(caballo);
             GuardarEnJson();
             return true;
         }
 
-        public static List<Caballo> ObtenerTodos()
+        // ✅ EDITAR COMPLETO (el que usa tu botón Editar)
+        public static bool Actualizar(string nombreOriginal, Caballo actualizado)
         {
-            CargarDesdeJson();
-            return listaCaballos;
+            if (actualizado == null) return false;
+
+            string original = (nombreOriginal ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(original)) return false;
+
+            Caballo? existente = listaCaballos.FirstOrDefault(c =>
+                string.Equals((c.Nombre ?? "").Trim(), original, StringComparison.OrdinalIgnoreCase));
+
+            if (existente == null) return false;
+
+            string nuevoNombre = (actualizado.Nombre ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(nuevoNombre)) return false;
+
+            // ✅ CONSISTENTE con Caballo.EdadValida() (0..35)
+            if (!actualizado.EdadValida()) return false;
+
+            bool repetido = listaCaballos.Any(c =>
+                !ReferenceEquals(c, existente) &&
+                string.Equals((c.Nombre ?? "").Trim(), nuevoNombre, StringComparison.OrdinalIgnoreCase));
+
+            if (repetido) return false;
+
+            // Actualizar campos
+            existente.Nombre = nuevoNombre;
+            existente.Edad = actualizado.Edad;
+            existente.Raza = actualizado.Raza ?? "";
+            existente.Sexo = actualizado.Sexo ?? "";
+            existente.Temperamento = actualizado.Temperamento ?? "";
+            existente.ImagenRecurso = actualizado.ImagenRecurso ?? "";
+
+            GuardarEnJson();
+            return true;
         }
 
-        // Ejemplo de edición simple (ajústalo luego a lo que necesites)
+        public static bool Eliminar(string nombre)
+        {
+            string buscado = (nombre ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(buscado)) return false;
+
+            var caballo = listaCaballos.FirstOrDefault(c =>
+                string.Equals((c.Nombre ?? "").Trim(), buscado, StringComparison.OrdinalIgnoreCase));
+
+            if (caballo == null) return false;
+
+            listaCaballos.Remove(caballo);
+            GuardarEnJson();
+            return true;
+        }
+
+        // ✅ (OPCIONAL) si quieres por si acaso, pero ya no lo necesitas en tu UI
+        // Si no lo llamas en ninguna parte, BORRALO.
         public static bool Editar(string nombre, int nuevaEdad, string nuevaRaza)
         {
-            CargarDesdeJson();
+            if (string.IsNullOrWhiteSpace(nombre)) return false;
 
-            for (int i = 0; i < listaCaballos.Count; i++)
-            {
-                if (string.Equals(listaCaballos[i].Nombre, nombre, StringComparison.OrdinalIgnoreCase))
-                {
-                    if (nuevaEdad < 0 || nuevaEdad > 30) return false;
+            if (nuevaEdad < 0 || nuevaEdad > 35)
+                return false;
 
-                    listaCaballos[i].Edad = nuevaEdad;
-                    listaCaballos[i].Raza = nuevaRaza;
+            string buscado = nombre.Trim();
 
-                    GuardarEnJson();
-                    return true;
-                }
-            }
+            var existente = listaCaballos.FirstOrDefault(c =>
+                string.Equals((c.Nombre ?? "").Trim(), buscado, StringComparison.OrdinalIgnoreCase));
 
-            return false;
+            if (existente == null) return false;
+
+            existente.Edad = nuevaEdad;
+            existente.Raza = nuevaRaza ?? "";
+            GuardarEnJson();
+            return true;
         }
     }
 }

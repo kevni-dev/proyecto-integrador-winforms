@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             tlpPrincipal = new TableLayoutPanel();
-            pnlIzquierdo = new Panel();
-            flpCaballos = new FlowLayoutPanel();
-            pnlTitulo = new Panel();
-            lblSubtitulo = new Label();
-            lblTitulo = new Label();
             pnlDerecho = new Panel();
             gbRecomendaciones = new GroupBox();
             lblRecomendaciones = new Label();
@@ -54,17 +49,22 @@
             lblEstadoGeneral = new Label();
             pnlMensajeInicial = new Panel();
             lblMensajeInicial = new Label();
-            lblMensajeSeleccion = new Label();
             panel1 = new Panel();
+            pnlIzquierdo = new Panel();
+            flpCaballos = new FlowLayoutPanel();
+            pnlTitulo = new Panel();
+            lblSubtitulo = new Label();
+            lblTitulo = new Label();
+            lblMensajeSeleccion = new Label();
             tlpPrincipal.SuspendLayout();
-            pnlIzquierdo.SuspendLayout();
-            pnlTitulo.SuspendLayout();
             pnlDerecho.SuspendLayout();
             gbRecomendaciones.SuspendLayout();
             gbFactores.SuspendLayout();
             gbIndicadores.SuspendLayout();
             pnlMensajeInicial.SuspendLayout();
             panel1.SuspendLayout();
+            pnlIzquierdo.SuspendLayout();
+            pnlTitulo.SuspendLayout();
             SuspendLayout();
             // 
             // tlpPrincipal
@@ -82,67 +82,6 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpPrincipal.Size = new Size(890, 535);
             tlpPrincipal.TabIndex = 0;
-            // 
-            // pnlIzquierdo
-            // 
-            pnlIzquierdo.BackColor = Color.FromArgb(101, 67, 33);
-            pnlIzquierdo.Controls.Add(flpCaballos);
-            pnlIzquierdo.Controls.Add(pnlTitulo);
-            pnlIzquierdo.Dock = DockStyle.Fill;
-            pnlIzquierdo.Location = new Point(0, 0);
-            pnlIzquierdo.Margin = new Padding(0);
-            pnlIzquierdo.Name = "pnlIzquierdo";
-            pnlIzquierdo.Size = new Size(305, 473);
-            pnlIzquierdo.TabIndex = 0;
-            // 
-            // flpCaballos
-            // 
-            flpCaballos.AutoScroll = true;
-            flpCaballos.Dock = DockStyle.Fill;
-            flpCaballos.Location = new Point(0, 83);
-            flpCaballos.Margin = new Padding(4, 3, 4, 3);
-            flpCaballos.Name = "flpCaballos";
-            flpCaballos.Padding = new Padding(12, 12, 12, 12);
-            flpCaballos.Size = new Size(305, 390);
-            flpCaballos.TabIndex = 1;
-            // 
-            // pnlTitulo
-            // 
-            pnlTitulo.BackColor = Color.FromArgb(245, 237, 220);
-            pnlTitulo.Controls.Add(lblSubtitulo);
-            pnlTitulo.Controls.Add(lblTitulo);
-            pnlTitulo.Dock = DockStyle.Top;
-            pnlTitulo.Location = new Point(0, 0);
-            pnlTitulo.Margin = new Padding(4, 3, 4, 3);
-            pnlTitulo.Name = "pnlTitulo";
-            pnlTitulo.Size = new Size(305, 83);
-            pnlTitulo.TabIndex = 0;
-            // 
-            // lblSubtitulo
-            // 
-            lblSubtitulo.Dock = DockStyle.Bottom;
-            lblSubtitulo.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblSubtitulo.ForeColor = Color.FromArgb(101, 67, 33);
-            lblSubtitulo.Location = new Point(0, 48);
-            lblSubtitulo.Margin = new Padding(4, 0, 4, 0);
-            lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(305, 35);
-            lblSubtitulo.TabIndex = 1;
-            lblSubtitulo.Text = "\"Cada caballo tiene un perfil emocional único\"";
-            lblSubtitulo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.Dock = DockStyle.Top;
-            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.FromArgb(101, 67, 33);
-            lblTitulo.Location = new Point(0, 0);
-            lblTitulo.Margin = new Padding(4, 0, 4, 0);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(305, 48);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "Elige un caballo";
-            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlDerecho
             // 
@@ -162,6 +101,9 @@
             // 
             // gbRecomendaciones
             // 
+            gbRecomendaciones.BackColor = Color.Transparent;
+            gbRecomendaciones.BackgroundImage = Properties.Resources.qwer5;
+            gbRecomendaciones.BackgroundImageLayout = ImageLayout.Stretch;
             gbRecomendaciones.Controls.Add(lblRecomendaciones);
             gbRecomendaciones.Controls.Add(lblTituloRecomendaciones);
             gbRecomendaciones.Dock = DockStyle.Top;
@@ -200,6 +142,9 @@
             // 
             // gbFactores
             // 
+            gbFactores.BackColor = Color.Transparent;
+            gbFactores.BackgroundImage = Properties.Resources.qwer5;
+            gbFactores.BackgroundImageLayout = ImageLayout.Stretch;
             gbFactores.Controls.Add(lblFactores);
             gbFactores.Dock = DockStyle.Top;
             gbFactores.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -226,6 +171,9 @@
             // 
             // gbIndicadores
             // 
+            gbIndicadores.BackColor = Color.Transparent;
+            gbIndicadores.BackgroundImage = Properties.Resources.qwer5;
+            gbIndicadores.BackgroundImageLayout = ImageLayout.Stretch;
             gbIndicadores.Controls.Add(lblActivacionValor);
             gbIndicadores.Controls.Add(pbActivacion);
             gbIndicadores.Controls.Add(lblActivacion);
@@ -396,6 +344,77 @@
             lblMensajeInicial.Text = "Selecciona un caballo de la lista para ver su perfil emocional";
             lblMensajeInicial.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(pnlIzquierdo);
+            panel1.Controls.Add(lblMensajeSeleccion);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(305, 529);
+            panel1.TabIndex = 1;
+            // 
+            // pnlIzquierdo
+            // 
+            pnlIzquierdo.BackColor = Color.FromArgb(101, 67, 33);
+            pnlIzquierdo.Controls.Add(flpCaballos);
+            pnlIzquierdo.Controls.Add(pnlTitulo);
+            pnlIzquierdo.Dock = DockStyle.Fill;
+            pnlIzquierdo.Location = new Point(0, 0);
+            pnlIzquierdo.Margin = new Padding(0);
+            pnlIzquierdo.Name = "pnlIzquierdo";
+            pnlIzquierdo.Size = new Size(305, 473);
+            pnlIzquierdo.TabIndex = 0;
+            // 
+            // flpCaballos
+            // 
+            flpCaballos.AutoScroll = true;
+            flpCaballos.Dock = DockStyle.Fill;
+            flpCaballos.Location = new Point(0, 83);
+            flpCaballos.Margin = new Padding(4, 3, 4, 3);
+            flpCaballos.Name = "flpCaballos";
+            flpCaballos.Padding = new Padding(12);
+            flpCaballos.Size = new Size(305, 390);
+            flpCaballos.TabIndex = 1;
+            // 
+            // pnlTitulo
+            // 
+            pnlTitulo.BackColor = Color.FromArgb(245, 237, 220);
+            pnlTitulo.Controls.Add(lblSubtitulo);
+            pnlTitulo.Controls.Add(lblTitulo);
+            pnlTitulo.Dock = DockStyle.Top;
+            pnlTitulo.Location = new Point(0, 0);
+            pnlTitulo.Margin = new Padding(4, 3, 4, 3);
+            pnlTitulo.Name = "pnlTitulo";
+            pnlTitulo.Size = new Size(305, 83);
+            pnlTitulo.TabIndex = 0;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.Dock = DockStyle.Bottom;
+            lblSubtitulo.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            lblSubtitulo.ForeColor = Color.FromArgb(101, 67, 33);
+            lblSubtitulo.Location = new Point(0, 48);
+            lblSubtitulo.Margin = new Padding(4, 0, 4, 0);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(305, 35);
+            lblSubtitulo.TabIndex = 1;
+            lblSubtitulo.Text = "\"Cada caballo tiene un perfil emocional único\"";
+            lblSubtitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.Dock = DockStyle.Top;
+            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(101, 67, 33);
+            lblTitulo.Location = new Point(0, 0);
+            lblTitulo.Margin = new Padding(4, 0, 4, 0);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(305, 48);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Elige un caballo";
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // lblMensajeSeleccion
             // 
             lblMensajeSeleccion.BackColor = Color.FromArgb(245, 237, 220);
@@ -411,16 +430,6 @@
             lblMensajeSeleccion.Text = "Ningún caballo seleccionado";
             lblMensajeSeleccion.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(pnlIzquierdo);
-            panel1.Controls.Add(lblMensajeSeleccion);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(305, 529);
-            panel1.TabIndex = 1;
-            // 
             // PerfilEmocional
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -430,14 +439,14 @@
             Name = "PerfilEmocional";
             Size = new Size(890, 535);
             tlpPrincipal.ResumeLayout(false);
-            pnlIzquierdo.ResumeLayout(false);
-            pnlTitulo.ResumeLayout(false);
             pnlDerecho.ResumeLayout(false);
             gbRecomendaciones.ResumeLayout(false);
             gbFactores.ResumeLayout(false);
             gbIndicadores.ResumeLayout(false);
             pnlMensajeInicial.ResumeLayout(false);
             panel1.ResumeLayout(false);
+            pnlIzquierdo.ResumeLayout(false);
+            pnlTitulo.ResumeLayout(false);
             ResumeLayout(false);
 
         }

@@ -12,8 +12,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         {
             InitializeComponent();
 
-            // IMPORTANTE 1: Suscribirse al evento global para que cuando cambie el caballo
-            // en cualquier parte, la parte derecha de esta pantalla se actualice.
+            //actualiza la parte de la derecha
             CaballoSeleccionado.CaballoActualizado += (s, e) => {
                 if (CaballoSeleccionado.Actual != null)
                 {
@@ -22,8 +21,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             };
         }
 
-        // IMPORTANTE 2: El evento Load ocurre cuando el control se muestra por primera vez.
-        // Es el momento perfecto para llenar el FlowLayoutPanel.
+        // llena el flowlayoutpanel con las tarjetas
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -48,11 +46,8 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
                     tarjeta.Seleccionar();
 
-                    // Al asignar esto, se dispara el evento 'CaballoActualizado' 
-                    // que configuramos en el constructor.
                     CaballoSeleccionado.Actual = caballo;
 
-                    // Actualizamos el label de estado que tienes abajo a la izquierda
                     lblMensajeSeleccion.Text = $"Caballo: {caballo.Nombre}";
                 };
 
@@ -66,16 +61,13 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
             var perfil = AnalizadorEmocional.Analizar(caballo);
 
-            // Ocultar mensaje de bienvenida y mostrar los datos reales
             pnlMensajeInicial.Visible = false;
             gbIndicadores.Visible = true;
             gbFactores.Visible = true;
             gbRecomendaciones.Visible = true;
 
-            // Actualizar indicadores principales
             lblEstadoValor.Text = perfil.EstadoGeneral;
 
-            // Asignar valores a ProgressBars (asegúrate que el nombre coincida con tu Designer)
             pbEstres.Value = perfil.NivelEstres;
             lblEstresValor.Text = $"{perfil.NivelEstres}%";
 
@@ -85,7 +77,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             pbActivacion.Value = perfil.NivelActivacion;
             lblActivacionValor.Text = $"{perfil.NivelActivacion}%";
 
-            // Mostrar el análisis de texto y las listas
             // Usamos Environment.NewLine para que los saltos de línea sean correctos en Windows
             lblFactores.Text = string.Join(Environment.NewLine, perfil.FactoresInfluyen);
             lblRecomendaciones.Text = string.Join(Environment.NewLine, perfil.Recomendaciones);

@@ -8,7 +8,9 @@
         public string Sexo { get; set; } = "";
         public string Temperamento { get; set; } = "";
 
-        public string ImagenRecurso { get; set; } = ""; 
+        public string ImagenRecurso { get; set; } = "";
+
+        public List<EnfermedadCaso> Enfermedades { get; set; } = new();
 
         public bool EdadValida()
         {

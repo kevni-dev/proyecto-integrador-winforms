@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
             label1 = new Label();
+            button1 = new Button();
             btnElegirCaballo = new Button();
             btnInteraccion = new Button();
             btnRendimiento = new Button();
@@ -38,6 +40,7 @@
             btnJuego = new Button();
             panel3 = new Panel();
             panel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             panel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -46,7 +49,7 @@
             // 
             panel1.BackgroundImage = Properties.Resources.qwer1;
             panel1.BackgroundImageLayout = ImageLayout.Center;
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(tableLayoutPanel2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -54,18 +57,48 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.BackColor = Color.Transparent;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.Controls.Add(label1, 0, 0);
+            tableLayoutPanel2.Controls.Add(button1, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(850, 43);
+            tableLayoutPanel2.TabIndex = 0;
+            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
+            label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(255, 224, 192);
-            label1.Location = new Point(469, 20);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(227, 20);
+            label1.Size = new Size(759, 43);
             label1.TabIndex = 0;
             label1.Text = "BIENESTAR EQUINO-HUMANO";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Fill;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.Yellow;
+            button1.Location = new Point(768, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(79, 37);
+            button1.TabIndex = 1;
+            button1.Text = "i";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btnElegirCaballo
             // 
@@ -172,7 +205,8 @@
             Size = new Size(850, 523);
             Load += cuModulo4_Load_1;
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             panel2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -189,5 +223,7 @@
         private Button btnJuego;
         private Panel panel3;
         private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Button button1;
     }
 }

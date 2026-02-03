@@ -1,5 +1,4 @@
-﻿// Logica/AnalizadorEmocional.cs
-using Proyecto_Integrador.Datos;
+﻿using Proyecto_Integrador.Datos;
 using System;
 using System.Collections.Generic;
 
@@ -29,12 +28,10 @@ namespace Proyecto_Integrador.Logica
                 FactoresInfluyen = new List<string>()
             };
 
-            // Calcular indicadores basados en temperamento
             int baseEstres = CalcularEstresBase(caballo.Temperamento);
             int baseConfianza = CalcularConfianzaBase(caballo.Temperamento);
             int baseActivacion = CalcularActivacionBase(caballo.Temperamento);
 
-            // Ajustar por edad
             AjustarPorEdad(caballo.Edad, ref baseEstres, ref baseConfianza, ref baseActivacion, perfil.FactoresInfluyen);
 
             // Ajustar por sexo

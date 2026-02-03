@@ -11,10 +11,7 @@ namespace Proyecto_Integrador
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            DatosGlobales.Caballos.Add("Pepe");
-            DatosGlobales.Caballos.Add("Relámpago");
-            DatosGlobales.Caballos.Add("Tormenta");
-            DatosGlobales.Caballos.Add("Estrella");
+            
             Application.Run(new FormLogin());
 
 

@@ -267,7 +267,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // 
             // pnlEscenario
             // 
-            pnlEscenario.BackgroundImage = Properties.Resources.qwert5;
+            pnlEscenario.BackgroundImage = Properties.Resources.qwer7;
             pnlEscenario.BackgroundImageLayout = ImageLayout.Stretch;
             pnlEscenario.Controls.Add(pbCaballoEscenario);
             pnlEscenario.Controls.Add(pnlControles);
@@ -282,7 +282,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // 
             pbCaballoEscenario.Anchor = AnchorStyles.None;
             pbCaballoEscenario.BackColor = Color.Transparent;
-            pbCaballoEscenario.BackgroundImage = Properties.Resources.qwer7;
+            pbCaballoEscenario.BackgroundImage = Properties.Resources.qwer8;
             pbCaballoEscenario.BackgroundImageLayout = ImageLayout.Zoom;
             pbCaballoEscenario.Location = new Point(62, 58);
             pbCaballoEscenario.Margin = new Padding(4, 3, 4, 3);
@@ -360,7 +360,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // btnCepillar
             // 
             btnCepillar.BackColor = Color.Wheat;
-            btnCepillar.BackgroundImage = Properties.Resources.qwrt3;
+            btnCepillar.BackgroundImage = Properties.Resources.qwer3;
             btnCepillar.BackgroundImageLayout = ImageLayout.Zoom;
             btnCepillar.Cursor = Cursors.Hand;
             btnCepillar.FlatStyle = FlatStyle.Flat;
@@ -377,7 +377,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // btnAlimentar
             // 
             btnAlimentar.BackColor = Color.Wheat;
-            btnAlimentar.BackgroundImage = Properties.Resources.qwrt2;
+            btnAlimentar.BackgroundImage = Properties.Resources.qwer2;
             btnAlimentar.BackgroundImageLayout = ImageLayout.Zoom;
             btnAlimentar.Cursor = Cursors.Hand;
             btnAlimentar.FlatStyle = FlatStyle.Flat;
@@ -394,7 +394,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // btnAcariciar
             // 
             btnAcariciar.BackColor = Color.Wheat;
-            btnAcariciar.BackgroundImage = Properties.Resources.qwer6;
+            btnAcariciar.BackgroundImage = Properties.Resources.qwer4;
             btnAcariciar.BackgroundImageLayout = ImageLayout.Zoom;
             btnAcariciar.Cursor = Cursors.Hand;
             btnAcariciar.FlatStyle = FlatStyle.Flat;
@@ -411,7 +411,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             // btnJugar
             // 
             btnJugar.BackColor = Color.Wheat;
-            btnJugar.BackgroundImage = Properties.Resources.qwrt4;
+            btnJugar.BackgroundImage = Properties.Resources.qwer6;
             btnJugar.BackgroundImageLayout = ImageLayout.Zoom;
             btnJugar.Cursor = Cursors.Hand;
             btnJugar.FlatStyle = FlatStyle.Flat;

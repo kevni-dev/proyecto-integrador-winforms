@@ -1,4 +1,7 @@
-﻿namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
 {
     partial class TurismoVerRegistro
     {
@@ -18,6 +21,8 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
+            btnEliminar = new Button();
+            btnEditar = new Button();
             comboFiltro = new ComboBox();
             txtBuscar = new TextBox();
             lblBuscar = new Label();
@@ -36,14 +41,36 @@
             // panelTop
             // 
             panelTop.BackColor = Color.Gainsboro;
+            panelTop.Controls.Add(btnEliminar);
+            panelTop.Controls.Add(btnEditar);
             panelTop.Controls.Add(comboFiltro);
             panelTop.Controls.Add(txtBuscar);
             panelTop.Controls.Add(lblBuscar);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1212, 60);
+            panelTop.Size = new Size(1183, 60);
             panelTop.TabIndex = 2;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(590, 17);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(110, 27);
+            btnEliminar.TabIndex = 5;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnEditar
+            // 
+            btnEditar.Location = new Point(470, 17);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(110, 27);
+            btnEditar.TabIndex = 4;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // comboFiltro
             // 
@@ -51,7 +78,7 @@
             comboFiltro.Location = new Point(300, 19);
             comboFiltro.Name = "comboFiltro";
             comboFiltro.Size = new Size(150, 23);
-            comboFiltro.TabIndex = 0;
+            comboFiltro.TabIndex = 3;
             // 
             // txtBuscar
             // 
@@ -71,13 +98,13 @@
             // 
             // panelMain
             // 
+            panelMain.BackColor = Color.Transparent;
             panelMain.Controls.Add(dataGridCaballos);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 60);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(952, 344);
+            panelMain.Size = new Size(923, 493);
             panelMain.TabIndex = 0;
-            panelMain.BackColor = System.Drawing.Color.Transparent;
             // 
             // dataGridCaballos
             // 
@@ -89,7 +116,7 @@
             dataGridCaballos.Name = "dataGridCaballos";
             dataGridCaballos.ReadOnly = true;
             dataGridCaballos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridCaballos.Size = new Size(952, 344);
+            dataGridCaballos.Size = new Size(923, 493);
             dataGridCaballos.TabIndex = 0;
             // 
             // panelPreview
@@ -98,9 +125,9 @@
             panelPreview.Controls.Add(pictureCaballo);
             panelPreview.Controls.Add(lblVista);
             panelPreview.Dock = DockStyle.Right;
-            panelPreview.Location = new Point(952, 60);
+            panelPreview.Location = new Point(923, 60);
             panelPreview.Name = "panelPreview";
-            panelPreview.Size = new Size(260, 344);
+            panelPreview.Size = new Size(260, 493);
             panelPreview.TabIndex = 1;
             // 
             // pictureCaballo
@@ -113,7 +140,7 @@
             pictureCaballo.SizeMode = PictureBoxSizeMode.Zoom;
             pictureCaballo.TabIndex = 0;
             pictureCaballo.TabStop = false;
-            pictureCaballo.Click += pictureCaballo_Click;
+           
             // 
             // lblVista
             // 
@@ -134,7 +161,7 @@
             Controls.Add(panelPreview);
             Controls.Add(panelTop);
             Name = "TurismoVerRegistro";
-            Size = new Size(1212, 404);
+            Size = new Size(1183, 553);
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             panelMain.ResumeLayout(false);
@@ -150,6 +177,8 @@
         private Label lblBuscar;
         private TextBox txtBuscar;
         private ComboBox comboFiltro;
+        private Button btnEditar;
+        private Button btnEliminar;
 
         private Panel panelMain;
         private DataGridView dataGridCaballos;
