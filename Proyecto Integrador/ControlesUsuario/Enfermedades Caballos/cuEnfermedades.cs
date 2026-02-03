@@ -1,83 +1,91 @@
 ﻿using Proyecto_Integrador.Archivo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 {
-    public partial class Enfermedades : Form
+    public partial class cuEnfermedades : UserControl
     {
-        Archivo.Archivo archivo;
-        string ruta;
-        string rutaTratamiento;
-        public Enfermedades()
+        // Si ya no usas botón volver, puedes borrar este event
+        public event EventHandler? SalirRequested;
+
+        private Archivo.Archivo archivo;
+        private string ruta;
+        private string rutaTratamiento;
+
+        public cuEnfermedades()
         {
             InitializeComponent();
+
             archivo = new Archivo.Archivo();
-            ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\Enfermedades.txt") ;
+            ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\Enfermedades.txt");
             rutaTratamiento = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\Tratamientos.txt");
+
+            this.Load += cuEnfermedades_Load;
+
+            // ✅ solo botones aquí
+            btn_guardar.Click += btn_guardar_Click;
+            btn_eliminar.Click += btn_eliminar_Click;
+
+            // ❌ NO conectes dtgv aquí si ya está en Designer
+            
         }
+
+        private void cuEnfermedades_Load(object? sender, EventArgs e)
+        {
+            cargarTabla();
+        }
+
         private void cargarTabla()
         {
             dtgv_enfermedades.Rows.Clear();
             string[] datos = archivo.leerArchivo(ruta);
             if (datos == null) return;
+
             for (int i = 0; i < datos.Length; i++)
             {
                 dtgv_enfermedades.Rows.Add();
                 string[] linea = datos[i].Split(';');
+
                 for (int j = 0; j < 4; j++)
-                {
                     dtgv_enfermedades.Rows[i].Cells[j].Value = linea[j];
-
-                }
-
             }
         }
+
         private int obtenerIdMax()
         {
             string[] datos = archivo.leerArchivo(ruta);
             int max = 0;
-            for (int i = 0; i < datos.Length; i++)
+            if (datos == null) return 0;
 
+            for (int i = 0; i < datos.Length; i++)
             {
                 string[] linea = datos[i].Split(';');
                 int id = int.Parse(linea[0]);
-                if (id > max)
-                {
-                    max = id;
-                }
+                if (id > max) max = id;
             }
             return max;
         }
+
         private void eliminarEnfermedad(int id)
         {
             archivo.eliminarLinea(id, ruta);
+
             string[] tratamientos = archivo.leerArchivo(rutaTratamiento);
-            //archivo.limpiarArchivo(rutaTratamiento);
-            //for (int i = 0; i < tratamientos.Length; i++)
-            //{
-            //    string[] tratamiento = tratamientos[i].Split(";");
-            //    if (int.Parse(tratamiento[1]) != id)
-            //    {
-            //        archivo.escribirLinea(rutaTratamiento,tratamientos[i]);
-            //    }
-            //}
+            if (tratamientos == null) return;
+
             for (int i = 0; i < tratamientos.Length; i++)
             {
-                string[] tratamiento = tratamientos[i].Split(";");
-                if (int.Parse(tratamiento[1]) == id)
+                string[] tratamiento = tratamientos[i].Split(';');
+                if (tratamiento.Length >= 2 && int.Parse(tratamiento[1]) == id)
                 {
                     archivo.eliminarLinea(int.Parse(tratamiento[0]), rutaTratamiento);
                 }
             }
         }
 
-        private void btn_guardar_Click(object sender, EventArgs e)
+        private void btn_guardar_Click(object? sender, EventArgs e)
         {
             if (txt_enfermedad.Text.Length <= 0)
             {
@@ -109,67 +117,51 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 MessageBox.Show("La longuitud de la descripción debe tener menos de 50 caracteres");
                 return;
             }
+
             bool editar = txt_id.Text.Length > 0;
+
             if (editar)
             {
                 string datos = txt_id.Text + ";" + txt_enfermedad.Text + ";" + txt_sintomas.Text + ";" + txt_descripcion.Text;
                 archivo.editarLinea(int.Parse(txt_id.Text), datos, ruta);
-                cargarTabla();
-                txt_id.Text = "";
-                txt_enfermedad.Text = "";
-                txt_sintomas.Text = "";
-                txt_descripcion.Text = "";
-
             }
             else
             {
                 int max = obtenerIdMax() + 1;
                 string datos = max + ";" + txt_enfermedad.Text + ";" + txt_sintomas.Text + ";" + txt_descripcion.Text + "\n";
                 archivo.escribirLinea(ruta, datos);
-                cargarTabla();
-                txt_id.Text = "";
-                txt_enfermedad.Text = "";
-                txt_sintomas.Text = "";
-                txt_descripcion.Text = "";
             }
 
-
+            cargarTabla();
+            txt_id.Text = "";
+            txt_enfermedad.Text = "";
+            txt_sintomas.Text = "";
+            txt_descripcion.Text = "";
         }
 
-        private void txt_sintomas_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtgv_enfermedades_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // ✅ ESTE es el que debe estar conectado desde el Designer
+        private void dtgv_enfermedades_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1) return;
-            string id = dtgv_enfermedades.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string enfermedad = dtgv_enfermedades.Rows[e.RowIndex].Cells[1].Value.ToString();
-            string sintomas = dtgv_enfermedades.Rows[e.RowIndex].Cells[2].Value.ToString();
-            string descripcion = dtgv_enfermedades.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txt_enfermedad.Text = enfermedad;
-            txt_sintomas.Text = sintomas;
-            txt_descripcion.Text = descripcion;
-            txt_id.Text = id;
+
+            txt_id.Text = dtgv_enfermedades.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+            txt_enfermedad.Text = dtgv_enfermedades.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
+            txt_sintomas.Text = dtgv_enfermedades.Rows[e.RowIndex].Cells[2].Value?.ToString() ?? "";
+            txt_descripcion.Text = dtgv_enfermedades.Rows[e.RowIndex].Cells[3].Value?.ToString() ?? "";
         }
 
-        private void Enfermedades_Load(object sender, EventArgs e)
+        private void btn_eliminar_Click(object? sender, EventArgs e)
         {
-            cargarTabla();
-        }
+            if (txt_id.Text.Length == 0) return;
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-      
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-            if (txt_id.Text.Length == 0) { return; }
             int id = int.Parse(txt_id.Text);
             eliminarEnfermedad(id);
             cargarTabla();
+
+            txt_id.Text = "";
+            txt_enfermedad.Text = "";
+            txt_sintomas.Text = "";
+            txt_descripcion.Text = "";
         }
     }
 }

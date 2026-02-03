@@ -13,6 +13,9 @@ namespace Proyecto_Integrador.ControlesUsuario
         {
             InitializeComponent();
 
+            // Para que ocupe toda la pantalla del panel contenedor
+            this.Dock = DockStyle.Fill;
+
             // Anti-parpadeo
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
@@ -22,6 +25,7 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             CargarCombos();
 
+            // Eventos
             comboBoxImagen.SelectedIndexChanged += ComboBoxImagen_SelectedIndexChanged;
             comboBoxRaza.SelectedIndexChanged += ComboBoxRaza_SelectedIndexChanged;
         }
@@ -53,7 +57,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxSexo.SelectedIndex = 0;
             comboBoxTemperamento.SelectedIndex = 0;
             comboBoxRaza.SelectedIndex = 0;
-            comboBoxImagen.SelectedIndex = 0; // mostrará la imagen
+            comboBoxImagen.SelectedIndex = 0; // dispara imagen
         }
 
         private void ComboBoxImagen_SelectedIndexChanged(object? sender, EventArgs e)
@@ -72,7 +76,6 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private void ComboBoxRaza_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Opcional: si quieres que al elegir raza se ponga imagen acorde
             string raza = comboBoxRaza.Text;
 
             if (raza == "Árabe")

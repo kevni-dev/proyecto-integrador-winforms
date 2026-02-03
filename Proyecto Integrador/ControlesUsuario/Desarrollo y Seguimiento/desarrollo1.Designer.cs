@@ -47,8 +47,19 @@
             lblResultadoEdad = new Label();
             picCaballo = new PictureBox();
             btnDatoCurioso = new Button();
+
+            // NUEVO
+            lblHistorial = new Label();
+            btnVerHistorial = new Button();
+            btnLimpiar = new Button();
+            dtHistorial = new DataGridView();
+
+            // NUEVO ALERTA
+            lblAlerta = new Label();
+
             grpResultados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCaballo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtHistorial).BeginInit();
             SuspendLayout();
             // 
             // cmbCaballos
@@ -79,16 +90,18 @@
             lblEdadTexto.Font = new Font("Sylfaen", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEdadTexto.Location = new Point(601, 170);
             lblEdadTexto.Name = "lblEdadTexto";
-            lblEdadTexto.Size = new Size(50, 19);
+            lblEdadTexto.Size = new Size(104, 19);
             lblEdadTexto.TabIndex = 2;
-            lblEdadTexto.Text = "Edad:";
+            lblEdadTexto.Text = "Observación:";
             lblEdadTexto.Click += lblEdadTexto_Click;
             // 
-            // txtEdad
+            // txtEdad  (AHORA ES OBSERVACIÓN)
             // 
             txtEdad.Location = new Point(601, 201);
             txtEdad.Name = "txtEdad";
-            txtEdad.Size = new Size(125, 23);
+            txtEdad.Multiline = true;
+            txtEdad.ScrollBars = ScrollBars.Vertical;
+            txtEdad.Size = new Size(179, 65);
             txtEdad.TabIndex = 3;
             // 
             // lblPesoTexto
@@ -96,7 +109,7 @@
             lblPesoTexto.AutoSize = true;
             lblPesoTexto.BackColor = Color.FromArgb(192, 255, 255);
             lblPesoTexto.Font = new Font("Sylfaen", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPesoTexto.Location = new Point(601, 247);
+            lblPesoTexto.Location = new Point(601, 281);
             lblPesoTexto.Name = "lblPesoTexto";
             lblPesoTexto.Size = new Size(82, 19);
             lblPesoTexto.TabIndex = 4;
@@ -104,7 +117,7 @@
             // 
             // txtPeso
             // 
-            txtPeso.Location = new Point(601, 281);
+            txtPeso.Location = new Point(601, 315);
             txtPeso.Name = "txtPeso";
             txtPeso.Size = new Size(125, 23);
             txtPeso.TabIndex = 5;
@@ -231,6 +244,78 @@
             btnDatoCurioso.Text = "Dato curioso";
             btnDatoCurioso.UseVisualStyleBackColor = false;
             btnDatoCurioso.Click += btnDatoCurioso_Click;
+
+            // =========================
+            // NUEVOS CONTROLES HISTORIAL
+            // =========================
+
+            // 
+            // lblHistorial
+            // 
+            lblHistorial.AutoSize = true;
+            lblHistorial.BackColor = Color.FromArgb(255, 255, 192);
+            lblHistorial.Font = new Font("Sylfaen", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHistorial.Location = new Point(35, 101);
+            lblHistorial.Name = "lblHistorial";
+            lblHistorial.Size = new Size(142, 19);
+            lblHistorial.TabIndex = 14;
+            lblHistorial.Text = "Historial (caballo):";
+
+            // 
+            // lblAlerta
+            // 
+            lblAlerta.BackColor = Color.FromArgb(255, 224, 224);
+            lblAlerta.BorderStyle = BorderStyle.FixedSingle;
+            lblAlerta.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAlerta.Location = new Point(35, 545);
+            lblAlerta.Name = "lblAlerta";
+            lblAlerta.Size = new Size(520, 55);
+            lblAlerta.TabIndex = 18;
+            lblAlerta.Text = "";
+            lblAlerta.Visible = false;
+
+            // 
+            // btnVerHistorial
+            // 
+            btnVerHistorial.BackColor = Color.FromArgb(192, 255, 192);
+            btnVerHistorial.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVerHistorial.Location = new Point(35, 132);
+            btnVerHistorial.Name = "btnVerHistorial";
+            btnVerHistorial.Size = new Size(130, 28);
+            btnVerHistorial.TabIndex = 15;
+            btnVerHistorial.Text = "Ver historial";
+            btnVerHistorial.UseVisualStyleBackColor = false;
+            btnVerHistorial.Click += btnVerHistorial_Click;
+
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.BackColor = Color.FromArgb(255, 224, 192);
+            btnLimpiar.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimpiar.Location = new Point(175, 132);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(130, 28);
+            btnLimpiar.TabIndex = 16;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
+
+            // 
+            // dtHistorial
+            // 
+            dtHistorial.AllowUserToAddRows = false;
+            dtHistorial.AllowUserToDeleteRows = false;
+            dtHistorial.ReadOnly = true;
+            dtHistorial.RowHeadersVisible = false;
+            dtHistorial.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtHistorial.MultiSelect = false;
+            dtHistorial.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtHistorial.BackgroundColor = Color.White;
+            dtHistorial.Location = new Point(35, 170);
+            dtHistorial.Name = "dtHistorial";
+            dtHistorial.Size = new Size(520, 375);
+            dtHistorial.TabIndex = 17;
+
             // 
             // desarrollo1
             // 
@@ -239,6 +324,13 @@
             BackColor = Color.White;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
+
+            Controls.Add(lblAlerta);
+            Controls.Add(dtHistorial);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnVerHistorial);
+            Controls.Add(lblHistorial);
+
             Controls.Add(btnDatoCurioso);
             Controls.Add(picCaballo);
             Controls.Add(grpResultados);
@@ -253,12 +345,15 @@
             Controls.Add(lblEdadTexto);
             Controls.Add(cmbCaballos);
             Controls.Add(lblCaballo);
+
             Name = "desarrollo1";
             Size = new Size(1140, 607);
             Load += desarrollo1_Load;
+
             grpResultados.ResumeLayout(false);
             grpResultados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picCaballo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtHistorial).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -268,7 +363,7 @@
         private ComboBox cmbCaballos;
         private Label lblCaballo;
         private Label lblEdadTexto;
-        private TextBox txtEdad;
+        private TextBox txtEdad; // ahora observación
         private Label lblPesoTexto;
         private TextBox txtPeso;
         private Label lblAlimentacionTexto;
@@ -283,5 +378,14 @@
         private Label lblResultadoClasificacion;
         private PictureBox picCaballo;
         private Button btnDatoCurioso;
+
+        // NUEVO
+        private Label lblHistorial;
+        private DataGridView dtHistorial;
+        private Button btnVerHistorial;
+        private Button btnLimpiar;
+
+        // NUEVO ALERTA
+        private Label lblAlerta;
     }
 }

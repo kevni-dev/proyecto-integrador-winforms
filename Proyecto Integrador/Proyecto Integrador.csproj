@@ -10,6 +10,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ControlesUsuario\Enfermedades Caballos\Enfermedades.cs" />
+    <Compile Remove="ControlesUsuario\Enfermedades Caballos\Enfermedades.Designer.cs" />
+    <Compile Remove="ControlesUsuario\Enfermedades Caballos\frmTratamiento.cs" />
+    <Compile Remove="ControlesUsuario\Enfermedades Caballos\frmTratamiento.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ControlesUsuario\Enfermedades Caballos\Enfermedades.resx" />
+    <EmbeddedResource Remove="ControlesUsuario\Enfermedades Caballos\frmTratamiento.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Datos\caballos.json" />
+    <None Remove="Datos\tratamientos.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Datos\caballos.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datos\tratamientos.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -22,12 +48,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Datos\caballos.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
