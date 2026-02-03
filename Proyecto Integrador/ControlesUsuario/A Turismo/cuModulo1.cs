@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Proyecto_Integrador.ControlesUsuario.A_Turismo;
+using Proyecto_Integrador.Datos;
+using System;
 using System.Reflection;
 using System.Windows.Forms;
-using Proyecto_Integrador.ControlesUsuario.A_Turismo;
 
 namespace Proyecto_Integrador.ControlesUsuario
 {
@@ -36,6 +37,7 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private void cuModulo1_Load(object sender, EventArgs e)
         {
+            RepositorioCaballos.CargarDesdeJson();
             MostrarMenu();
             CentrarMenu();
         }
@@ -118,18 +120,44 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private void TurismoButtonAgenda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Agenda (pendiente)");
+            OcultarMenu();
+
+            var agenda = new TurismoAgendaCalendario();
+
+            // ✅ Caballos reales del JSON
+            agenda.Caballos = RepositorioCaballos.ObtenerTodos()
+                .Select(c => (c.Nombre ?? "").Trim())
+                .Where(n => !string.IsNullOrWhiteSpace(n))
+                .ToList();
+
+            CambiarPantalla(agenda);
         }
+
+
 
         private void TurismoButtonMinijuego_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Minijuego (pendiente)");
+            OcultarMenu();
+
+            var mini = new TurismoMinijuego();
+            mini.CancelarPresionado += (s, ev) =>
+            {
+                if (s is Control control && TurismopanelContenido.Controls.Contains(control))
+                    TurismopanelContenido.Controls.Remove(control);
+
+                MostrarMenu();
+            };
+
+            CambiarPantalla(mini);
         }
+
 
         private void TurismoButtonRutas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Rutas Turísticas (pendiente)");
+            OcultarMenu();
+            CambiarPantalla(new TurismoRutas());
         }
+
 
         private void Registro_Exitoso(object? sender, EventArgs e)
         {

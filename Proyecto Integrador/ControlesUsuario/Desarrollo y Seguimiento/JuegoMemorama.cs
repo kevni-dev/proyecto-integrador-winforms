@@ -30,6 +30,8 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         }
         public void InicializarJuego()
         {
+            timer2.Stop();
+
             timer1.Enabled = true;
             timer1.Stop();
             lblRecord.Text = "0";

@@ -6,26 +6,27 @@ namespace Proyecto_Integrador.Archivo
 {
     public class Archivo
     {
-        private void crearArchivo (string ruta)
+        public void crearArchivo(string ruta)
         {
-            File.Create (ruta).Close ();
+            string? dir = Path.GetDirectoryName(ruta);
+
+            if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            using (FileStream file = File.Create(ruta)) { }
         }
+
         public string[] leerArchivo(string ruta)
         {
-            
-            string[] contenido = null;
-            bool archivoExiste = File.Exists(ruta);
-            
-            if (archivoExiste)
+            if (!File.Exists(ruta))
             {
-                contenido = File.ReadAllLines(ruta);
+                crearArchivo(ruta);
+                return Array.Empty<string>(); // ← nunca devuelve null
+            }
 
-            }
-            else {
-                crearArchivo (ruta);
-            }
-            return contenido;
+            return File.ReadAllLines(ruta);
         }
+
         public void escribirLinea(string ruta, string linea)
         {
             

@@ -73,6 +73,16 @@ namespace Proyecto_Integrador.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5 {
+            get {
+                object obj = ResourceManager.GetObject("5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap adulto {
             get {
                 object obj = ResourceManager.GetObject("adulto", resourceCulture);
@@ -126,6 +136,46 @@ namespace Proyecto_Integrador.Properties {
         internal static System.Drawing.Bitmap Caballo_Cuarto {
             get {
                 object obj = ResourceManager.GetObject("Caballo_Cuarto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cepillando {
+            get {
+                object obj = ResourceManager.GetObject("cepillando", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap comiendo {
+            get {
+                object obj = ResourceManager.GetObject("comiendo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap descansando {
+            get {
+                object obj = ResourceManager.GetObject("descansando", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flecha {
+            get {
+                object obj = ResourceManager.GetObject("flecha", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +326,16 @@ namespace Proyecto_Integrador.Properties {
         internal static System.Drawing.Bitmap minijuego {
             get {
                 object obj = ResourceManager.GetObject("minijuego", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap montando {
+            get {
+                object obj = ResourceManager.GetObject("montando", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
