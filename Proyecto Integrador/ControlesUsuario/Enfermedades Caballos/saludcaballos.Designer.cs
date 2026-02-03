@@ -74,6 +74,8 @@
             btn_prevencion.TabIndex = 2;
             btn_prevencion.Text = "Prevención";
             btn_prevencion.UseVisualStyleBackColor = true;
+            btn_prevencion.Click += btn_prevencion_Click;
+
             // 
             // btn_minijuego
             // 
