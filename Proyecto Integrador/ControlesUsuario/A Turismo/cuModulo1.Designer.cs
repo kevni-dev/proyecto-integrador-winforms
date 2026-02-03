@@ -130,7 +130,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             // 
             // TurismoPictureRutas
             // 
-            TurismoPictureRutas.Image = Properties.Resources.agenda;
+            TurismoPictureRutas.Image = Properties.Resources.esfgthjukuygtfrd;
             TurismoPictureRutas.Location = new Point(583, 425);
             TurismoPictureRutas.Name = "TurismoPictureRutas";
             TurismoPictureRutas.Size = new Size(130, 130);

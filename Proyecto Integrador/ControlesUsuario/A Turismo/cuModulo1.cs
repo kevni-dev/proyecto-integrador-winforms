@@ -12,25 +12,23 @@ namespace Proyecto_Integrador.ControlesUsuario
         {
             InitializeComponent();
 
-            // Anti-parpadeo en el control
+            
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
                           ControlStyles.UserPaint |
                           ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
 
-            // Anti-parpadeo en el panel contenedor
             ActivarDoubleBuffer(TurismopanelContenido);
             ActivarDoubleBuffer(panelMenu);
         }
 
-        // Reduce parpadeo cuando hay BackgroundImage 
         protected override CreateParams CreateParams
         {
             get
             {
                 var cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                cp.ExStyle |= 0x02000000; 
                 return cp;
             }
         }
@@ -60,7 +58,6 @@ namespace Proyecto_Integrador.ControlesUsuario
             panelMenu.Visible = true;
             CentrarMenu();
 
-            // Borra todo lo que NO sea el menú
             for (int i = TurismopanelContenido.Controls.Count - 1; i >= 0; i--)
             {
                 Control c = TurismopanelContenido.Controls[i];
@@ -81,7 +78,6 @@ namespace Proyecto_Integrador.ControlesUsuario
             TurismopanelContenido.SuspendLayout();
             try
             {
-                // Quitar todo excepto el menú
                 for (int i = TurismopanelContenido.Controls.Count - 1; i >= 0; i--)
                 {
                     Control c = TurismopanelContenido.Controls[i];
@@ -124,7 +120,6 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             var agenda = new TurismoAgendaCalendario();
 
-            // ✅ Caballos reales del JSON
             agenda.Caballos = RepositorioCaballos.ObtenerTodos()
                 .Select(c => (c.Nombre ?? "").Trim())
                 .Where(n => !string.IsNullOrWhiteSpace(n))
