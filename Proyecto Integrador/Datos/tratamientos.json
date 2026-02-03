@@ -1,4 +1,5 @@
 ﻿[
-  { "enfermedadId": 1, "enfermedad": "COLICO", "tratamiento": "Retirar alimento, vigilar signos, llamar al veterinario, hidratación, analgésico según vet." },
-  { "enfermedadId": 2, "enfermedad": "LAMINITIS", "tratamiento": "Reposo, cama blanda, hielo en cascos, antiinflamatorio según vet, control de dieta." }
+  { "Id": 1, "EnfermedadId": 2, "Tratamiento": "Reposo, hielo local, controlar dieta; llamar al veterinario." },
+  { "Id": 2, "EnfermedadId": 1, "Tratamiento": "No dar comida; caminar suave; veterinario urgente." },
+  { "Id": 3, "EnfermedadId": 3, "Tratamiento": "Atención veterinaria inmediata; vacunas al día; limpieza de heridas." }
 ]

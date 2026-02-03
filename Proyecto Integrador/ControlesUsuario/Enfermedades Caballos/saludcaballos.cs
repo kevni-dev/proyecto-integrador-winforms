@@ -101,16 +101,23 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void btn_enferme_Click(object sender, EventArgs e)
         {
-            // Si estás viendo otra vista, vuelve a tabla primero
+            // Si no está la tabla visible, la vuelve a mostrar (sin mensajes)
             if (!panel3.Controls.Contains(dtgv_caballos))
-            {
                 MostrarTablaCaballos();
-                MessageBox.Show("Ahora selecciona un caballo (clic en una fila) y vuelve a presionar ENFERMEDADES.\n\nTip: con doble click se abre directo.");
+
+            // Intenta abrir; si no hay caballo seleccionado, no hace nada (sin mensaje)
+            var caballo = ObtenerCaballoSeleccionado();
+            if (caballo == null)
+            {
+                dtgv_caballos.Focus();
                 return;
             }
 
-            AbrirEnfermedadesCaballoSeleccionado();
+            var v = new cuEnfermedadesPorCaballo(caballo);
+            v.SalirRequested += (s, a) => MostrarTablaCaballos();
+            CargarVista(v);
         }
+
 
         private void btn_tratamiento_Click(object sender, EventArgs e)
         {
@@ -119,6 +126,13 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             // v.SalirRequested += (s,a)=> MostrarTablaCaballos();
             CargarVista(v);
         }
+
+        private void btn_prevencion_Click(object sender, EventArgs e)
+        {
+            var v = new cuPrevencion();
+            CargarVista(v);
+        }
+
 
         private void btn_minijuego_Click(object? sender, EventArgs e)
         {

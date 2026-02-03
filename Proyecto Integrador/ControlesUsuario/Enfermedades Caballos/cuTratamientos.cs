@@ -31,14 +31,15 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         private readonly string _rutaJson;
 
         // ====== DATOS EN MEMORIA ======
-        private readonly Dictionary<int, string> _catalogo = new();  // id -> nombre
+        private readonly Dictionary<int, string> _catalogo = new();   // id -> nombre
         private readonly List<TratamientoRegistro> _lista = new();
 
         public cuTratamientos()
         {
             InitializeComponent();
 
-            _rutaJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\Tratamientos.json");
+            // OJO: usa tratamientos.json (como el que me pasaste)
+            _rutaJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\tratamientos.json");
 
             // eventos
             this.Load += cuTratamientos_Load;
@@ -46,25 +47,28 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             btn_eliminar.Click += btn_eliminar_Click;
             dtgv_tratamiento.CellClick += dtgv_tratamiento_CellClick;
 
-            // opcional: si tienes botón volver en el diseñador, lo conectas así:
+            // (si luego pones botón Volver en este control)
             // btnVolver.Click += (s,e)=> SalirRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void cuTratamientos_Load(object? sender, EventArgs e)
         {
-            CargarCatalogoBase();      // ya no depende de Enfermedades.txt
+            CargarCatalogoBase();
             CargarCatalogoEnCombo();
-            CargarJson();
-            PintarTabla();
+
+            CargarJson();      // lee tratamientos.json
+            PintarTabla();     // pinta tabla
+
+            // deja limpio
+            txt_id.Text = "";
+            txt_tratamiento.Text = "";
         }
 
-        // ====== CATÁLOGO RÁPIDO (para no depender de Enfermedades.txt) ======
-        // Si después quieres, esto se puede reemplazar por un catálogo editable.
+        // ====== CATÁLOGO (ID debe coincidir con EnfermedadesPorCaballo) ======
         private void CargarCatalogoBase()
         {
             _catalogo.Clear();
 
-            // básicos
             _catalogo[1] = "Cólico";
             _catalogo[2] = "Laminitis";
             _catalogo[3] = "Tétanos";
@@ -98,18 +102,22 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
                 if (!File.Exists(_rutaJson))
                 {
-                    // crea vacío
+                    // Si no existe, lo crea vacío para que no falle
                     File.WriteAllText(_rutaJson, "[]");
                     return;
                 }
 
                 string json = File.ReadAllText(_rutaJson);
+
+                // si está vacío o raro
+                if (string.IsNullOrWhiteSpace(json))
+                    json = "[]";
+
                 var items = JsonSerializer.Deserialize<List<TratamientoRegistro>>(json) ?? new List<TratamientoRegistro>();
                 _lista.AddRange(items);
             }
             catch
             {
-                // si se dañó el json, evita romper
                 _lista.Clear();
             }
         }
@@ -119,8 +127,10 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             string dir = Path.GetDirectoryName(_rutaJson) ?? "";
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            var json = JsonSerializer.Serialize(_lista.OrderBy(x => x.Id).ToList(),
-                new JsonSerializerOptions { WriteIndented = true });
+            var json = JsonSerializer.Serialize(
+                _lista.OrderBy(x => x.Id).ToList(),
+                new JsonSerializerOptions { WriteIndented = true }
+            );
 
             File.WriteAllText(_rutaJson, json);
         }
@@ -136,12 +146,12 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 dtgv_tratamiento.Rows.Add(t.Id, t.EnfermedadId, nombre, t.Tratamiento);
             }
 
-            // si quieres que se vea mejor
             dtgv_tratamiento.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgv_tratamiento.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgv_tratamiento.MultiSelect = false;
             dtgv_tratamiento.ReadOnly = true;
             dtgv_tratamiento.RowHeadersVisible = false;
+            dtgv_tratamiento.AllowUserToAddRows = false; // evita fila vacía rara
         }
 
         private int ObtenerIdMax()
@@ -152,14 +162,15 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         private void btn_guardar_Click(object? sender, EventArgs e)
         {
             string texto = txt_tratamiento.Text.Trim();
+
             if (texto.Length == 0)
             {
                 MessageBox.Show("Rellene el tratamiento");
                 return;
             }
-            if (texto.Length > 120)
+            if (texto.Length > 200)
             {
-                MessageBox.Show("Tratamiento muy largo (máx 120 caracteres).");
+                MessageBox.Show("Tratamiento muy largo (máx 200 caracteres).");
                 return;
             }
 
@@ -173,10 +184,12 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
             if (editar)
             {
-                if (!int.TryParse(txt_id.Text, out int idEdit)) return;
+                if (!int.TryParse(txt_id.Text, out int idEdit))
+                    return;
 
                 var reg = _lista.FirstOrDefault(x => x.Id == idEdit);
-                if (reg == null) return;
+                if (reg == null)
+                    return;
 
                 reg.EnfermedadId = enf.Id;
                 reg.Tratamiento = texto;
@@ -201,12 +214,14 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void btn_eliminar_Click(object? sender, EventArgs e)
         {
-            if (!int.TryParse(txt_id.Text, out int id)) return;
+            if (!int.TryParse(txt_id.Text, out int id))
+                return;
 
             var r = MessageBox.Show("¿Eliminar este tratamiento?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (r != DialogResult.Yes) return;
+            if (r != DialogResult.Yes)
+                return;
 
             _lista.RemoveAll(x => x.Id == id);
 
@@ -228,7 +243,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             txt_id.Text = id;
             txt_tratamiento.Text = tratamiento;
 
-            // seleccionar en el combo la enfermedad del registro
             if (int.TryParse(enfId, out int enfIdInt))
             {
                 for (int i = 0; i < cmb_enfermedades.Items.Count; i++)
