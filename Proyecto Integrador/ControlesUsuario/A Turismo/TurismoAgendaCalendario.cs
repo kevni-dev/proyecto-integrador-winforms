@@ -8,7 +8,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
 {
     public partial class TurismoAgendaCalendario : UserControl
     {
-        // === DATOS (esto es lo que hace que NO se borre al cambiar de mes) ===
         private readonly Dictionary<DateTime, List<AgendaItem>> _agenda = new();
 
         [System.ComponentModel.Browsable(false)]
@@ -19,7 +18,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
         private Label lblMes;
         private DateTime mesActual;
 
-        // Contenedor donde se renderizan los items por día
         private Dictionary<DateTime, FlowLayoutPanel> dias = new();
 
         public TurismoAgendaCalendario()
@@ -32,11 +30,10 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 Dock = DockStyle.Fill,
                 RowCount = 2
             };
-            contenedor.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));  // MÁS ALTO
+            contenedor.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));  
             contenedor.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             Controls.Add(contenedor);
 
-            // ENCABEZADO
             var header = new Panel { Dock = DockStyle.Fill };
             contenedor.Controls.Add(header, 0, 0);
 
@@ -63,7 +60,7 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             {
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Font = new Font("Segoe UI", 16f, FontStyle.Bold) // MÁS GRANDE
+                Font = new Font("Segoe UI", 16f, FontStyle.Bold) 
             };
 
             header.Controls.Add(btnAnt);
@@ -76,7 +73,7 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             btnAnt.Click += (s, e) => CargarMes(mesActual.AddMonths(-1));
             btnSig.Click += (s, e) => CargarMes(mesActual.AddMonths(1));
 
-            // TABLA
+           
             tabla = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
@@ -88,7 +85,7 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             for (int i = 0; i < 7; i++)
                 tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / 7));
 
-            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 42)); // encabezado días MÁS ALTO
+            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 42)); 
             for (int i = 1; i < 7; i++)
                 tabla.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / 6));
 
@@ -102,7 +99,7 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                     Text = diasSemana[i],
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Font = new Font("Segoe UI", 13f, FontStyle.Bold) // MÁS GRANDE
+                    Font = new Font("Segoe UI", 13f, FontStyle.Bold) 
                 }, i, 0);
             }
 
@@ -114,7 +111,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             mesActual = new DateTime(fecha.Year, fecha.Month, 1);
             lblMes.Text = mesActual.ToString("MMMM yyyy").ToUpper();
 
-            // borrar celdas (menos encabezado)
             for (int i = tabla.Controls.Count - 1; i >= 7; i--)
                 tabla.Controls.RemoveAt(i);
 
@@ -133,13 +129,13 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                     var panel = new Panel
                     {
                         Dock = DockStyle.Fill,
-                        Padding = new Padding(8) // MÁS ESPACIO
+                        Padding = new Padding(8) 
                     };
 
                     var lbl = new Label
                     {
                         Text = d.Day.ToString(),
-                        Font = new Font("Segoe UI", 13f, FontStyle.Bold), // MÁS GRANDE
+                        Font = new Font("Segoe UI", 13f, FontStyle.Bold), 
                         ForeColor = d.Month == mesActual.Month ? Color.Black : Color.Gray,
                         Dock = DockStyle.Top,
                         Height = 28
@@ -158,7 +154,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                     panel.Controls.Add(lista);
                     panel.Controls.Add(lbl);
 
-                    // click en celda -> abrir mini ventana
                     panel.Click += (s, e) => AbrirRegistro(fechaDia);
                     lista.Click += (s, e) => AbrirRegistro(fechaDia);
                     lbl.Click += (s, e) => AbrirRegistro(fechaDia);
@@ -166,7 +161,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                     tabla.Controls.Add(panel, c, f);
                     dias[fechaDia] = lista;
 
-                    // repintar lo guardado para ese día
                     RenderDia(fechaDia);
 
                     d = d.AddDays(1);
@@ -174,7 +168,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             }
         }
 
-        // === MINI VENTANA PARA REGISTRAR ===
         private void AbrirRegistro(DateTime fecha)
         {
             if (Caballos == null || Caballos.Count == 0)
@@ -216,7 +209,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             }
         }
 
-        // === RENDER ===
         private void RenderDia(DateTime fecha)
         {
             if (!dias.ContainsKey(fecha.Date)) return;
@@ -232,10 +224,10 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 var lbl = new Label
                 {
                     AutoSize = false,
-                    Height = 34,                 // MÁS ALTO
-                    Width = cont.Width - 10,      // MÁS ANCHO
+                    Height = 34,                 
+                    Width = cont.Width - 10,      
                     Text = $"{ActividadEmoji(it.Actividad)} {it.Caballo}",
-                    Font = new Font("Segoe UI", 13f, FontStyle.Bold), // MÁS GRANDE Y NEGRITA
+                    Font = new Font("Segoe UI", 13f, FontStyle.Bold), 
                     ForeColor = Color.Black,
                     BackColor = Color.Transparent,
                     Padding = new Padding(2, 2, 2, 2)
@@ -250,7 +242,7 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             cont.ResumeLayout();
         }
 
-        // === CRUD en memoria ===
+       
         private List<AgendaItem> GetItems(DateTime fecha)
         {
             fecha = fecha.Date;
@@ -265,7 +257,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             _agenda[fecha] = items;
         }
 
-        // === ACTIVIDADES ===
         public enum TipoActividad
         {
             Alimentacion,
@@ -297,7 +288,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             public TipoActividad Actividad { get; set; }
         }
 
-        // === FORM MINI INTERNO ===
         private class FrmRegistrar : Form
         {
             ComboBox cbCaballo;
@@ -321,7 +311,7 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 Width = 460;
                 Height = 470;
 
-                Font = new Font("Segoe UI", 12f, FontStyle.Regular); // MÁS GRANDE
+                Font = new Font("Segoe UI", 12f, FontStyle.Regular); 
 
                 var lbl1 = new Label { Text = "Caballo:", Left = 14, Top = 14, Width = 150 };
                 cbCaballo = new ComboBox { Left = 14, Top = 44, Width = 410, DropDownStyle = ComboBoxStyle.DropDownList };

@@ -12,7 +12,7 @@ namespace Proyecto_Integrador.ControlesUsuario
 
         private PictureBox? imagenSeleccionada = null;
 
-        // “slots” donde van las imágenes cuando están abajo (panel1)
+       
         private Point[] slotsAbajo = Array.Empty<Point>();
         private Size slotSize = new Size(150, 80);
 
@@ -24,7 +24,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             InitializeComponent();
             InicializarJuego();
 
-            // Ajuste visual automático
+            
             this.Resize += (s, e) => AjustarLayout();
 
             this.Load += (s, e) =>
@@ -32,8 +32,8 @@ namespace Proyecto_Integrador.ControlesUsuario
                 if (_inicializado) return;
                 _inicializado = true;
 
-                AjustarLayout();     // calcula tamaños/posiciones
-                MezclarImagenes();   // mezcla usando los slots calculados
+                AjustarLayout();     
+                MezclarImagenes();   
             };
         }
 
@@ -77,15 +77,14 @@ namespace Proyecto_Integrador.ControlesUsuario
             label2.Left = margen;
             label2.Top = yBotones + btnGuardar.Height + 15;
 
-            // ---------- Calcula tamaño “ideal” de cada tarjeta ----------
-            // Queremos 4 tarjetas + 3 flechas, con separación bonita
+           
             int anchoDisponible = this.ClientSize.Width - (margen * 2);
             int gap = 30;          // espacio entre tarjeta y flecha
             int arrowW = 60;       // ancho de flecha aproximado (luego se ajusta)
             int arrowGapTotal = 3 * (arrowW + gap);
 
             int cardW = (anchoDisponible - arrowGapTotal - (gap * 2)) / 4; // margen extra
-            cardW = Clamp(cardW, 170, 260); // para que no sea gigante ni chiquito
+            cardW = Clamp(cardW, 170, 260); // 
 
             int cardH = (int)(cardW * 0.55);
             cardH = Clamp(cardH, 90, 140);
@@ -103,8 +102,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             panelLineaTiempo.Width = Math.Min(totalW, this.ClientSize.Width - (margen * 2));
             panelLineaTiempo.Left = (this.ClientSize.Width - panelLineaTiempo.Width) / 2;
 
-            // ---------- Posiciona tarjetas y flechas dentro de panelLineaTiempo ----------
-            // Distribución: [card] gap [flecha] gap [card] gap [flecha] gap [card] gap [flecha] gap [card]
+            
             int x = (panelLineaTiempo.Width - totalW) / 2;
             if (x < 10) x = 10;
             int yCard = (panelLineaTiempo.Height - cardH) / 2;
@@ -138,24 +136,18 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             panel5.Location = new Point(x, yCard);
 
-            // ---------- Ajusta panel1 (zona de imágenes abajo) ----------
             panel1.Top = panelLineaTiempo.Bottom + 30;
             panel1.Height = Math.Max(cardH + 60, 150);
 
-            // mismo ancho que arriba para que se vea simétrico
             panel1.Width = panelLineaTiempo.Width;
             panel1.Left = (this.ClientSize.Width - panel1.Width) / 2;
 
-            // “slot size” de las imágenes abajo (un poquito más pequeño que la tarjeta)
             slotSize = new Size(cardW, cardH);
 
-            // Calcula slots para 4 imágenes abajo
             slotsAbajo = CalcularSlots(panel1.Width, slotSize, 4, 20);
 
-            // Recoloca SOLO las imágenes que están en panel1 (para que no se dañe lo que ya puso el usuario arriba)
             ReacomodarImagenesEnPanel1();
 
-            // Si alguna imagen está en panel2-5, asegúrate que llene el panel destino
             AjustarImagenEnDestino(panel2);
             AjustarImagenEnDestino(panel3);
             AjustarImagenEnDestino(panel4);
