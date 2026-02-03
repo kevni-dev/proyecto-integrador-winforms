@@ -236,6 +236,7 @@
             // plContenido
             // 
             plContenido.BackColor = Color.FromArgb(245, 246, 250);
+            plContenido.BackgroundImageLayout = ImageLayout.Stretch;
             plContenido.Dock = DockStyle.Fill;
             plContenido.Location = new Point(220, 70);
             plContenido.Name = "plContenido";

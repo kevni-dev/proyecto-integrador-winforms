@@ -34,112 +34,131 @@
             btnInteraccion = new Button();
             btnRendimiento = new Button();
             panel2 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            btnBienestar = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
             btnJuego = new Button();
             panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.BackgroundImage = Properties.Resources.qwer1;
+            panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(850, 80);
+            panel1.Size = new Size(850, 43);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(282, 10);
+            label1.ForeColor = Color.FromArgb(255, 224, 192);
+            label1.Location = new Point(469, 20);
             label1.Name = "label1";
             label1.Size = new Size(227, 20);
             label1.TabIndex = 0;
             label1.Text = "BIENESTAR EQUINO-HUMANO";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnElegirCaballo
             // 
+            btnElegirCaballo.BackColor = Color.Transparent;
+            btnElegirCaballo.Dock = DockStyle.Fill;
+            btnElegirCaballo.FlatStyle = FlatStyle.Flat;
+            btnElegirCaballo.ForeColor = Color.FromArgb(255, 224, 192);
             btnElegirCaballo.Location = new Point(3, 3);
             btnElegirCaballo.Name = "btnElegirCaballo";
-            btnElegirCaballo.Size = new Size(150, 40);
+            btnElegirCaballo.Size = new Size(206, 45);
             btnElegirCaballo.TabIndex = 1;
-            btnElegirCaballo.Text = "Eleccion y registro";
-            btnElegirCaballo.UseVisualStyleBackColor = true;
+            btnElegirCaballo.Text = "Eleccion y perfil";
+            btnElegirCaballo.UseVisualStyleBackColor = false;
             btnElegirCaballo.Click += btnElegirCaballo_Click_1;
             // 
             // btnInteraccion
             // 
-            btnInteraccion.Location = new Point(159, 3);
+            btnInteraccion.BackColor = Color.Transparent;
+            btnInteraccion.Dock = DockStyle.Fill;
+            btnInteraccion.FlatStyle = FlatStyle.Flat;
+            btnInteraccion.ForeColor = Color.FromArgb(255, 224, 192);
+            btnInteraccion.Location = new Point(215, 3);
             btnInteraccion.Name = "btnInteraccion";
-            btnInteraccion.Size = new Size(150, 40);
+            btnInteraccion.Size = new Size(206, 45);
             btnInteraccion.TabIndex = 3;
             btnInteraccion.Text = "Interaccion equino-humano";
-            btnInteraccion.UseVisualStyleBackColor = true;
+            btnInteraccion.UseVisualStyleBackColor = false;
             btnInteraccion.Click += btnInteraccion_Click;
             // 
             // btnRendimiento
             // 
-            btnRendimiento.Location = new Point(315, 3);
+            btnRendimiento.BackColor = Color.Transparent;
+            btnRendimiento.Dock = DockStyle.Fill;
+            btnRendimiento.FlatStyle = FlatStyle.Flat;
+            btnRendimiento.ForeColor = Color.FromArgb(255, 224, 192);
+            btnRendimiento.Location = new Point(427, 3);
             btnRendimiento.Name = "btnRendimiento";
-            btnRendimiento.Size = new Size(150, 40);
+            btnRendimiento.Size = new Size(206, 45);
             btnRendimiento.TabIndex = 4;
             btnRendimiento.Text = "Rendimiento";
-            btnRendimiento.UseVisualStyleBackColor = true;
+            btnRendimiento.UseVisualStyleBackColor = false;
+            btnRendimiento.Click += btnRendimiento_Click;
             // 
             // panel2
             // 
-            panel2.Controls.Add(flowLayoutPanel1);
+            panel2.Controls.Add(tableLayoutPanel1);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 80);
+            panel2.Location = new Point(0, 43);
             panel2.Name = "panel2";
-            panel2.Size = new Size(850, 60);
+            panel2.Size = new Size(850, 51);
             panel2.TabIndex = 1;
             // 
-            // flowLayoutPanel1
+            // tableLayoutPanel1
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Controls.Add(btnElegirCaballo);
-            flowLayoutPanel1.Controls.Add(btnInteraccion);
-            flowLayoutPanel1.Controls.Add(btnRendimiento);
-            flowLayoutPanel1.Controls.Add(btnBienestar);
-            flowLayoutPanel1.Controls.Add(btnJuego);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(850, 60);
-            flowLayoutPanel1.TabIndex = 5;
-            flowLayoutPanel1.WrapContents = false;
-            // 
-            // btnBienestar
-            // 
-            btnBienestar.Location = new Point(471, 3);
-            btnBienestar.Name = "btnBienestar";
-            btnBienestar.Size = new Size(150, 40);
-            btnBienestar.TabIndex = 2;
-            btnBienestar.Text = "Bienestar general";
-            btnBienestar.UseVisualStyleBackColor = true;
+            tableLayoutPanel1.BackgroundImage = Properties.Resources.qwer1;
+            tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.Controls.Add(btnInteraccion, 1, 0);
+            tableLayoutPanel1.Controls.Add(btnJuego, 3, 0);
+            tableLayoutPanel1.Controls.Add(btnRendimiento, 2, 0);
+            tableLayoutPanel1.Controls.Add(btnElegirCaballo, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(850, 51);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // btnJuego
             // 
-            btnJuego.Location = new Point(627, 3);
+            btnJuego.BackColor = Color.Transparent;
+            btnJuego.Dock = DockStyle.Fill;
+            btnJuego.FlatStyle = FlatStyle.Flat;
+            btnJuego.ForeColor = Color.FromArgb(255, 224, 192);
+            btnJuego.Location = new Point(639, 3);
             btnJuego.Name = "btnJuego";
-            btnJuego.Size = new Size(150, 40);
+            btnJuego.Size = new Size(208, 45);
             btnJuego.TabIndex = 2;
             btnJuego.Text = "Juego";
-            btnJuego.UseVisualStyleBackColor = true;
+            btnJuego.UseVisualStyleBackColor = false;
+            btnJuego.Click += btnJuego_Click;
             // 
             // panel3
             // 
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 140);
+            panel3.Location = new Point(0, 94);
             panel3.Name = "panel3";
-            panel3.Size = new Size(850, 383);
+            panel3.Size = new Size(850, 429);
             panel3.TabIndex = 2;
             // 
             // cuModulo4
@@ -155,7 +174,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -167,9 +186,8 @@
         private Button btnRendimiento;
         private Panel panel2;
         private Label label1;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Button btnBienestar;
         private Button btnJuego;
         private Panel panel3;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

@@ -30,7 +30,7 @@ namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
 
         private void btnElegirCaballo_Click_1(object sender, EventArgs e)
         {
-            CargarUserControl(new ElegirCaballo());
+            CargarUserControl(new PerfilEmocional());
         }
 
         private void cuModulo4_Load_1(object sender, EventArgs e)
@@ -46,6 +46,16 @@ namespace Proyecto_Integrador.ControlesUsuario.cuModulo4
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnJuego_Click(object sender, EventArgs e)
+        {
+            CargarUserControl(new Juego());
+        }
+
+        private void btnRendimiento_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Módulo en desarrollo. Pronto estará disponible.");
         }
     }
 }
