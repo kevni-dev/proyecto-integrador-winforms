@@ -29,7 +29,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             InitializeComponent();
             ConfigurarBotones();
             btnContinuar.Enabled = false;
-            // cambia caballo si eligen otro en modulo uno
             CaballoSeleccionado.CaballoActualizado += (s, e) =>
             {
                 if (CaballoSeleccionado.HayCaballoSeleccionado())
@@ -38,7 +37,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                 }
             };
         }
-        // Se ejecuta cada vez que se muestra el control
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -65,15 +63,12 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             _caballoActual = caballo;
             pnlControles.Enabled = true;
 
-            // 1. Obtener el análisis base de tu lógica de negocio
             var perfil = AnalizadorEmocional.Analizar(caballo);
 
-            // 2. Inicializar variables de sesión basadas en el perfil real
             _nivelEstres = perfil.NivelEstres;
             _nivelEnergia = perfil.NivelActivacion;
 
-            // El vínculo empieza bajo, pero si el caballo es "Dócil" o tiene mucha confianza, empieza mejor
-            _nivelVinculo = (int)(perfil.NivelConfianza * 0.3); // Empieza al 30% de su confianza base
+            _nivelVinculo = (int)(perfil.NivelConfianza * 0.3); 
 
             lblNombreCaballo.Text = caballo.Nombre;
             lblFeedback.Text = $"Has comenzado una sesión con {caballo.Nombre}. Su estado es: {perfil.EstadoGeneral}.";
@@ -169,17 +164,13 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                 lblDatoCurioso.Text = _datosCuriosos[r.Next(_datosCuriosos.Count)];
             }
 
-            // Clampear valores entre 0 y 100
             LimitarValores();
 
-            // Actualizar UI
             ActualizarBarrasUI();
 
-            // Mostrar Feedback
             lblFeedback.Text = mensaje;
             lblFeedback.BackColor = accionPositiva ? Color.PaleGreen : Color.LightSalmon;
 
-            // Verificar si completó la sesión
             VerificarLogros();
         }
 

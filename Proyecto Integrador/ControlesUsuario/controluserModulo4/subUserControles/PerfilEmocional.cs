@@ -12,7 +12,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         {
             InitializeComponent();
 
-            //actualiza la parte de la derecha
             CaballoSeleccionado.CaballoActualizado += (s, e) => {
                 if (CaballoSeleccionado.Actual != null)
                 {
@@ -21,7 +20,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             };
         }
 
-        // llena el flowlayoutpanel con las tarjetas
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -77,7 +75,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             pbActivacion.Value = perfil.NivelActivacion;
             lblActivacionValor.Text = $"{perfil.NivelActivacion}%";
 
-            // Usamos Environment.NewLine para que los saltos de línea sean correctos en Windows
             lblFactores.Text = string.Join(Environment.NewLine, perfil.FactoresInfluyen);
             lblRecomendaciones.Text = string.Join(Environment.NewLine, perfil.Recomendaciones);
         }
