@@ -14,7 +14,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 {
     public partial class Juego : UserControl
     {
-        // Estado del juego
         private List<string> secuenciaCorrecta = new List<string>();
         private List<string> secuenciaUsuario = new List<string>();
         private int nivelActual = 1;
@@ -28,16 +27,13 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
         private void ConfigurarUI()
         {
-            // Configurar eventos
             btnComenzarDesafio.Click += BtnComenzarDesafio_Click;
             pnlSecuenciaUsuario.AllowDrop = true;
             pnlSecuenciaUsuario.DragEnter += PnlSecuenciaUsuario_DragEnter;
             pnlSecuenciaUsuario.DragDrop += PnlSecuenciaUsuario_DragDrop;
 
-            // Crear botones de comandos
             CrearBotonesComandos();
 
-            // Inicializar UI
             ActualizarUI();
         }
 
@@ -53,7 +49,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                     Text = comando,
                     Tag = comando,
                     Size = new Size(120, 55),
-                    BackColor = Color.FromArgb(139, 90, 43), // Marrón ecuestre
+                    BackColor = Color.FromArgb(139, 90, 43), 
                     ForeColor = Color.White,
                     FlatStyle = FlatStyle.Flat,
                     Font = new Font("Segoe UI", 10, FontStyle.Bold),
@@ -80,18 +76,14 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
         private async void GenerarYMostrarSecuencia()
         {
-            // Limpiar estado anterior
             LimpiarJuego();
             btnComenzarDesafio.Enabled = false;
             esperandoInput = false;
 
-            // Generar secuencia
             GenerarSecuencia();
 
-            // Mostrar secuencia
             await MostrarAnimacionSecuencia();
 
-            // Permitir input del usuario
             esperandoInput = true;
             lblInstrucciones.Text = "¡REPITELO! Arrastra los movimientos en orden.";
             btnComenzarDesafio.Enabled = true;
@@ -102,7 +94,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             string[] opciones = { "Caminar", "Trotar", "Relinchar", "Girar" };
             Random rnd = new Random();
 
-            // Cantidad de pasos según nivel: Nivel 1=2, Nivel 2=3, etc
             int cantidad = 1 + nivelActual;
 
             for (int i = 0; i < cantidad; i++)
@@ -118,7 +109,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
             foreach (string paso in secuenciaCorrecta)
             {
-                // Mostrar movimiento
                 MostrarMovimientoCaballo(paso);
                 lblFeedback.Text = $"🐴 {paso.ToUpper()}";
                 lblFeedback.BackColor = Color.FromArgb(173, 216, 230);
@@ -146,7 +136,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                 }
                 else
                 {
-                    // Imagen por defecto
                     if (CaballoSeleccionado.HayCaballoSeleccionado())
                     {
                         object recurso = Proyecto_Integrador.Properties.Resources.ResourceManager
@@ -156,7 +145,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                     }
                 }
             }
-            catch { /* Ignorar errores de recursos */ }
+            catch { }
         }
 
         private void PnlSecuenciaUsuario_DragEnter(object sender, DragEventArgs e)
@@ -177,13 +166,11 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
         private void AgregarComando(string comando)
         {
-            // Validar que no nos pasemos del límite
             if (secuenciaUsuario.Count >= secuenciaCorrecta.Count)
                 return;
 
             secuenciaUsuario.Add(comando);
 
-            // Crear bloque visual
             Label lbl = new Label
             {
                 Text = $"{secuenciaUsuario.Count}. {comando}",
@@ -198,7 +185,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 
             pnlSecuenciaUsuario.Controls.Add(lbl);
 
-            // Validar si completó la secuencia
             if (secuenciaUsuario.Count == secuenciaCorrecta.Count)
             {
                 esperandoInput = false;
@@ -210,7 +196,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
         {
             bool esCorrecta = true;
 
-            // Comparar comando por comando
             for (int i = 0; i < secuenciaCorrecta.Count; i++)
             {
                 if (secuenciaUsuario[i] != secuenciaCorrecta[i])
@@ -247,7 +232,6 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
                 MessageBox.Show("El caballo no entendió el comando. ¡Inténtalo de nuevo!",
                     "SECUENCIA INCORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                // Limpiar solo la entrada del usuario
                 secuenciaUsuario.Clear();
                 pnlSecuenciaUsuario.Controls.Clear();
                 btnComenzarDesafio.Enabled = true;
