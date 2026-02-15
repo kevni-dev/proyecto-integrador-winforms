@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
 {
-    partial class JuegoMemorama
+    partial class JuegoMemoramaFacil
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -29,39 +29,40 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JuegoMemorama));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JuegoMemoramaFacil));
             PanelJuego = new Panel();
             btnReiniciar = new Button();
             lblRecord = new Label();
+            lblMemorama = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
-            lblMemorama = new Label();
-            pictureBox1 = new PictureBox();
+            timerCronometro = new System.Windows.Forms.Timer(components);
+            lblTiempo = new Label();
             btnVolver = new Button();
             btnInfo = new Button();
             panelInstrucciones = new Panel();
             btnCerrar = new Button();
             lblInstrucciones = new Label();
-            lblTiempo = new Label();
-            timerCronometro = new System.Windows.Forms.Timer(components);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btnModoNormal = new Button();
+            pictureBox1 = new PictureBox();
             panelInstrucciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // PanelJuego
             // 
-            PanelJuego.Location = new Point(62, 59);
+            PanelJuego.Location = new Point(71, 79);
             PanelJuego.Name = "PanelJuego";
-            PanelJuego.Size = new Size(561, 481);
+            PanelJuego.Size = new Size(564, 481);
             PanelJuego.TabIndex = 0;
             // 
             // btnReiniciar
             // 
             btnReiniciar.BackColor = Color.FromArgb(255, 192, 128);
             btnReiniciar.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnReiniciar.Location = new Point(713, 372);
+            btnReiniciar.Location = new Point(680, 370);
             btnReiniciar.Name = "btnReiniciar";
-            btnReiniciar.Size = new Size(210, 37);
+            btnReiniciar.Size = new Size(211, 40);
             btnReiniciar.TabIndex = 1;
             btnReiniciar.Text = "Reiniciar Juego";
             btnReiniciar.UseVisualStyleBackColor = false;
@@ -70,12 +71,22 @@
             // lblRecord
             // 
             lblRecord.AutoSize = true;
-            lblRecord.Font = new Font("Showcard Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRecord.Location = new Point(688, 59);
+            lblRecord.Font = new Font("Showcard Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRecord.Location = new Point(680, 83);
             lblRecord.Name = "lblRecord";
-            lblRecord.Size = new Size(169, 36);
+            lblRecord.Size = new Size(156, 33);
             lblRecord.TabIndex = 2;
             lblRecord.Text = "Record:  0";
+            // 
+            // lblMemorama
+            // 
+            lblMemorama.AutoSize = true;
+            lblMemorama.Font = new Font("Ravie", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMemorama.Location = new Point(162, 29);
+            lblMemorama.Name = "lblMemorama";
+            lblMemorama.Size = new Size(340, 36);
+            lblMemorama.TabIndex = 3;
+            lblMemorama.Text = "Memorama (facil)";
             // 
             // timer1
             // 
@@ -85,48 +96,43 @@
             // timer2
             // 
             timer2.Interval = 500;
+            timer2.Tick += timer2_Tick;
             // 
-            // lblMemorama
+            // timerCronometro
             // 
-            lblMemorama.AutoSize = true;
-            lblMemorama.BackColor = Color.Transparent;
-            lblMemorama.Font = new Font("Ravie", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMemorama.Location = new Point(89, 17);
-            lblMemorama.Name = "lblMemorama";
-            lblMemorama.Size = new Size(403, 39);
-            lblMemorama.TabIndex = 3;
-            lblMemorama.Text = "Memorama ( Dificil)";
+            timerCronometro.Interval = 1000;
+            timerCronometro.Tick += timerCronometro_Tick;
             // 
-            // pictureBox1
+            // lblTiempo
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(662, 98);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(297, 258);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 4;
-            pictureBox1.TabStop = false;
+            lblTiempo.AutoSize = true;
+            lblTiempo.Font = new Font("Showcard Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTiempo.Location = new Point(523, 49);
+            lblTiempo.Name = "lblTiempo";
+            lblTiempo.Size = new Size(124, 27);
+            lblTiempo.TabIndex = 4;
+            lblTiempo.Text = "Tiempo: 25";
             // 
             // btnVolver
             // 
             btnVolver.BackColor = Color.FromArgb(192, 255, 192);
-            btnVolver.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVolver.Font = new Font("Showcard Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnVolver.Location = new Point(3, 3);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(82, 27);
+            btnVolver.Size = new Size(83, 28);
             btnVolver.TabIndex = 5;
-            btnVolver.Text = "Volver";
+            btnVolver.Text = "Volver ";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 
             // btnInfo
             // 
-            btnInfo.BackColor = Color.Cyan;
+            btnInfo.BackColor = Color.FromArgb(128, 255, 255);
             btnInfo.FlatStyle = FlatStyle.Flat;
-            btnInfo.Font = new Font("Script MT Bold", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnInfo.Location = new Point(1056, 3);
+            btnInfo.Font = new Font("Script MT Bold", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnInfo.Location = new Point(1076, 3);
             btnInfo.Name = "btnInfo";
-            btnInfo.Size = new Size(63, 49);
+            btnInfo.Size = new Size(55, 45);
             btnInfo.TabIndex = 6;
             btnInfo.Text = "i";
             btnInfo.UseVisualStyleBackColor = false;
@@ -138,9 +144,9 @@
             panelInstrucciones.BorderStyle = BorderStyle.FixedSingle;
             panelInstrucciones.Controls.Add(btnCerrar);
             panelInstrucciones.Controls.Add(lblInstrucciones);
-            panelInstrucciones.Location = new Point(863, 58);
+            panelInstrucciones.Location = new Point(852, 54);
             panelInstrucciones.Name = "panelInstrucciones";
-            panelInstrucciones.Size = new Size(256, 329);
+            panelInstrucciones.Size = new Size(263, 379);
             panelInstrucciones.TabIndex = 7;
             panelInstrucciones.Visible = false;
             // 
@@ -148,9 +154,9 @@
             // 
             btnCerrar.BackColor = Color.Red;
             btnCerrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCerrar.Location = new Point(222, 3);
+            btnCerrar.Location = new Point(223, 3);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(29, 23);
+            btnCerrar.Size = new Size(35, 30);
             btnCerrar.TabIndex = 1;
             btnCerrar.Text = "X";
             btnCerrar.UseVisualStyleBackColor = false;
@@ -159,46 +165,55 @@
             // lblInstrucciones
             // 
             lblInstrucciones.Dock = DockStyle.Fill;
-            lblInstrucciones.Font = new Font("Stencil", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInstrucciones.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblInstrucciones.Location = new Point(0, 0);
             lblInstrucciones.Name = "lblInstrucciones";
-            lblInstrucciones.Size = new Size(254, 327);
+            lblInstrucciones.Size = new Size(261, 377);
             lblInstrucciones.TabIndex = 0;
             lblInstrucciones.Text = resources.GetString("lblInstrucciones.Text");
             // 
-            // lblTiempo
+            // btnModoNormal
             // 
-            lblTiempo.AutoSize = true;
-            lblTiempo.Font = new Font("Showcard Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTiempo.Location = new Point(498, 29);
-            lblTiempo.Name = "lblTiempo";
-            lblTiempo.Size = new Size(125, 27);
-            lblTiempo.TabIndex = 8;
-            lblTiempo.Text = "Tiempo: 20";
+            btnModoNormal.BackColor = Color.FromArgb(192, 255, 192);
+            btnModoNormal.Font = new Font("Showcard Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModoNormal.Location = new Point(718, 416);
+            btnModoNormal.Name = "btnModoNormal";
+            btnModoNormal.Size = new Size(157, 30);
+            btnModoNormal.TabIndex = 8;
+            btnModoNormal.Text = "Siguiente nivel";
+            btnModoNormal.UseVisualStyleBackColor = false;
+            btnModoNormal.Click += btnModoNormal_Click;
             // 
-            // timerCronometro
+            // pictureBox1
             // 
-            timerCronometro.Interval = 1000;
-            timerCronometro.Tick += timerCronometro_Tick;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(668, 119);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(245, 245);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
             // 
-            // JuegoMemorama
+            // JuegoMemoramaFacil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 224, 192);
-            Controls.Add(lblTiempo);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnModoNormal);
             Controls.Add(panelInstrucciones);
             Controls.Add(btnInfo);
             Controls.Add(btnVolver);
-            Controls.Add(pictureBox1);
+            Controls.Add(lblTiempo);
             Controls.Add(lblMemorama);
             Controls.Add(lblRecord);
             Controls.Add(btnReiniciar);
             Controls.Add(PanelJuego);
-            Name = "JuegoMemorama";
-            Size = new Size(1131, 570);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            Name = "JuegoMemoramaFacil";
+            Size = new Size(1134, 572);
+            Load += JuegoMemoramaFacil_Load;
             panelInstrucciones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -208,16 +223,17 @@
         private Panel PanelJuego;
         private Button btnReiniciar;
         private Label lblRecord;
+        private Label lblMemorama;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
-        private Label lblMemorama;
-        private PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timerCronometro;
+        private Label lblTiempo;
         private Button btnVolver;
         private Button btnInfo;
         private Panel panelInstrucciones;
         private Label lblInstrucciones;
         private Button btnCerrar;
-        private Label lblTiempo;
-        private System.Windows.Forms.Timer timerCronometro;
+        private Button btnModoNormal;
+        private PictureBox pictureBox1;
     }
 }

@@ -9,9 +9,10 @@ using System.Windows.Forms;
 
 namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
 {
-    public partial class JuegoMemorama : UserControl
+    public partial class JuegoMemoramaFacil : UserControl
     {
-        int TamanioColumnasFilas = 4;
+        int Filas = 2;
+        int Columnas = 4;
         int Movimientos = 0;
         int CantidadDeCartasVolteadas = 0;
         int TiempoRestante = 30;
@@ -22,8 +23,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         PictureBox CartaTemporal2;
         int CartaActual = 0;
         bool BloquearClick = false;
-
-        public JuegoMemorama()
+        public JuegoMemoramaFacil()
         {
             InitializeComponent();
             InicializarJuego();
@@ -32,8 +32,8 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         public void InicializarJuego()
         {
             timerCronometro.Stop();
-            TiempoRestante = 20;
-            lblTiempo.Text = "Tiempo: 20";
+            TiempoRestante = 25;
+            lblTiempo.Text = "Tiempo: 25";
 
             timer2.Stop();
 
@@ -46,7 +46,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
             CartasEnumeradas = new List<string>();
             CartasRevueltas = new List<string>();
             CartasSeleccionadas = new ArrayList();
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
                 CartasEnumeradas.Add(i.ToString());
                 CartasEnumeradas.Add(i.ToString());
@@ -58,18 +58,22 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
                 CartasRevueltas.Add(ValorCarta);
             }
             var tablaPanel = new TableLayoutPanel();
-            tablaPanel.RowCount = TamanioColumnasFilas;
-            tablaPanel.ColumnCount = TamanioColumnasFilas;
-            for (int i = 0; i < TamanioColumnasFilas; i++)
+            tablaPanel.RowCount = Filas;
+            tablaPanel.ColumnCount = Columnas;
+            for (int i = 0; i < Columnas; i++)
             {
-                var Porcentaje = 150f / (float)TamanioColumnasFilas - 10;
-                tablaPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, Porcentaje));
-                tablaPanel.RowStyles.Add(new RowStyle(SizeType.Percent, Porcentaje));
+                tablaPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / Columnas));
             }
-            int contadorFichas = 1;
-            for (var i = 0; i < TamanioColumnasFilas; i++)
+
+            for (int i = 0; i < Filas; i++)
             {
-                for (var j = 0; j < TamanioColumnasFilas; j++)
+                tablaPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / Filas));
+            }
+
+            int contadorFichas = 1;
+            for (var i = 0; i < Filas; i++)
+            {
+                for (var j = 0; j < Columnas; j++)
                 {
                     var CartasJuego = new PictureBox();
                     CartasJuego.Name = string.Format("{0}", contadorFichas);
@@ -98,7 +102,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
             timer2.Interval = 2000; // 2 segundos
             timer2.Start();
         }
-
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             InicializarJuego();
@@ -136,9 +139,9 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
                     else
                     {
                         CantidadDeCartasVolteadas++;
-                        TiempoRestante = 20;
-                        lblTiempo.Text = "Tiempo: 20";
-                        if (CantidadDeCartasVolteadas > 7)
+                        TiempoRestante = 25;
+                        lblTiempo.Text = "Tiempo: 25";
+                        if (CantidadDeCartasVolteadas > 3)
                         {
                             timerCronometro.Stop();
                             MessageBox.Show("Felicidades el juego termino");
@@ -153,32 +156,29 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         }
         public Bitmap RecuperarImagen(int NumeroImagen)
         {
-            Bitmap TmpImg = new Bitmap(200, 100);
             switch (NumeroImagen)
             {
                 case 0:
-                    TmpImg = Properties.Resources.img8;
-                    break;
+                    return Properties.Resources.imgFacil1;
+                case 1:
+                    return Properties.Resources.imgFacil2;
+                case 2:
+                    return Properties.Resources.imgFacil3;
+                case 3:
+                    return Properties.Resources.imgFacil4;
                 default:
-                    TmpImg = (Bitmap)Properties.Resources.ResourceManager.GetObject("img" + NumeroImagen);
-                    break;
-
+                    return Properties.Resources.imgFacil1;
             }
-            return TmpImg;
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int TiempoVirarCarta = 1;
-            if (TiempoVirarCarta == 1)
-            {
-                CartaTemporal1.Image = Properties.Resources.Girada;
-                CartaTemporal2.Image = Properties.Resources.Girada;
-                CartasSeleccionadas.Clear();
-                BloquearClick = false;
-                TiempoVirarCarta = 0;
-                timer1.Stop();
-            }
+            CartaTemporal1.Image = Properties.Resources.Girada;
+            CartaTemporal2.Image = Properties.Resources.Girada;
+
+            CartasSeleccionadas.Clear();
+            BloquearClick = false;
+
+            timer1.Stop();
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -192,26 +192,15 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         {
             MostrarVistaPrevia();
         }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            JuegoMemoramaFacil uc = new JuegoMemoramaFacil();
+            datocurioso uc = new datocurioso();
 
             Control parent = this.Parent;
             parent.Controls.Clear();
 
             uc.Dock = DockStyle.Fill;
             parent.Controls.Add(uc);
-        }
-
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            panelInstrucciones.Visible = true;
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            panelInstrucciones.Visible = false;
         }
 
         private void timerCronometro_Tick(object sender, EventArgs e)
@@ -225,6 +214,31 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
                 MessageBox.Show("Se acabó el tiempo ");
             }
 
+        }
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            panelInstrucciones.Visible = true;
+            panelInstrucciones.BringToFront();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            panelInstrucciones.Visible = false;
+        }
+
+        private void JuegoMemoramaFacil_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModoNormal_Click(object sender, EventArgs e)
+        {
+            JuegoMemorama uc = new JuegoMemorama();
+
+            Control parent = this.Parent;
+            parent.Controls.Clear();
+            uc.Dock = DockStyle.Fill;
+            parent.Controls.Add(uc);
         }
     }
 }
