@@ -96,13 +96,13 @@
             // 
             // btnVolver
             // 
-            btnVolver.BackColor = Color.FromArgb(128, 255, 128);
+            btnVolver.BackColor = Color.FromArgb(192, 255, 192);
             btnVolver.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVolver.Location = new Point(570, 564);
+            btnVolver.Location = new Point(3, 3);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(107, 35);
+            btnVolver.Size = new Size(73, 32);
             btnVolver.TabIndex = 5;
-            btnVolver.Text = "← Volver";
+            btnVolver.Text = "volver";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 

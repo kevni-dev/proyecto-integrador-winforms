@@ -256,4 +256,16 @@
   <data name="img7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="imgFacil1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgFacil1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgFacil2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgFacil2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgFacil3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgFacil3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgFacil4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgFacil4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -53,7 +53,8 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
 
         private void btnMiniJuego_Click(object sender, EventArgs e)
         {
-            JuegoMemorama uc = new JuegoMemorama();
+            JuegoMemoramaFacil uc = new JuegoMemoramaFacil();
+
 
             Control parent = this.Parent;
             parent.Controls.Clear();
