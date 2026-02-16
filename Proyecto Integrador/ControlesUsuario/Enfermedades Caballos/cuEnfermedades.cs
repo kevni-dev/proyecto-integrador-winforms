@@ -7,7 +7,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 {
     public partial class cuEnfermedades : UserControl
     {
-        // Si ya no usas botón volver, puedes borrar este event
+
         public event EventHandler? SalirRequested;
 
         private Archivo.Archivo archivo;
@@ -24,12 +24,9 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
             this.Load += cuEnfermedades_Load;
 
-            // ✅ solo botones aquí
             btn_guardar.Click += btn_guardar_Click;
             btn_eliminar.Click += btn_eliminar_Click;
 
-            // ❌ NO conectes dtgv aquí si ya está en Designer
-            
         }
 
         private void cuEnfermedades_Load(object? sender, EventArgs e)
@@ -139,7 +136,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             txt_descripcion.Text = "";
         }
 
-        // ✅ ESTE es el que debe estar conectado desde el Designer
         private void dtgv_enfermedades_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1) return;

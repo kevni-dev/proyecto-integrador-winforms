@@ -1,6 +1,10 @@
-﻿using Proyecto_Integrador.ControlesUsuario.A_Turismo;
+﻿// cuModulo1.cs
+using Proyecto_Integrador.ControlesUsuario.A_Turismo;
 using Proyecto_Integrador.Datos;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -8,123 +12,214 @@ namespace Proyecto_Integrador.ControlesUsuario
 {
     public partial class cuModulo1 : UserControl
     {
+        private Button? _btnSeleccionado;
+
+        // ----- estilo texto -----
+        private static readonly Color ColorTextoMenu = Color.FromArgb(92, 58, 32);
+
+        // ----- brillo ajustado (-25% del extra) -----
+        private const float BrilloBase = 0.85f;
+        private const float BrilloHover = 0.91f;
+        private const float BrilloSeleccionado = 1.04f;
+
         public cuModulo1()
         {
             InitializeComponent();
 
-            // Anti-parpadeo en el control
-            this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
-                          ControlStyles.UserPaint |
-                          ControlStyles.OptimizedDoubleBuffer, true);
-            this.UpdateStyles();
+            // ----- render suave -----
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.UserPaint |
+                     ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
 
-            // Anti-parpadeo en el panel contenedor
+            ActivarDoubleBuffer(panelTopMenu);
+            ActivarDoubleBuffer(panelContent);
             ActivarDoubleBuffer(TurismopanelContenido);
-            ActivarDoubleBuffer(panelMenu);
+
+            // ----- botones top -----
+            PrepararBotonMenu(TurismoButtonRegistrar, Properties.Resources.reg_2);
+            PrepararBotonMenu(TurismoButtonVer, Properties.Resources.ver_2);
+            PrepararBotonMenu(TurismoButtonAgenda, Properties.Resources.cal_2);
+            PrepararBotonMenu(TurismoButtonRutas, Properties.Resources.map_2);
+            PrepararBotonMenu(TurismoButtonMinijuego, Properties.Resources.jue_2);
         }
 
-        // Reduce parpadeo cuando hay BackgroundImage 
         protected override CreateParams CreateParams
         {
             get
             {
                 var cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                cp.ExStyle |= 0x02000000;
                 return cp;
             }
         }
 
-        private void cuModulo1_Load(object sender, EventArgs e)
+        private void cuModulo1_Load(object? sender, EventArgs e)
         {
+            panelTopMenu.BackgroundImage = Properties.Resources.madera_1;
+            panelTopMenu.BackgroundImageLayout = ImageLayout.Stretch;
+
+            panelContent.BackgroundImage = Properties.Resources.fondoestablo11;
+            panelContent.BackgroundImageLayout = ImageLayout.Stretch;
+
             RepositorioCaballos.CargarDesdeJson();
-            MostrarMenu();
-            CentrarMenu();
+
+            SeleccionarBoton(TurismoButtonRegistrar);
+            CambiarPantalla(new TurismoRegistrarCaballo());
         }
 
-        private void TurismopanelContenido_Resize(object sender, EventArgs e)
+        // ----- configurar botones (solo tamaño + texto más compacto) -----
+        private void PrepararBotonMenu(Button b, Image botonImg)
         {
-            CentrarMenu();
+            Image baseImg = AjustarBrillo(botonImg, BrilloBase);
+            Image hoverImg = AjustarBrillo(botonImg, BrilloHover);
+            Image selectedImg = AjustarBrillo(botonImg, BrilloSeleccionado);
+
+            b.Tag = Tuple.Create(baseImg, hoverImg, selectedImg);
+
+            b.UseVisualStyleBackColor = false;
+            b.BackColor = Color.Transparent;
+
+            b.BackgroundImage = baseImg;
+            b.BackgroundImageLayout = ImageLayout.Stretch;
+
+            b.FlatStyle = FlatStyle.Flat;
+            b.FlatAppearance.BorderSize = 0;
+            b.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            b.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+            b.TabStop = false;
+
+            // Más pequeño (para que entre en barra baja)
+            b.TextAlign = ContentAlignment.BottomCenter;
+            b.Font = ObtenerFuenteMenu(12F, FontStyle.Bold);
+            b.Padding = new Padding(8, 8, 8, 4);
+            b.ForeColor = ColorTextoMenu;
+
+            b.MouseEnter -= Boton_MouseEnter;
+            b.MouseLeave -= Boton_MouseLeave;
+            b.MouseEnter += Boton_MouseEnter;
+            b.MouseLeave += Boton_MouseLeave;
         }
 
-        private void CentrarMenu()
+        private static Font ObtenerFuenteMenu(float size, FontStyle style)
         {
-            if (panelMenu == null || TurismopanelContenido == null) return;
+            string[] fuentes = { "Georgia", "Cambria", "Palatino Linotype", "Segoe UI" };
 
-            panelMenu.Left = (TurismopanelContenido.Width - panelMenu.Width) / 2;
-            panelMenu.Top = (TurismopanelContenido.Height - panelMenu.Height) / 2;
-        }
-
-        private void MostrarMenu()
-        {
-            panelMenu.Visible = true;
-            CentrarMenu();
-
-            // Borra todo lo que NO sea el menú
-            for (int i = TurismopanelContenido.Controls.Count - 1; i >= 0; i--)
+            foreach (var f in fuentes)
             {
-                Control c = TurismopanelContenido.Controls[i];
-                if (c != panelMenu)
-                    TurismopanelContenido.Controls.RemoveAt(i);
+                try { return new Font(f, size, style); }
+                catch { }
             }
 
-            panelMenu.BringToFront();
+            return new Font(FontFamily.GenericSansSerif, size, style);
         }
 
-        private void OcultarMenu()
+        private void Boton_MouseEnter(object? sender, EventArgs e)
         {
-            panelMenu.Visible = false;
+            if (sender is not Button b) return;
+            if (ReferenceEquals(b, _btnSeleccionado)) return;
+
+            if (b.Tag is Tuple<Image, Image, Image> imgs)
+                b.BackgroundImage = imgs.Item2;
         }
 
-        private void CambiarPantalla(UserControl pantalla)
+        private void Boton_MouseLeave(object? sender, EventArgs e)
         {
-            TurismopanelContenido.SuspendLayout();
+            if (sender is not Button b) return;
+            if (ReferenceEquals(b, _btnSeleccionado)) return;
+
+            if (b.Tag is Tuple<Image, Image, Image> imgs)
+                b.BackgroundImage = imgs.Item1;
+        }
+
+        private void SeleccionarBoton(Button b)
+        {
+            if (_btnSeleccionado != null && _btnSeleccionado.Tag is Tuple<Image, Image, Image> oldImgs)
+                _btnSeleccionado.BackgroundImage = oldImgs.Item1;
+
+            _btnSeleccionado = b;
+
+            if (b.Tag is Tuple<Image, Image, Image> imgs)
+                b.BackgroundImage = imgs.Item3;
+
             try
             {
-                // Quitar todo excepto el menú
-                for (int i = TurismopanelContenido.Controls.Count - 1; i >= 0; i--)
-                {
-                    Control c = TurismopanelContenido.Controls[i];
-                    if (c != panelMenu)
-                        TurismopanelContenido.Controls.RemoveAt(i);
-                }
+                ActiveControl = null;
+                panelTopMenu.Select();
+                panelTopMenu.Focus();
+            }
+            catch { }
+        }
 
+        // ----- ajustar brillo -----
+        private Image AjustarBrillo(Image img, float factor)
+        {
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                float[][] matrixItems =
+                {
+                    new float[] {factor, 0, 0, 0, 0},
+                    new float[] {0, factor, 0, 0, 0},
+                    new float[] {0, 0, factor, 0, 0},
+                    new float[] {0, 0, 0, 1, 0},
+                    new float[] {0, 0, 0, 0, 1}
+                };
+
+                ColorMatrix matrix = new ColorMatrix(matrixItems);
+                ImageAttributes attributes = new ImageAttributes();
+                attributes.SetColorMatrix(matrix);
+
+                g.DrawImage(
+                    img,
+                    new Rectangle(0, 0, bmp.Width, bmp.Height),
+                    0, 0, img.Width, img.Height,
+                    GraphicsUnit.Pixel,
+                    attributes
+                );
+            }
+
+            return bmp;
+        }
+
+        // ----- cambiar pantalla -----
+        private void CambiarPantalla(UserControl pantalla)
+        {
+            panelContent.SuspendLayout();
+            try
+            {
+                panelContent.Controls.Clear();
                 pantalla.Dock = DockStyle.Fill;
-                TurismopanelContenido.Controls.Add(pantalla);
+                panelContent.Controls.Add(pantalla);
                 pantalla.BringToFront();
             }
             finally
             {
-                TurismopanelContenido.ResumeLayout(true);
+                panelContent.ResumeLayout(true);
             }
         }
 
-        private void TurismoButtonRegistrar_Click(object sender, EventArgs e)
+        // ----- botones -----
+        private void TurismoButtonRegistrar_Click(object? sender, EventArgs e)
         {
-            OcultarMenu();
-
-            var registro = new TurismoRegistrarCaballo();
-            registro.CancelarPresionado += Registro_Cancelado;
-            registro.RegistroExitoso += Registro_Exitoso;
-
-            CambiarPantalla(registro);
+            SeleccionarBoton(TurismoButtonRegistrar);
+            CambiarPantalla(new TurismoRegistrarCaballo());
         }
 
-        private void TurismoButtonVer_Click(object sender, EventArgs e)
+        private void TurismoButtonVer_Click(object? sender, EventArgs e)
         {
-            OcultarMenu();
-
-            var vista = new TurismoVerRegistro();
-            CambiarPantalla(vista);
+            SeleccionarBoton(TurismoButtonVer);
+            CambiarPantalla(new TurismoVerRegistro());
         }
 
-        private void TurismoButtonAgenda_Click(object sender, EventArgs e)
+        private void TurismoButtonAgenda_Click(object? sender, EventArgs e)
         {
-            OcultarMenu();
+            SeleccionarBoton(TurismoButtonAgenda);
 
             var agenda = new TurismoAgendaCalendario();
-
-            // ✅ Caballos reales del JSON
             agenda.Caballos = RepositorioCaballos.ObtenerTodos()
                 .Select(c => (c.Nombre ?? "").Trim())
                 .Where(n => !string.IsNullOrWhiteSpace(n))
@@ -133,48 +228,19 @@ namespace Proyecto_Integrador.ControlesUsuario
             CambiarPantalla(agenda);
         }
 
-
-
-        private void TurismoButtonMinijuego_Click(object sender, EventArgs e)
+        private void TurismoButtonRutas_Click(object? sender, EventArgs e)
         {
-            OcultarMenu();
-
-            var mini = new TurismoMinijuego();
-            mini.CancelarPresionado += (s, ev) =>
-            {
-                if (s is Control control && TurismopanelContenido.Controls.Contains(control))
-                    TurismopanelContenido.Controls.Remove(control);
-
-                MostrarMenu();
-            };
-
-            CambiarPantalla(mini);
-        }
-
-
-        private void TurismoButtonRutas_Click(object sender, EventArgs e)
-        {
-            OcultarMenu();
+            SeleccionarBoton(TurismoButtonRutas);
             CambiarPantalla(new TurismoRutas());
         }
 
-
-        private void Registro_Exitoso(object? sender, EventArgs e)
+        private void TurismoButtonMinijuego_Click(object? sender, EventArgs e)
         {
-            if (sender is Control control && TurismopanelContenido.Controls.Contains(control))
-                TurismopanelContenido.Controls.Remove(control);
-
-            MostrarMenu();
+            SeleccionarBoton(TurismoButtonMinijuego);
+            CambiarPantalla(new TurismoMinijuego());
         }
 
-        private void Registro_Cancelado(object? sender, EventArgs e)
-        {
-            if (sender is Control control && TurismopanelContenido.Controls.Contains(control))
-                TurismopanelContenido.Controls.Remove(control);
-
-            MostrarMenu();
-        }
-
+        // ----- activar double buffer -----
         private static void ActivarDoubleBuffer(Control control)
         {
             try

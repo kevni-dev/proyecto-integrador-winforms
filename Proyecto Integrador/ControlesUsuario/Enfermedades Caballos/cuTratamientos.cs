@@ -11,7 +11,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
     {
         public event EventHandler? SalirRequested;
 
-        // ====== MODELO JSON ======
         private sealed class TratamientoRegistro
         {
             public int Id { get; set; }
@@ -27,28 +26,22 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             public override string ToString() => $"{Id}: {Nombre}";
         }
 
-        // ====== RUTAS ======
         private readonly string _rutaJson;
 
-        // ====== DATOS EN MEMORIA ======
-        private readonly Dictionary<int, string> _catalogo = new();   // id -> nombre
+        private readonly Dictionary<int, string> _catalogo = new();
         private readonly List<TratamientoRegistro> _lista = new();
 
         public cuTratamientos()
         {
             InitializeComponent();
 
-            // OJO: usa tratamientos.json (como el que me pasaste)
             _rutaJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datos\tratamientos.json");
 
-            // eventos
             this.Load += cuTratamientos_Load;
             btn_guardar.Click += btn_guardar_Click;
             btn_eliminar.Click += btn_eliminar_Click;
             dtgv_tratamiento.CellClick += dtgv_tratamiento_CellClick;
 
-            // (si luego pones botón Volver en este control)
-            // btnVolver.Click += (s,e)=> SalirRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void cuTratamientos_Load(object? sender, EventArgs e)
@@ -56,15 +49,13 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             CargarCatalogoBase();
             CargarCatalogoEnCombo();
 
-            CargarJson();      // lee tratamientos.json
-            PintarTabla();     // pinta tabla
+            CargarJson();
+            PintarTabla();
 
-            // deja limpio
             txt_id.Text = "";
             txt_tratamiento.Text = "";
         }
 
-        // ====== CATÁLOGO (ID debe coincidir con EnfermedadesPorCaballo) ======
         private void CargarCatalogoBase()
         {
             _catalogo.Clear();
@@ -90,7 +81,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 cmb_enfermedades.SelectedIndex = 0;
         }
 
-        // ====== JSON IO ======
         private void CargarJson()
         {
             _lista.Clear();
@@ -102,14 +92,13 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
                 if (!File.Exists(_rutaJson))
                 {
-                    // Si no existe, lo crea vacío para que no falle
+
                     File.WriteAllText(_rutaJson, "[]");
                     return;
                 }
 
                 string json = File.ReadAllText(_rutaJson);
 
-                // si está vacío o raro
                 if (string.IsNullOrWhiteSpace(json))
                     json = "[]";
 
@@ -135,7 +124,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             File.WriteAllText(_rutaJson, json);
         }
 
-        // ====== UI ======
         private void PintarTabla()
         {
             dtgv_tratamiento.Rows.Clear();
@@ -151,7 +139,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             dtgv_tratamiento.MultiSelect = false;
             dtgv_tratamiento.ReadOnly = true;
             dtgv_tratamiento.RowHeadersVisible = false;
-            dtgv_tratamiento.AllowUserToAddRows = false; // evita fila vacía rara
+            dtgv_tratamiento.AllowUserToAddRows = false;
         }
 
         private int ObtenerIdMax()

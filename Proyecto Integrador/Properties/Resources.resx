@@ -118,8 +118,191 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cab_c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cab_c.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mapa_rutas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapa_rutas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondomadera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondomadera.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Mental" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Mental.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ver_registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ver registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minijuego" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minijuego.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapa.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="registar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\registar1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ver1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ver1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="madera_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\madera_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="caballito" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\caballito.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="comiendo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\comiendo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoestablo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoestablo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="juvenil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\juvenil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoestablo11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoestablo11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cab_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cab_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Recurso 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Recurso 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cepillando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cepillando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="juego11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\juego11.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="juego12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\juego12.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondotabla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondotabla.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Alimentacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Alimentacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="registrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\registrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="map_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\map_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adulto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adulto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cal_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cal_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="maderafondo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maderafondo1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Salud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Salud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="maderafondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maderafondo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ver_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ver_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="img1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reg_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reg_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cab_a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cab_a.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoestablo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoestablo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendario1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendario1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="maderafondo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maderafondo2.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="barrasuperior" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barrasuperior.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jue_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jue_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jue_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jue_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cal_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cal_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Caballo_Criollo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Caballo_Criollo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="juego1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\juego1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Caballo_Arabe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Caballo_Arabe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="montando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\montando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendario11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendario11.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ver_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ver_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reg_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reg_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="map_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\map_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mapa2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapa2.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Caballo_Cuarto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Caballo_Cuarto.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mapa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapa1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="madera_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\madera_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="potro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\potro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="img8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -127,91 +310,16 @@
   <data name="agenda" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\agenda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cepillando" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cepillando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="comiendo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\comiendo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Caballo_Criollo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Caballo_Criollo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Salud" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Salud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Alimentacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Alimentacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="juvenil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\juvenil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="descansando" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\descansando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="caballito" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\caballito.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="montando" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\montando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="registrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\registrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Mental" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Mental.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Caballo_Cuarto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Caballo_Cuarto.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="potro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\potro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="flecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minijuego" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minijuego.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Caballo_Arabe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Caballo_Arabe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="adulto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\adulto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ver_registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ver registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Girada" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Girada.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mapa_rutas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mapa_rutas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Recurso 222" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Recurso 222.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

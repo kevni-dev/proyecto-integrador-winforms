@@ -28,10 +28,9 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private readonly Random _rng = new Random();
 
-        // ✅ Control de timer y ventanas
-        private bool _timerStarted = false;        // empieza en el primer click
-        private bool _timeDialogOpen = false;      // evita múltiples MessageBox
-        private bool _isExiting = false;           // si saliste, no muestres nada
+        private bool _timerStarted = false;
+        private bool _timeDialogOpen = false;
+        private bool _isExiting = false;
 
         public cuSopaEnfermedades()
         {
@@ -87,12 +86,12 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void StartNewGame()
         {
-            // ✅ resetea todo
+
             _isExiting = false;
             _timeDialogOpen = false;
 
             tmrJuego.Stop();
-            _timerStarted = false;   // ✅ el timer NO inicia aún
+            _timerStarted = false;
 
             _found.Clear();
             _startCell = null;
@@ -132,9 +131,8 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 lstPalabras.Items.Add(w);
 
             _timeLeft = _timeLimit;
-            UpdateTimeLabel(); // muestra 02:00 pero sin correr
+            UpdateTimeLabel();
 
-            // ✅ el timer se inicia en el primer click, no aquí
         }
 
         private void btnReiniciar_Click(object? sender, EventArgs e)
@@ -144,7 +142,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void btnSalir_Click(object? sender, EventArgs e)
         {
-            // ✅ detener todo al salir
+
             _isExiting = true;
             _timeDialogOpen = false;
 
@@ -165,8 +163,8 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void tmrJuego_Tick(object? sender, EventArgs e)
         {
-            if (_isExiting) return;        // ✅ si ya saliste, ignora
-            if (_timeDialogOpen) return;   // ✅ si ya hay diálogo, ignora
+            if (_isExiting) return;
+            if (_timeDialogOpen) return;
 
             _timeLeft = _timeLeft.Subtract(TimeSpan.FromSeconds(1));
 
@@ -176,7 +174,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 _timeLeft = TimeSpan.Zero;
                 UpdateTimeLabel();
 
-                // ✅ evita múltiples ventanas
                 _timeDialogOpen = true;
 
                 var res = MessageBox.Show(
@@ -325,7 +322,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             if (_isExiting) return;
             if (_timeDialogOpen) return;
 
-            // ✅ Timer empieza con el primer click
             StartTimerIfNeeded();
 
             if (sender is not Button btn) return;
@@ -386,7 +382,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                 tmrJuego.Stop();
                 _timerStarted = false;
 
-                // ✅ evita múltiples ventanas
                 _timeDialogOpen = true;
 
                 var res = MessageBox.Show(

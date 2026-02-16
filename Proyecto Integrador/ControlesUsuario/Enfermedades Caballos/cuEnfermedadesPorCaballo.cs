@@ -18,7 +18,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
             lblCaballo.Text = $"Enfermedades de: {_caballo.Nombre}";
 
-            // Eventos
             btnVolver.Click += (s, e) => SalirRequested?.Invoke(this, EventArgs.Empty);
             btnAgregar.Click += btnAgregar_Click;
             btnEliminar.Click += btnEliminar_Click;
@@ -52,7 +51,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             if (dtgvHistorial.Columns["Index"] != null)
                 dtgvHistorial.Columns["Index"].Visible = false;
 
-            // vista mejor
             dtgvHistorial.ReadOnly = true;
             dtgvHistorial.RowHeadersVisible = false;
             dtgvHistorial.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -64,7 +62,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void GuardarCambios()
         {
-            // Guarda el JSON actualizado
+
             PersistenciaCaballos.Guardar(RepositorioCaballos.ObtenerTodos());
         }
 
@@ -89,7 +87,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             GuardarCambios();
             RefrescarHistorial();
 
-            // limpiar
             txtEnfermedad.Text = "";
             txtNotas.Text = "";
             chkActiva.Checked = true;
@@ -121,7 +118,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             GuardarCambios();
             RefrescarHistorial();
 
-            // limpiar selección
             txtEnfermedad.Text = "";
             txtNotas.Text = "";
             chkActiva.Checked = true;

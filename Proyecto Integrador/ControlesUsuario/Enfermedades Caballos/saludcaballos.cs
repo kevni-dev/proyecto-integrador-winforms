@@ -13,27 +13,24 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         {
             InitializeComponent();
 
-            // Por si no está enganchado en el Designer
             btn_minijuego.Click += btn_minijuego_Click;
             btn_enferme.Click += btn_enferme_Click;
             btn_tratamiento.Click += btn_tratamiento_Click;
 
-            // Doble click en tabla
             dtgv_caballos.CellDoubleClick += dtgv_caballos_CellDoubleClick;
         }
 
         private void saludcaballos_Load(object sender, EventArgs e)
         {
-            // Cargar del JSON
+
             RepositorioCaballos.CargarDesdeJson();
 
-            // Mostrar tabla por defecto
             MostrarTablaCaballos();
         }
 
         private void MostrarTablaCaballos()
         {
-            // 👇 IMPORTANTE: NO DISPOSE aquí
+
             panel3.Controls.Clear();
 
             CargarTablaCaballos();
@@ -56,7 +53,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             dtgv_caballos.RowHeadersVisible = false;
             dtgv_caballos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar columnas que no quieres mostrar
             if (dtgv_caballos.Columns["Enfermedades"] != null)
                 dtgv_caballos.Columns["Enfermedades"].Visible = false;
 
@@ -66,7 +62,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void CargarVista(Control vista)
         {
-            // 👇 IMPORTANTE: NO DISPOSE aquí
+
             panel3.Controls.Clear();
 
             vista.Dock = DockStyle.Fill;
@@ -101,11 +97,10 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void btn_enferme_Click(object sender, EventArgs e)
         {
-            // Si no está la tabla visible, la vuelve a mostrar (sin mensajes)
+
             if (!panel3.Controls.Contains(dtgv_caballos))
                 MostrarTablaCaballos();
 
-            // Intenta abrir; si no hay caballo seleccionado, no hace nada (sin mensaje)
             var caballo = ObtenerCaballoSeleccionado();
             if (caballo == null)
             {
@@ -118,12 +113,10 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             CargarVista(v);
         }
 
-
         private void btn_tratamiento_Click(object sender, EventArgs e)
         {
             var v = new cuTratamientos();
-            // si luego agregas SalirRequested en tratamientos:
-            // v.SalirRequested += (s,a)=> MostrarTablaCaballos();
+
             CargarVista(v);
         }
 
@@ -132,7 +125,6 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             var v = new cuPrevencion();
             CargarVista(v);
         }
-
 
         private void btn_minijuego_Click(object? sender, EventArgs e)
         {

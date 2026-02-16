@@ -17,232 +17,232 @@
 
         private void InitializeComponent()
         {
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelLineaTiempo = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelLineaTiempo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            this.SuspendLayout();
+            btnCancelar = new Button();
+            btnGuardar = new Button();
+            panel1 = new Panel();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            panelLineaTiempo = new Panel();
+            pictureBox7 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            panel5 = new Panel();
+            panel4 = new Panel();
+            panel3 = new Panel();
+            panel2 = new Panel();
+            label2 = new Label();
+            btnSalir = new Button();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelLineaTiempo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancelar.Location = new System.Drawing.Point(710, 20);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(120, 30);
-            this.btnCancelar.TabIndex = 13;
-            this.btnCancelar.Text = "Volver a Jugar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(128, 128, 255);
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Location = new Point(710, 20);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(120, 30);
+            btnCancelar.TabIndex = 13;
+            btnCancelar.Text = "Volver a Jugar";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGuardar.Location = new System.Drawing.Point(840, 20);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "Aceptar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.Color.Red;
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalir.Location = new System.Drawing.Point(950, 20);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(80, 30);
-            this.btnSalir.TabIndex = 19;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Italic);
-            this.label2.Location = new System.Drawing.Point(30, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(544, 24);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Orden: Alimentación > Cepillado > Entrenamiento > Descanso";
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            // 
-            // panelLineaTiempo
-            // 
-            this.panelLineaTiempo.Controls.Add(this.pictureBox7);
-            this.panelLineaTiempo.Controls.Add(this.pictureBox5);
-            this.panelLineaTiempo.Controls.Add(this.pictureBox6);
-            this.panelLineaTiempo.Controls.Add(this.panel5);
-            this.panelLineaTiempo.Controls.Add(this.panel4);
-            this.panelLineaTiempo.Controls.Add(this.panel3);
-            this.panelLineaTiempo.Controls.Add(this.panel2);
-            this.panelLineaTiempo.Location = new System.Drawing.Point(12, 130);
-            this.panelLineaTiempo.Name = "panelLineaTiempo";
-            this.panelLineaTiempo.Size = new System.Drawing.Size(776, 119);
-            this.panelLineaTiempo.TabIndex = 17;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
-            this.pictureBox7.Location = new System.Drawing.Point(526, 43);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(52, 28);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 24;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
-            this.pictureBox5.Location = new System.Drawing.Point(343, 43);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(52, 28);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 23;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
-            this.pictureBox6.Location = new System.Drawing.Point(152, 43);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(52, 28);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 22;
-            this.pictureBox6.TabStop = false;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Location = new System.Drawing.Point(573, 16);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(150, 80);
-            this.panel5.TabIndex = 21;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Location = new System.Drawing.Point(383, 16);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(150, 80);
-            this.panel4.TabIndex = 20;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Location = new System.Drawing.Point(198, 16);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(150, 80);
-            this.panel3.TabIndex = 19;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(15, 16);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 80);
-            this.panel2.TabIndex = 18;
+            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.BackColor = Color.FromArgb(0, 192, 0);
+            btnGuardar.FlatStyle = FlatStyle.Popup;
+            btnGuardar.Location = new Point(840, 20);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(100, 30);
+            btnGuardar.TabIndex = 14;
+            btnGuardar.Text = "Aceptar";
+            btnGuardar.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 280);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 120);
-            this.panel1.TabIndex = 16;
+            panel1.Controls.Add(pictureBox4);
+            panel1.Controls.Add(pictureBox3);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(12, 280);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(776, 120);
+            panel1.TabIndex = 16;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Proyecto_Integrador.Properties.Resources.descansando;
-            this.pictureBox4.Location = new System.Drawing.Point(573, 20);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
+            pictureBox4.Image = Properties.Resources.descansando;
+            pictureBox4.Location = new Point(573, 20);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(150, 80);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 3;
+            pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Proyecto_Integrador.Properties.Resources.montando;
-            this.pictureBox3.Location = new System.Drawing.Point(383, 20);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
+            pictureBox3.Image = Properties.Resources.montando;
+            pictureBox3.Location = new Point(383, 20);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(150, 80);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Proyecto_Integrador.Properties.Resources.cepillando;
-            this.pictureBox2.Location = new System.Drawing.Point(198, 20);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            pictureBox2.Image = Properties.Resources.cepillando;
+            pictureBox2.Location = new Point(198, 20);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(150, 80);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Proyecto_Integrador.Properties.Resources.comiendo;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.comiendo;
+            pictureBox1.Location = new Point(15, 20);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(150, 80);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // panelLineaTiempo
+            // 
+            panelLineaTiempo.Controls.Add(pictureBox7);
+            panelLineaTiempo.Controls.Add(pictureBox5);
+            panelLineaTiempo.Controls.Add(pictureBox6);
+            panelLineaTiempo.Controls.Add(panel5);
+            panelLineaTiempo.Controls.Add(panel4);
+            panelLineaTiempo.Controls.Add(panel3);
+            panelLineaTiempo.Controls.Add(panel2);
+            panelLineaTiempo.Location = new Point(12, 130);
+            panelLineaTiempo.Name = "panelLineaTiempo";
+            panelLineaTiempo.Size = new Size(776, 119);
+            panelLineaTiempo.TabIndex = 17;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = Properties.Resources.flecha;
+            pictureBox7.Location = new Point(526, 43);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(52, 28);
+            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 24;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.flecha;
+            pictureBox5.Location = new Point(343, 43);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(52, 28);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 23;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.flecha;
+            pictureBox6.Location = new Point(152, 43);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(52, 28);
+            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox6.TabIndex = 22;
+            pictureBox6.TabStop = false;
+            // 
+            // panel5
+            // 
+            panel5.BorderStyle = BorderStyle.Fixed3D;
+            panel5.Location = new Point(573, 16);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(150, 80);
+            panel5.TabIndex = 21;
+            // 
+            // panel4
+            // 
+            panel4.BorderStyle = BorderStyle.Fixed3D;
+            panel4.Location = new Point(383, 16);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(150, 80);
+            panel4.TabIndex = 20;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Location = new Point(198, 16);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(150, 80);
+            panel3.TabIndex = 19;
+            // 
+            // panel2
+            // 
+            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Location = new Point(15, 16);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(150, 80);
+            panel2.TabIndex = 18;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Italic);
+            label2.Location = new Point(30, 70);
+            label2.Name = "label2";
+            label2.Size = new Size(532, 24);
+            label2.TabIndex = 18;
+            label2.Text = "Orden: Alimentación > Cepillado > Entrenamiento > Descanso";
+            // 
+            // btnSalir
+            // 
+            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSalir.BackColor = Color.Red;
+            btnSalir.FlatStyle = FlatStyle.Popup;
+            btnSalir.Location = new Point(950, 20);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(80, 30);
+            btnSalir.TabIndex = 19;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = false;
             // 
             // TurismoMinijuego
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Proyecto_Integrador.Properties.Resources._5;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelLineaTiempo);
-            this.Controls.Add(this.label2);
-            this.Name = "TurismoMinijuego";
-            this.Size = new System.Drawing.Size(1100, 650);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelLineaTiempo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(btnSalir);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGuardar);
+            Controls.Add(panel1);
+            Controls.Add(panelLineaTiempo);
+            Controls.Add(label2);
+            DoubleBuffered = true;
+            Name = "TurismoMinijuego";
+            Size = new Size(1100, 650);
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelLineaTiempo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
