@@ -38,6 +38,8 @@
             // plTitulo
             // 
             plTitulo.BackColor = Color.White;
+            plTitulo.BackgroundImage = Properties.Resources.Recurso_222;
+            plTitulo.BackgroundImageLayout = ImageLayout.Stretch;
             plTitulo.Controls.Add(tableLayoutPanel1);
             plTitulo.Dock = DockStyle.Top;
             plTitulo.Location = new Point(0, 0);
@@ -142,6 +144,8 @@
             // plModulos
             // 
             plModulos.BackColor = Color.FromArgb(17, 24, 39);
+            plModulos.BackgroundImage = Properties.Resources.Recurso_1;
+            plModulos.BackgroundImageLayout = ImageLayout.Stretch;
             plModulos.Controls.Add(btnModulo4);
             plModulos.Controls.Add(btnModulo3);
             plModulos.Controls.Add(btnModulo2);
@@ -155,7 +159,7 @@
             // 
             // btnModulo4
             // 
-            btnModulo4.BackColor = Color.FromArgb(17, 24, 39);
+            btnModulo4.BackColor = SystemColors.Control;
             btnModulo4.Dock = DockStyle.Top;
             btnModulo4.FlatAppearance.BorderSize = 0;
             btnModulo4.FlatStyle = FlatStyle.Flat;
@@ -236,7 +240,6 @@
             // plContenido
             // 
             plContenido.BackColor = Color.FromArgb(245, 246, 250);
-            plContenido.BackgroundImageLayout = ImageLayout.Stretch;
             plContenido.Dock = DockStyle.Fill;
             plContenido.Location = new Point(220, 70);
             plContenido.Name = "plContenido";
