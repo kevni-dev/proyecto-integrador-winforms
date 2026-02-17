@@ -1,4 +1,6 @@
-﻿using System;
+﻿// TurismoRegistrarCaballo.cs
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Proyecto_Integrador.Datos;
 
@@ -13,23 +15,33 @@ namespace Proyecto_Integrador.ControlesUsuario
         {
             InitializeComponent();
 
-            // Para que ocupe toda la pantalla del panel contenedor
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
 
-            // Anti-parpadeo
-            this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
-                          ControlStyles.UserPaint |
-                          ControlStyles.OptimizedDoubleBuffer, true);
-            this.UpdateStyles();
+            // Render más suave
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.UserPaint |
+                     ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
 
+            // Estilo botones
+            btnGuardar.FlatAppearance.BorderSize = 2;
+            btnCancelar.FlatAppearance.BorderSize = 2;
+            btnGuardar.FlatAppearance.BorderColor = Color.FromArgb(120, 80, 40);
+            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(120, 80, 40);
+
+            // Ajuste visual imagen
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.BackColor = Color.Transparent;
+
+            // Data combos
             CargarCombos();
 
-            // Eventos
-            comboBoxImagen.SelectedIndexChanged += ComboBoxImagen_SelectedIndexChanged;
+            // Imagen por raza
             comboBoxRaza.SelectedIndexChanged += ComboBoxRaza_SelectedIndexChanged;
         }
 
+        // Combos
         private void CargarCombos()
         {
             comboBoxSexo.Items.Clear();
@@ -47,50 +59,38 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxRaza.Items.Add("Criollo");
             comboBoxRaza.Items.Add("Cuarto de milla");
 
-            // IMÁGENES (clave -> recurso)
-            comboBoxImagen.Items.Clear();
-            comboBoxImagen.Items.Add("Caballo_Arabe");
-            comboBoxImagen.Items.Add("Caballo_Criollo");
-            comboBoxImagen.Items.Add("Caballo_Cuarto");
-
-            // defaults
             comboBoxSexo.SelectedIndex = 0;
             comboBoxTemperamento.SelectedIndex = 0;
             comboBoxRaza.SelectedIndex = 0;
-            comboBoxImagen.SelectedIndex = 0; // dispara imagen
+
+            AplicarImagenPorRaza(comboBoxRaza.Text);
         }
 
-        private void ComboBoxImagen_SelectedIndexChanged(object? sender, EventArgs e)
-        {
-            string clave = comboBoxImagen.Text;
-
-            if (clave == "Caballo_Cuarto")
-                pictureBox1.Image = Properties.Resources.Caballo_Cuarto;
-            else if (clave == "Caballo_Arabe")
-                pictureBox1.Image = Properties.Resources.Caballo_Arabe;
-            else if (clave == "Caballo_Criollo")
-                pictureBox1.Image = Properties.Resources.Caballo_Criollo;
-            else
-                pictureBox1.Image = Properties.Resources.Caballo_Arabe; // fallback
-        }
-
+        // Imagen por raza
         private void ComboBoxRaza_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            string raza = comboBoxRaza.Text;
-
-            if (raza == "Árabe")
-                comboBoxImagen.Text = "Caballo_Arabe";
-            else if (raza == "Criollo")
-                comboBoxImagen.Text = "Caballo_Criollo";
-            else if (raza == "Cuarto de milla")
-                comboBoxImagen.Text = "Caballo_Cuarto";
+            AplicarImagenPorRaza(comboBoxRaza.Text);
         }
 
+        private void AplicarImagenPorRaza(string raza)
+        {
+            if (raza == "Árabe")
+                pictureBox1.Image = Properties.Resources.cab_a;
+            else if (raza == "Criollo")
+                pictureBox1.Image = Properties.Resources.cab_c;
+            else if (raza == "Cuarto de milla")
+                pictureBox1.Image = Properties.Resources.cab_m;
+            else
+                pictureBox1.Image = Properties.Resources.cab_a;
+        }
+
+        // Cancelar
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             CancelarPresionado?.Invoke(this, EventArgs.Empty);
         }
 
+        // Guardar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxNombre.Text))
@@ -107,8 +107,7 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             if (comboBoxRaza.SelectedIndex == -1 ||
                 comboBoxSexo.SelectedIndex == -1 ||
-                comboBoxTemperamento.SelectedIndex == -1 ||
-                comboBoxImagen.SelectedIndex == -1)
+                comboBoxTemperamento.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione todos los datos");
                 return;
@@ -121,7 +120,7 @@ namespace Proyecto_Integrador.ControlesUsuario
                 Raza = comboBoxRaza.Text,
                 Sexo = comboBoxSexo.Text,
                 Temperamento = comboBoxTemperamento.Text,
-                ImagenRecurso = comboBoxImagen.Text
+                ImagenRecurso = ""
             };
 
             bool agregado = RepositorioCaballos.Agregar(nuevo);
@@ -138,6 +137,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             RegistroExitoso?.Invoke(this, EventArgs.Empty);
         }
 
+        // Limpiar
         private void LimpiarFormulario()
         {
             textBoxNombre.Clear();
@@ -146,7 +146,8 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxRaza.SelectedIndex = 0;
             comboBoxSexo.SelectedIndex = 0;
             comboBoxTemperamento.SelectedIndex = 0;
-            comboBoxImagen.SelectedIndex = 0;
+
+            AplicarImagenPorRaza(comboBoxRaza.Text);
         }
     }
 }
