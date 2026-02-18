@@ -1,4 +1,5 @@
-﻿namespace Proyecto_Integrador.ControlesUsuario
+﻿// TurismoMinijuego.Designer.cs  (ACTUALIZADO: sin botón menú + texto nuevo)
+namespace Proyecto_Integrador.ControlesUsuario
 {
     partial class TurismoMinijuego
     {
@@ -6,264 +7,449 @@
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Component Designer generated code
 
+        private System.Windows.Forms.Panel panelCard;
+        private System.Windows.Forms.TableLayoutPanel root;
+
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Label lblHeaderTitle;
+
+        private System.Windows.Forms.TableLayoutPanel topInfo;
+        private System.Windows.Forms.Label lblNivel;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblSubtitulo;
+        private System.Windows.Forms.Label lblTiempo;
+        private System.Windows.Forms.Label lblIntentos;
+
+        private System.Windows.Forms.TableLayoutPanel tableSlots;
+        private System.Windows.Forms.Panel slot1;
+        private System.Windows.Forms.Panel slot2;
+        private System.Windows.Forms.Panel slot3;
+        private System.Windows.Forms.Panel slot4;
+        private System.Windows.Forms.PictureBox arrow1;
+        private System.Windows.Forms.PictureBox arrow2;
+        private System.Windows.Forms.PictureBox arrow3;
+
+        private System.Windows.Forms.TableLayoutPanel tableSlotLabels;
+        private System.Windows.Forms.Label lblSlot1;
+        private System.Windows.Forms.Label lblSlot2;
+        private System.Windows.Forms.Label lblSlot3;
+        private System.Windows.Forms.Label lblSlot4;
+
+        private System.Windows.Forms.Panel panelSeparador;
+        private System.Windows.Forms.Label lblSeparador;
+
+        private System.Windows.Forms.Panel panelFinal;
+        private System.Windows.Forms.TableLayoutPanel tableCards;
+        private System.Windows.Forms.PictureBox card1;
+        private System.Windows.Forms.PictureBox card2;
+        private System.Windows.Forms.PictureBox card3;
+        private System.Windows.Forms.PictureBox card4;
+
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.TableLayoutPanel tableBtns;
+        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.Button btnAceptar;
+
+        private System.Windows.Forms.Panel overlay;
+        private System.Windows.Forms.Panel modal;
+        private System.Windows.Forms.Label lblModalTitulo;
+        private System.Windows.Forms.Label lblModalTexto;
+        private System.Windows.Forms.Button btnEmpezar;
+
         private void InitializeComponent()
         {
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelLineaTiempo = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelLineaTiempo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+
+            this.panelCard = new System.Windows.Forms.Panel();
+            this.root = new System.Windows.Forms.TableLayoutPanel();
+
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblHeaderTitle = new System.Windows.Forms.Label();
+
+            this.topInfo = new System.Windows.Forms.TableLayoutPanel();
+            this.lblNivel = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblSubtitulo = new System.Windows.Forms.Label();
+            this.lblTiempo = new System.Windows.Forms.Label();
+            this.lblIntentos = new System.Windows.Forms.Label();
+
+            this.tableSlots = new System.Windows.Forms.TableLayoutPanel();
+            this.slot1 = new System.Windows.Forms.Panel();
+            this.slot2 = new System.Windows.Forms.Panel();
+            this.slot3 = new System.Windows.Forms.Panel();
+            this.slot4 = new System.Windows.Forms.Panel();
+            this.arrow1 = new System.Windows.Forms.PictureBox();
+            this.arrow2 = new System.Windows.Forms.PictureBox();
+            this.arrow3 = new System.Windows.Forms.PictureBox();
+
+            this.tableSlotLabels = new System.Windows.Forms.TableLayoutPanel();
+            this.lblSlot1 = new System.Windows.Forms.Label();
+            this.lblSlot2 = new System.Windows.Forms.Label();
+            this.lblSlot3 = new System.Windows.Forms.Label();
+            this.lblSlot4 = new System.Windows.Forms.Label();
+
+            this.panelSeparador = new System.Windows.Forms.Panel();
+            this.lblSeparador = new System.Windows.Forms.Label();
+
+            this.panelFinal = new System.Windows.Forms.Panel();
+            this.tableCards = new System.Windows.Forms.TableLayoutPanel();
+            this.card1 = new System.Windows.Forms.PictureBox();
+            this.card2 = new System.Windows.Forms.PictureBox();
+            this.card3 = new System.Windows.Forms.PictureBox();
+            this.card4 = new System.Windows.Forms.PictureBox();
+
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.tableBtns = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReiniciar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+
+            this.overlay = new System.Windows.Forms.Panel();
+            this.modal = new System.Windows.Forms.Panel();
+            this.lblModalTitulo = new System.Windows.Forms.Label();
+            this.lblModalTexto = new System.Windows.Forms.Label();
+            this.btnEmpezar = new System.Windows.Forms.Button();
+
+            ((System.ComponentModel.ISupportInitialize)(this.arrow1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card4)).BeginInit();
+
             this.SuspendLayout();
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancelar.Location = new System.Drawing.Point(710, 20);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(120, 30);
-            this.btnCancelar.TabIndex = 13;
-            this.btnCancelar.Text = "Volver a Jugar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGuardar.Location = new System.Drawing.Point(840, 20);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "Aceptar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.Color.Red;
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalir.Location = new System.Drawing.Point(950, 20);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(80, 30);
-            this.btnSalir.TabIndex = 19;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Italic);
-            this.label2.Location = new System.Drawing.Point(30, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(544, 24);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Orden: Alimentación > Cepillado > Entrenamiento > Descanso";
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            // 
-            // panelLineaTiempo
-            // 
-            this.panelLineaTiempo.Controls.Add(this.pictureBox7);
-            this.panelLineaTiempo.Controls.Add(this.pictureBox5);
-            this.panelLineaTiempo.Controls.Add(this.pictureBox6);
-            this.panelLineaTiempo.Controls.Add(this.panel5);
-            this.panelLineaTiempo.Controls.Add(this.panel4);
-            this.panelLineaTiempo.Controls.Add(this.panel3);
-            this.panelLineaTiempo.Controls.Add(this.panel2);
-            this.panelLineaTiempo.Location = new System.Drawing.Point(12, 130);
-            this.panelLineaTiempo.Name = "panelLineaTiempo";
-            this.panelLineaTiempo.Size = new System.Drawing.Size(776, 119);
-            this.panelLineaTiempo.TabIndex = 17;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
-            this.pictureBox7.Location = new System.Drawing.Point(526, 43);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(52, 28);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 24;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
-            this.pictureBox5.Location = new System.Drawing.Point(343, 43);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(52, 28);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 23;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
-            this.pictureBox6.Location = new System.Drawing.Point(152, 43);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(52, 28);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 22;
-            this.pictureBox6.TabStop = false;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Location = new System.Drawing.Point(573, 16);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(150, 80);
-            this.panel5.TabIndex = 21;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Location = new System.Drawing.Point(383, 16);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(150, 80);
-            this.panel4.TabIndex = 20;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Location = new System.Drawing.Point(198, 16);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(150, 80);
-            this.panel3.TabIndex = 19;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(15, 16);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 80);
-            this.panel2.TabIndex = 18;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 280);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 120);
-            this.panel1.TabIndex = 16;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Proyecto_Integrador.Properties.Resources.descansando;
-            this.pictureBox4.Location = new System.Drawing.Point(573, 20);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Proyecto_Integrador.Properties.Resources.montando;
-            this.pictureBox3.Location = new System.Drawing.Point(383, 20);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Proyecto_Integrador.Properties.Resources.cepillando;
-            this.pictureBox2.Location = new System.Drawing.Point(198, 20);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Proyecto_Integrador.Properties.Resources.comiendo;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // TurismoMinijuego
-            // 
+
+            // ===== TurismoMinijuego =====
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Proyecto_Integrador.Properties.Resources._5;
+            this.BackgroundImage = global::Proyecto_Integrador.Properties.Resources.fondoestablo11;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelLineaTiempo);
-            this.Controls.Add(this.label2);
+            this.DoubleBuffered = true;
             this.Name = "TurismoMinijuego";
             this.Size = new System.Drawing.Size(1100, 650);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelLineaTiempo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
 
+            // ===== panelCard (papel) =====
+            this.panelCard.BackColor = System.Drawing.Color.FromArgb(245, 238, 228);
+            this.panelCard.BackgroundImage = null;
+            this.panelCard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCard.Size = new System.Drawing.Size(1040, 600);
+            this.panelCard.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelCard.Padding = new System.Windows.Forms.Padding(26, 16, 26, 18);
+            this.Controls.Add(this.panelCard);
+
+            // ===== root =====
+            this.root.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.root.ColumnCount = 1;
+            this.root.RowCount = 6;
+            this.root.BackColor = System.Drawing.Color.Transparent;
+
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));  // header
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));  // top info
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F)); // slots
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));  // labels slots
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));  // separator
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));  // cards + buttons
+
+            this.panelCard.Controls.Add(this.root);
+
+            // ===== Header madera (FULL ancho) =====
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelHeader.BackgroundImage = global::Proyecto_Integrador.Properties.Resources.madera_1;
+            this.panelHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.panelHeader.Padding = new System.Windows.Forms.Padding(0);
+            this.root.Controls.Add(this.panelHeader, 0, 0);
+
+            this.lblHeaderTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblHeaderTitle.Text = "MINIJUEGO: ORDENA LAS ACTIVIDADES";
+            this.lblHeaderTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHeaderTitle.ForeColor = System.Drawing.Color.FromArgb(245, 235, 220);
+            this.lblHeaderTitle.Font = new System.Drawing.Font("Georgia", 13F, System.Drawing.FontStyle.Bold);
+            this.lblHeaderTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblHeaderTitle.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.panelHeader.Controls.Add(this.lblHeaderTitle);
+
+            // ===== topInfo =====
+            this.topInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.topInfo.BackColor = System.Drawing.Color.Transparent;
+            this.topInfo.ColumnCount = 3;
+            this.topInfo.RowCount = 2;
+            this.topInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
+            this.topInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.topInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.topInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.topInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.topInfo.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.root.Controls.Add(this.topInfo, 0, 1);
+
+            this.lblNivel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNivel.Text = "Nivel: 1/4  •  Grupo: ---";
+            this.lblNivel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.lblNivel.ForeColor = System.Drawing.Color.FromArgb(70, 50, 35);
+            this.lblNivel.Font = new System.Drawing.Font("Georgia", 11F);
+            this.topInfo.Controls.Add(this.lblNivel, 0, 0);
+            this.topInfo.SetRowSpan(this.lblNivel, 2);
+
+            this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitulo.Text = "Minijuego del Módulo de Turismo";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(70, 50, 35);
+            this.lblTitulo.Font = new System.Drawing.Font("Georgia", 18F, System.Drawing.FontStyle.Bold);
+            this.topInfo.Controls.Add(this.lblTitulo, 1, 0);
+
+            this.lblSubtitulo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSubtitulo.Text = "Selecciona una carta y colócala arriba en el orden correcto.";
+            this.lblSubtitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(95, 75, 60);
+            this.lblSubtitulo.Font = new System.Drawing.Font("Georgia", 11F);
+            this.topInfo.Controls.Add(this.lblSubtitulo, 1, 1);
+
+            this.lblTiempo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTiempo.Text = "Tiempo: 00:30";
+            this.lblTiempo.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblTiempo.ForeColor = System.Drawing.Color.FromArgb(60, 40, 28);
+            this.lblTiempo.Font = new System.Drawing.Font("Georgia", 11F, System.Drawing.FontStyle.Bold);
+            this.topInfo.Controls.Add(this.lblTiempo, 2, 0);
+
+            this.lblIntentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIntentos.Text = "Intentos: ♥ ♥ ♥";
+            this.lblIntentos.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblIntentos.ForeColor = System.Drawing.Color.FromArgb(165, 40, 40);
+            this.lblIntentos.Font = new System.Drawing.Font("Georgia", 11F, System.Drawing.FontStyle.Bold);
+            this.topInfo.Controls.Add(this.lblIntentos, 2, 1);
+
+            // ===== Slots + flechas =====
+            this.tableSlots.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableSlots.BackColor = System.Drawing.Color.Transparent;
+            this.tableSlots.ColumnCount = 7;
+            this.tableSlots.RowCount = 1;
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableSlots.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.root.Controls.Add(this.tableSlots, 0, 2);
+
+            System.Drawing.Color slotBack = System.Drawing.Color.FromArgb(242, 236, 226);
+
+            this.slot1.BackColor = slotBack;
+            this.slot2.BackColor = slotBack;
+            this.slot3.BackColor = slotBack;
+            this.slot4.BackColor = slotBack;
+
+            this.slot1.Margin = new System.Windows.Forms.Padding(12, 20, 12, 16);
+            this.slot2.Margin = new System.Windows.Forms.Padding(12, 20, 12, 16);
+            this.slot3.Margin = new System.Windows.Forms.Padding(12, 20, 12, 16);
+            this.slot4.Margin = new System.Windows.Forms.Padding(12, 20, 12, 16);
+
+            this.slot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.slot2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.slot3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.slot4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+
+            this.arrow1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.arrow2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.arrow3.Dock = System.Windows.Forms.DockStyle.Fill;
+
+            this.arrow1.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
+            this.arrow2.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
+            this.arrow3.Image = global::Proyecto_Integrador.Properties.Resources.flecha;
+
+            this.arrow1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.arrow2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.arrow3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+
+            this.tableSlots.Controls.Add(this.slot1, 0, 0);
+            this.tableSlots.Controls.Add(this.arrow1, 1, 0);
+            this.tableSlots.Controls.Add(this.slot2, 2, 0);
+            this.tableSlots.Controls.Add(this.arrow2, 3, 0);
+            this.tableSlots.Controls.Add(this.slot3, 4, 0);
+            this.tableSlots.Controls.Add(this.arrow3, 5, 0);
+            this.tableSlots.Controls.Add(this.slot4, 6, 0);
+
+            // ===== Labels slots =====
+            this.tableSlotLabels.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableSlotLabels.BackColor = System.Drawing.Color.Transparent;
+            this.tableSlotLabels.ColumnCount = 4;
+            this.tableSlotLabels.RowCount = 1;
+            this.tableSlotLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableSlotLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableSlotLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableSlotLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.root.Controls.Add(this.tableSlotLabels, 0, 3);
+
+            System.Windows.Forms.Label[] slotLbls = { this.lblSlot1, this.lblSlot2, this.lblSlot3, this.lblSlot4 };
+            foreach (var l in slotLbls)
+            {
+                l.Dock = System.Windows.Forms.DockStyle.Fill;
+                l.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+                l.ForeColor = System.Drawing.Color.FromArgb(95, 75, 60);
+                l.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Italic);
+                l.Text = "Actividad";
+                l.Margin = new System.Windows.Forms.Padding(6, 2, 6, 0);
+            }
+            this.tableSlotLabels.Controls.Add(this.lblSlot1, 0, 0);
+            this.tableSlotLabels.Controls.Add(this.lblSlot2, 1, 0);
+            this.tableSlotLabels.Controls.Add(this.lblSlot3, 2, 0);
+            this.tableSlotLabels.Controls.Add(this.lblSlot4, 3, 0);
+
+            // ===== Separador =====
+            this.panelSeparador.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSeparador.BackColor = System.Drawing.Color.Transparent;
+            this.panelSeparador.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
+            this.root.Controls.Add(this.panelSeparador, 0, 4);
+
+            this.lblSeparador.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSeparador.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblSeparador.ForeColor = System.Drawing.Color.FromArgb(95, 75, 60);
+            this.lblSeparador.Font = new System.Drawing.Font("Georgia", 11F);
+            this.lblSeparador.Text = "--------------------  Ordena las cartas en el orden correcto.  --------------------";
+            this.panelSeparador.Controls.Add(this.lblSeparador);
+
+            // ===== Zona final =====
+            this.panelFinal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFinal.BackColor = System.Drawing.Color.Transparent;
+            this.root.Controls.Add(this.panelFinal, 0, 5);
+
+            // ===== Cartas =====
+            this.tableCards.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableCards.Height = 185;
+            this.tableCards.BackColor = System.Drawing.Color.Transparent;
+            this.tableCards.ColumnCount = 4;
+            this.tableCards.RowCount = 1;
+            this.tableCards.Padding = new System.Windows.Forms.Padding(8, 8, 8, 6);
+            this.tableCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.panelFinal.Controls.Add(this.tableCards);
+
+            System.Windows.Forms.PictureBox[] cards = { this.card1, this.card2, this.card3, this.card4 };
+            foreach (var c in cards)
+            {
+                c.Dock = System.Windows.Forms.DockStyle.Fill;
+                c.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
+                c.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                c.BackColor = System.Drawing.Color.FromArgb(242, 236, 226);
+                c.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                c.Image = null;
+                c.Cursor = System.Windows.Forms.Cursors.Hand;
+            }
+            this.tableCards.Controls.Add(this.card1, 0, 0);
+            this.tableCards.Controls.Add(this.card2, 1, 0);
+            this.tableCards.Controls.Add(this.card3, 2, 0);
+            this.tableCards.Controls.Add(this.card4, 3, 0);
+
+            // ===== Botones (SIEMPRE visibles, centrados) =====
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Height = 92;
+            this.panelBottom.BackColor = System.Drawing.Color.Transparent;
+            this.panelBottom.Padding = new System.Windows.Forms.Padding(10, 6, 10, 12);
+            this.panelFinal.Controls.Add(this.panelBottom);
+
+            this.tableBtns.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableBtns.BackColor = System.Drawing.Color.Transparent;
+
+            // ✅ Solo 2 botones, centrados
+            this.tableBtns.ColumnCount = 4;
+            this.tableBtns.RowCount = 1;
+            this.tableBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.tableBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.tableBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelBottom.Controls.Add(this.tableBtns);
+
+            System.Windows.Forms.Button[] btns = { this.btnReiniciar, this.btnAceptar };
+            foreach (var b in btns)
+            {
+                b.Dock = System.Windows.Forms.DockStyle.Fill;
+                b.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                b.FlatAppearance.BorderSize = 0;
+                b.BackColor = System.Drawing.Color.Transparent;
+                b.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                b.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold);
+                b.ForeColor = System.Drawing.Color.FromArgb(245, 235, 220);
+                b.Cursor = System.Windows.Forms.Cursors.Hand;
+                b.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+                b.UseVisualStyleBackColor = false;
+            }
+
+            this.btnReiniciar.Text = "Reiniciar";
+            this.btnAceptar.Text = "Aceptar";
+
+            this.btnReiniciar.BackgroundImage = global::Proyecto_Integrador.Properties.Resources.btn_amarillo;
+            this.btnAceptar.BackgroundImage = global::Proyecto_Integrador.Properties.Resources.btn_verde;
+
+            this.tableBtns.Controls.Add(this.btnReiniciar, 1, 0);
+            this.tableBtns.Controls.Add(this.btnAceptar, 2, 0);
+
+            // ===== Overlay modal =====
+            this.overlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.overlay.BackColor = System.Drawing.Color.FromArgb(140, 0, 0, 0);
+            this.overlay.Visible = true;
+            this.Controls.Add(this.overlay);
+            this.overlay.BringToFront();
+
+            this.modal.Size = new System.Drawing.Size(560, 320);
+            this.modal.BackColor = System.Drawing.Color.FromArgb(245, 238, 228);
+            this.modal.BackgroundImage = null;
+            this.modal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+
+            this.lblModalTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblModalTitulo.Height = 60;
+            this.lblModalTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblModalTitulo.Text = "Cómo jugar";
+            this.lblModalTitulo.Font = new System.Drawing.Font("Georgia", 18F, System.Drawing.FontStyle.Bold);
+            this.lblModalTitulo.ForeColor = System.Drawing.Color.FromArgb(70, 50, 35);
+            this.lblModalTitulo.BackColor = System.Drawing.Color.Transparent;
+
+            this.lblModalTexto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblModalTexto.Padding = new System.Windows.Forms.Padding(30, 10, 30, 10);
+            this.lblModalTexto.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.lblModalTexto.Font = new System.Drawing.Font("Georgia", 12F);
+            this.lblModalTexto.ForeColor = System.Drawing.Color.FromArgb(95, 75, 60);
+            this.lblModalTexto.BackColor = System.Drawing.Color.Transparent;
+            this.lblModalTexto.Text =
+                "• Selecciona una carta de abajo.\n" +
+                "• Luego toca un cuadro de arriba para colocarla.\n" +
+                "• Ordena las actividades en el orden correcto.\n" +
+                "• Si fallas, pierdes un intento y las cartas vuelven abajo.\n" +
+                "• Son 4 niveles y el grupo cambia en cada uno.";
+
+            this.btnEmpezar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnEmpezar.Height = 54;
+            this.btnEmpezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmpezar.FlatAppearance.BorderSize = 0;
+            this.btnEmpezar.BackgroundImage = global::Proyecto_Integrador.Properties.Resources.btn_azul;
+            this.btnEmpezar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEmpezar.Font = new System.Drawing.Font("Georgia", 13F, System.Drawing.FontStyle.Bold);
+            this.btnEmpezar.ForeColor = System.Drawing.Color.FromArgb(245, 235, 220);
+            this.btnEmpezar.Text = "Empezar";
+            this.btnEmpezar.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            this.modal.Controls.Add(this.lblModalTexto);
+            this.modal.Controls.Add(this.btnEmpezar);
+            this.modal.Controls.Add(this.lblModalTitulo);
+            this.overlay.Controls.Add(this.modal);
+
+            ((System.ComponentModel.ISupportInitialize)(this.arrow1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrow3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card4)).EndInit();
+
+            this.ResumeLayout(false);
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panelLineaTiempo;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button btnSalir;
     }
 }

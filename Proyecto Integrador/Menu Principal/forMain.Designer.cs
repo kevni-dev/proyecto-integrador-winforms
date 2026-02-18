@@ -1,4 +1,7 @@
-﻿namespace Proyecto_Integrador
+﻿// forMain.Designer.cs (COMPLETO) - Solo cambia el Text del botón a "Cerrar sesión"
+// y deja el resto como lo tenías (sidebar sin textura, menú y cerrar sesión neutros)
+
+namespace Proyecto_Integrador
 {
     partial class forMain
     {
@@ -45,7 +48,7 @@
             plTitulo.Location = new Point(0, 0);
             plTitulo.Name = "plTitulo";
             plTitulo.Padding = new Padding(8);
-            plTitulo.Size = new Size(1000, 70);
+            plTitulo.Size = new Size(1350, 70);
             plTitulo.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -62,12 +65,13 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(984, 54);
+            tableLayoutPanel1.Size = new Size(1334, 54);
             tableLayoutPanel1.TabIndex = 2;
             // 
             // btnIconoMenu
             // 
-            btnIconoMenu.BackColor = Color.FromArgb(240, 242, 245);
+            btnIconoMenu.BackColor = Color.Transparent;
+            btnIconoMenu.BackgroundImageLayout = ImageLayout.Stretch;
             btnIconoMenu.Dock = DockStyle.Fill;
             btnIconoMenu.FlatAppearance.BorderSize = 0;
             btnIconoMenu.FlatStyle = FlatStyle.Flat;
@@ -87,7 +91,7 @@
             lblTituloPrincipal.ForeColor = Color.FromArgb(30, 30, 30);
             lblTituloPrincipal.Location = new Point(63, 0);
             lblTituloPrincipal.Name = "lblTituloPrincipal";
-            lblTituloPrincipal.Size = new Size(598, 54);
+            lblTituloPrincipal.Size = new Size(948, 54);
             lblTituloPrincipal.TabIndex = 1;
             lblTituloPrincipal.Text = "MANEJO INTEGRAL DE CABALLOS";
             lblTituloPrincipal.TextAlign = ContentAlignment.MiddleCenter;
@@ -99,7 +103,7 @@
             userPanel.Controls.Add(usuario_label);
             userPanel.Controls.Add(cerrarSesion_button);
             userPanel.Dock = DockStyle.Fill;
-            userPanel.Location = new Point(667, 3);
+            userPanel.Location = new Point(1017, 3);
             userPanel.Name = "userPanel";
             userPanel.Size = new Size(314, 48);
             userPanel.TabIndex = 2;
@@ -107,7 +111,7 @@
             // usuario_picture
             // 
             usuario_picture.BackColor = Color.FromArgb(240, 242, 245);
-            usuario_picture.Image = Properties.Resources.caballito;
+            usuario_picture.Image = Properties.Resources.potro;
             usuario_picture.Location = new Point(8, 5);
             usuario_picture.Name = "usuario_picture";
             usuario_picture.Size = new Size(40, 40);
@@ -128,16 +132,17 @@
             // 
             // cerrarSesion_button
             // 
-            cerrarSesion_button.BackColor = Color.FromArgb(220, 53, 69);
+            cerrarSesion_button.BackColor = Color.Transparent;
+            cerrarSesion_button.BackgroundImageLayout = ImageLayout.Stretch;
             cerrarSesion_button.FlatAppearance.BorderSize = 0;
             cerrarSesion_button.FlatStyle = FlatStyle.Flat;
             cerrarSesion_button.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             cerrarSesion_button.ForeColor = Color.White;
             cerrarSesion_button.Location = new Point(220, 10);
             cerrarSesion_button.Name = "cerrarSesion_button";
-            cerrarSesion_button.Size = new Size(90, 34);
+            cerrarSesion_button.Size = new Size(160, 34);
             cerrarSesion_button.TabIndex = 2;
-            cerrarSesion_button.Text = "Salir";
+            cerrarSesion_button.Text = "Cerrar sesión";
             cerrarSesion_button.UseVisualStyleBackColor = false;
             cerrarSesion_button.Click += cerrarSesion_button_Click;
             // 
@@ -153,13 +158,13 @@
             plModulos.Dock = DockStyle.Left;
             plModulos.Location = new Point(0, 70);
             plModulos.Name = "plModulos";
-            plModulos.Size = new Size(220, 530);
+            plModulos.Size = new Size(220, 659);
             plModulos.TabIndex = 1;
             plModulos.Paint += plModulos_Paint;
             // 
             // btnModulo4
             // 
-            btnModulo4.BackColor = SystemColors.Control;
+            btnModulo4.BackColor = Color.FromArgb(17, 24, 39);
             btnModulo4.Dock = DockStyle.Top;
             btnModulo4.FlatAppearance.BorderSize = 0;
             btnModulo4.FlatStyle = FlatStyle.Flat;
@@ -243,7 +248,7 @@
             plContenido.Dock = DockStyle.Fill;
             plContenido.Location = new Point(220, 70);
             plContenido.Name = "plContenido";
-            plContenido.Size = new Size(780, 530);
+            plContenido.Size = new Size(1130, 659);
             plContenido.TabIndex = 2;
             // 
             // forMain
@@ -251,7 +256,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 246, 250);
-            ClientSize = new Size(1000, 600);
+            ClientSize = new Size(1350, 729);
             Controls.Add(plContenido);
             Controls.Add(plModulos);
             Controls.Add(plTitulo);

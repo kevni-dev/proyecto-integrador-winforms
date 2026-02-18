@@ -8,40 +8,53 @@ namespace Proyecto_Integrador.ControlesUsuario
 {
     public partial class TurismoRegistrarCaballo : UserControl
     {
-        public event EventHandler? CancelarPresionado;
         public event EventHandler? RegistroExitoso;
 
         public TurismoRegistrarCaballo()
         {
             InitializeComponent();
 
+            // ----- Base -----
             Dock = DockStyle.Fill;
-
-            // Render más suave
             DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.UserPaint |
                      ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
 
-            // Estilo botones
-            btnGuardar.FlatAppearance.BorderSize = 2;
-            btnCancelar.FlatAppearance.BorderSize = 2;
-            btnGuardar.FlatAppearance.BorderColor = Color.FromArgb(120, 80, 40);
-            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(120, 80, 40);
+            // ----- Botones textura (Aceptar verde / Cancelar rojo) -----
+            PrepararBotonConImagen(btnGuardar, Properties.Resources.btn_verde);
+            PrepararBotonConImagen(btnCancelar, Properties.Resources.btn_rojo);
 
-            // Ajuste visual imagen
+            // Texto piel
+            btnGuardar.ForeColor = Color.FromArgb(245, 239, 230);
+            btnCancelar.ForeColor = Color.FromArgb(245, 239, 230);
+
+            // ----- Imagen -----
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.BackColor = Color.Transparent;
 
-            // Data combos
+            // ----- Datos -----
             CargarCombos();
-
-            // Imagen por raza
             comboBoxRaza.SelectedIndexChanged += ComboBoxRaza_SelectedIndexChanged;
         }
 
-        // Combos
+        // ----- Botón con textura -----
+        private static void PrepararBotonConImagen(Button btn, Image bg)
+        {
+            btn.BackgroundImage = bg;
+            btn.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+
+            btn.BackColor = Color.Transparent;
+            btn.UseVisualStyleBackColor = false;
+        }
+
+        // ----- Combos -----
         private void CargarCombos()
         {
             comboBoxSexo.Items.Clear();
@@ -66,7 +79,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             AplicarImagenPorRaza(comboBoxRaza.Text);
         }
 
-        // Imagen por raza
+        // ----- Imagen por raza -----
         private void ComboBoxRaza_SelectedIndexChanged(object? sender, EventArgs e)
         {
             AplicarImagenPorRaza(comboBoxRaza.Text);
@@ -84,13 +97,12 @@ namespace Proyecto_Integrador.ControlesUsuario
                 pictureBox1.Image = Properties.Resources.cab_a;
         }
 
-        // Cancelar
+        // ----- Acciones -----
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            CancelarPresionado?.Invoke(this, EventArgs.Empty);
+            LimpiarFormulario();
         }
 
-        // Guardar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxNombre.Text))
@@ -137,7 +149,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             RegistroExitoso?.Invoke(this, EventArgs.Empty);
         }
 
-        // Limpiar
+        // ----- Limpieza -----
         private void LimpiarFormulario()
         {
             textBoxNombre.Clear();
@@ -148,6 +160,8 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxTemperamento.SelectedIndex = 0;
 
             AplicarImagenPorRaza(comboBoxRaza.Text);
+
+            try { ActiveControl = null; } catch { }
         }
     }
 }
