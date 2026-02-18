@@ -8,8 +8,13 @@ namespace Proyecto_Integrador.ControlesUsuario
     {
         private System.ComponentModel.IContainer components = null;
 
-        private TableLayoutPanel layoutButtons;
+        // --- Layout extra (izquierda)
+        private TableLayoutPanel layoutLeftHost;
+        private Panel panelLeftFiller;
+
+        // --- Botones centrados (robusto)
         private TableLayoutPanel layoutButtonsHost;
+        private FlowLayoutPanel flowButtons;
 
         protected override void Dispose(bool disposing)
         {
@@ -25,9 +30,16 @@ namespace Proyecto_Integrador.ControlesUsuario
         {
             panel1 = new Panel();
             layoutMain = new TableLayoutPanel();
+
+            // ----- Izquierda -----
             panelLeftHost = new Panel();
+            layoutLeftHost = new TableLayoutPanel();
             panelCardLeft = new Panel();
+            panelLeftFiller = new Panel();
+
             layoutLeft = new TableLayoutPanel();
+            labelTitulo = new Label();
+
             label1 = new Label();
             textBoxNombre = new TextBox();
             label3 = new Label();
@@ -38,30 +50,39 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxSexo = new ComboBox();
             label5 = new Label();
             comboBoxTemperamento = new ComboBox();
+
             panelButtons = new Panel();
             layoutButtonsHost = new TableLayoutPanel();
-            layoutButtons = new TableLayoutPanel();
+            flowButtons = new FlowLayoutPanel();
             btnGuardar = new Button();
             btnCancelar = new Button();
-            labelTitulo = new Label();
+
+            // ----- Derecha -----
             panelRightHost = new Panel();
             panelCardRight = new Panel();
             pictureBox1 = new PictureBox();
+
             panel1.SuspendLayout();
             layoutMain.SuspendLayout();
+
             panelLeftHost.SuspendLayout();
+            layoutLeftHost.SuspendLayout();
             panelCardLeft.SuspendLayout();
             layoutLeft.SuspendLayout();
+
             panelButtons.SuspendLayout();
             layoutButtonsHost.SuspendLayout();
-            layoutButtons.SuspendLayout();
+            flowButtons.SuspendLayout();
+
             panelRightHost.SuspendLayout();
             panelCardRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+
             SuspendLayout();
-            // 
-            // panel1
-            // 
+
+            // =========================
+            // Contenedor
+            // =========================
             panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(layoutMain);
             panel1.Dock = DockStyle.Fill;
@@ -70,9 +91,10 @@ namespace Proyecto_Integrador.ControlesUsuario
             panel1.Padding = new Padding(60, 35, 60, 45);
             panel1.Size = new Size(1200, 650);
             panel1.TabIndex = 0;
-            // 
-            // layoutMain
-            // 
+
+            // =========================
+            // Layout principal 50/50
+            // =========================
             layoutMain.ColumnCount = 2;
             layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -86,36 +108,83 @@ namespace Proyecto_Integrador.ControlesUsuario
             layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             layoutMain.Size = new Size(1080, 570);
             layoutMain.TabIndex = 0;
-            // 
-            // panelLeftHost
-            // 
+
+            // =========================
+            // IZQUIERDA
+            // =========================
             panelLeftHost.BackColor = Color.Transparent;
-            panelLeftHost.Controls.Add(panelCardLeft);
             panelLeftHost.Dock = DockStyle.Fill;
             panelLeftHost.Location = new Point(3, 3);
             panelLeftHost.Name = "panelLeftHost";
             panelLeftHost.Padding = new Padding(0, 0, 18, 0);
             panelLeftHost.Size = new Size(534, 564);
             panelLeftHost.TabIndex = 0;
-            // 
-            // panelCardLeft
-            // 
+            panelLeftHost.Controls.Add(layoutLeftHost);
+
+            layoutLeftHost.ColumnCount = 1;
+            layoutLeftHost.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            layoutLeftHost.Dock = DockStyle.Fill;
+            layoutLeftHost.Location = new Point(0, 0);
+            layoutLeftHost.Margin = new Padding(0);
+            layoutLeftHost.Name = "layoutLeftHost";
+            layoutLeftHost.RowCount = 2;
+            layoutLeftHost.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            layoutLeftHost.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            layoutLeftHost.Size = new Size(516, 564);
+            layoutLeftHost.TabIndex = 0;
+
+            layoutLeftHost.Controls.Add(panelCardLeft, 0, 0);
+            layoutLeftHost.Controls.Add(panelLeftFiller, 0, 1);
+
+            // --- Card izquierda (le damos MÁS alto para que respire abajo)
             panelCardLeft.BackColor = Color.FromArgb(238, 232, 220);
             panelCardLeft.BorderStyle = BorderStyle.FixedSingle;
-            panelCardLeft.Controls.Add(layoutLeft);
-            panelCardLeft.Controls.Add(labelTitulo);
-            panelCardLeft.Dock = DockStyle.Fill;
+            panelCardLeft.Dock = DockStyle.Top;
             panelCardLeft.Location = new Point(0, 0);
             panelCardLeft.Name = "panelCardLeft";
-            panelCardLeft.Padding = new Padding(18, 14, 18, 14);
-            panelCardLeft.Size = new Size(516, 564);
+            panelCardLeft.Padding = new Padding(18, 14, 18, 22); // + espacio abajo
+            panelCardLeft.Size = new Size(516, 360);            // + alto para botones
             panelCardLeft.TabIndex = 0;
-            // 
-            // layoutLeft
-            // 
+            panelCardLeft.Controls.Add(layoutLeft);
+            panelCardLeft.Controls.Add(labelTitulo);
+
+            panelLeftFiller.BackColor = Color.Transparent;
+            panelLeftFiller.Dock = DockStyle.Fill;
+            panelLeftFiller.Location = new Point(0, 360);
+            panelLeftFiller.Margin = new Padding(0);
+            panelLeftFiller.Name = "panelLeftFiller";
+            panelLeftFiller.Size = new Size(516, 204);
+            panelLeftFiller.TabIndex = 1;
+
+            // --- título
+            labelTitulo.Dock = DockStyle.Top;
+            labelTitulo.Font = new Font("Georgia", 15F, FontStyle.Bold);
+            labelTitulo.ForeColor = Color.FromArgb(92, 58, 32);
+            labelTitulo.Location = new Point(18, 14);
+            labelTitulo.Name = "labelTitulo";
+            labelTitulo.Size = new Size(478, 34);
+            labelTitulo.TabIndex = 100;
+            labelTitulo.Text = "Registrar Caballo";
+            labelTitulo.TextAlign = ContentAlignment.MiddleLeft;
+
+            // --- layout del form
             layoutLeft.ColumnCount = 2;
             layoutLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37F));
             layoutLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63F));
+            layoutLeft.Dock = DockStyle.Top;
+            layoutLeft.Location = new Point(18, 48);
+            layoutLeft.Name = "layoutLeft";
+            layoutLeft.Padding = new Padding(10, 10, 10, 0);
+            layoutLeft.RowCount = 6;
+            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 86F)); // + espacio botones
+            layoutLeft.Size = new Size(478, 296);
+            layoutLeft.TabIndex = 0;
+
             layoutLeft.Controls.Add(label1, 0, 0);
             layoutLeft.Controls.Add(textBoxNombre, 1, 0);
             layoutLeft.Controls.Add(label3, 0, 1);
@@ -127,22 +196,9 @@ namespace Proyecto_Integrador.ControlesUsuario
             layoutLeft.Controls.Add(label5, 0, 4);
             layoutLeft.Controls.Add(comboBoxTemperamento, 1, 4);
             layoutLeft.Controls.Add(panelButtons, 0, 5);
-            layoutLeft.Dock = DockStyle.Fill;
-            layoutLeft.Location = new Point(18, 48);
-            layoutLeft.Name = "layoutLeft";
-            layoutLeft.Padding = new Padding(10);
-            layoutLeft.RowCount = 6;
-            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            layoutLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
-            layoutLeft.Size = new Size(478, 500);
-            layoutLeft.TabIndex = 0;
-            // 
-            // label1
-            // 
+            layoutLeft.SetColumnSpan(panelButtons, 2);
+
+            // --- labels / inputs
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(92, 58, 32);
@@ -152,9 +208,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             label1.TabIndex = 0;
             label1.Text = "Nombre";
             label1.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBoxNombre
-            // 
+
             textBoxNombre.Dock = DockStyle.Fill;
             textBoxNombre.Font = new Font("Segoe UI", 11F);
             textBoxNombre.Location = new Point(182, 16);
@@ -162,9 +216,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             textBoxNombre.Name = "textBoxNombre";
             textBoxNombre.Size = new Size(283, 27);
             textBoxNombre.TabIndex = 1;
-            // 
-            // label3
-            // 
+
             label3.Dock = DockStyle.Fill;
             label3.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(92, 58, 32);
@@ -174,18 +226,14 @@ namespace Proyecto_Integrador.ControlesUsuario
             label3.TabIndex = 2;
             label3.Text = "Edad";
             label3.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBoxEdad
-            // 
+
             textBoxEdad.Font = new Font("Segoe UI", 11F);
             textBoxEdad.Location = new Point(182, 58);
             textBoxEdad.Margin = new Padding(3, 6, 3, 6);
             textBoxEdad.Name = "textBoxEdad";
             textBoxEdad.Size = new Size(120, 27);
             textBoxEdad.TabIndex = 3;
-            // 
-            // label2
-            // 
+
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(92, 58, 32);
@@ -195,9 +243,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             label2.TabIndex = 4;
             label2.Text = "Raza";
             label2.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // comboBoxRaza
-            // 
+
             comboBoxRaza.Dock = DockStyle.Fill;
             comboBoxRaza.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxRaza.Font = new Font("Segoe UI", 11F);
@@ -206,9 +252,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxRaza.Name = "comboBoxRaza";
             comboBoxRaza.Size = new Size(283, 28);
             comboBoxRaza.TabIndex = 5;
-            // 
-            // label4
-            // 
+
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
             label4.ForeColor = Color.FromArgb(92, 58, 32);
@@ -218,9 +262,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             label4.TabIndex = 6;
             label4.Text = "Sexo";
             label4.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // comboBoxSexo
-            // 
+
             comboBoxSexo.Dock = DockStyle.Fill;
             comboBoxSexo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSexo.Font = new Font("Segoe UI", 11F);
@@ -229,9 +271,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxSexo.Name = "comboBoxSexo";
             comboBoxSexo.Size = new Size(283, 28);
             comboBoxSexo.TabIndex = 7;
-            // 
-            // label5
-            // 
+
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
             label5.ForeColor = Color.FromArgb(92, 58, 32);
@@ -241,9 +281,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             label5.TabIndex = 8;
             label5.Text = "Temperamento";
             label5.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // comboBoxTemperamento
-            // 
+
             comboBoxTemperamento.Dock = DockStyle.Fill;
             comboBoxTemperamento.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxTemperamento.Font = new Font("Segoe UI", 11F);
@@ -252,97 +290,73 @@ namespace Proyecto_Integrador.ControlesUsuario
             comboBoxTemperamento.Name = "comboBoxTemperamento";
             comboBoxTemperamento.Size = new Size(283, 28);
             comboBoxTemperamento.TabIndex = 9;
-            // 
-            // panelButtons
-            // 
+
+            // =========================
+            // Botones (centrados)
+            // =========================
             panelButtons.BackColor = Color.Transparent;
-            layoutLeft.SetColumnSpan(panelButtons, 2);
-            panelButtons.Controls.Add(layoutButtonsHost);
             panelButtons.Dock = DockStyle.Fill;
-            panelButtons.Location = new Point(13, 223);
+            panelButtons.Location = new Point(13, 220);
             panelButtons.Name = "panelButtons";
-            panelButtons.Padding = new Padding(0, 10, 0, 0);
-            panelButtons.Size = new Size(452, 264);
+            panelButtons.Padding = new Padding(0, 22, 0, 0); // + espacio arriba
+            panelButtons.Size = new Size(452, 86);
             panelButtons.TabIndex = 10;
-            // 
-            // layoutButtonsHost
-            // 
+            panelButtons.Controls.Add(layoutButtonsHost);
+
             layoutButtonsHost.ColumnCount = 3;
+            layoutButtonsHost.ColumnStyles.Clear();
             layoutButtonsHost.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            layoutButtonsHost.ColumnStyles.Add(new ColumnStyle());
+            layoutButtonsHost.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             layoutButtonsHost.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            layoutButtonsHost.Controls.Add(layoutButtons, 1, 0);
             layoutButtonsHost.Dock = DockStyle.Fill;
-            layoutButtonsHost.Location = new Point(0, 10);
+            layoutButtonsHost.Location = new Point(0, 22);
             layoutButtonsHost.Margin = new Padding(0);
             layoutButtonsHost.Name = "layoutButtonsHost";
             layoutButtonsHost.RowCount = 1;
+            layoutButtonsHost.RowStyles.Clear();
             layoutButtonsHost.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            layoutButtonsHost.Size = new Size(452, 254);
+            layoutButtonsHost.Size = new Size(452, 64);
             layoutButtonsHost.TabIndex = 0;
-            // 
-            // layoutButtons
-            // 
-            layoutButtons.AutoSize = true;
-            layoutButtons.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            layoutButtons.ColumnCount = 3;
-            layoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
-            layoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 14F));
-            layoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
-            layoutButtons.Controls.Add(btnGuardar, 0, 0);
-            layoutButtons.Controls.Add(btnCancelar, 2, 0);
-            layoutButtons.Location = new Point(89, 0);
-            layoutButtons.Margin = new Padding(0);
-            layoutButtons.Name = "layoutButtons";
-            layoutButtons.RowCount = 1;
-            layoutButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
-            layoutButtons.Size = new Size(274, 34);
-            layoutButtons.TabIndex = 0;
-            // 
-            // btnGuardar
-            // 
-            btnGuardar.BackColor = Color.FromArgb(230, 203, 120);
-            btnGuardar.FlatStyle = FlatStyle.Flat;
+            layoutButtonsHost.Controls.Add(flowButtons, 1, 0);
+
+            flowButtons.AutoSize = true;
+            flowButtons.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowButtons.FlowDirection = FlowDirection.LeftToRight;
+            flowButtons.WrapContents = false;
+            flowButtons.Margin = new Padding(0);
+            flowButtons.Padding = new Padding(0);
+            flowButtons.Dock = DockStyle.None;
+            flowButtons.Anchor = AnchorStyles.None;
+            flowButtons.Name = "flowButtons";
+
             btnGuardar.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
-            btnGuardar.ForeColor = Color.FromArgb(92, 58, 32);
-            btnGuardar.Location = new Point(0, 0);
-            btnGuardar.Margin = new Padding(0);
+            btnGuardar.ForeColor = Color.FromArgb(245, 239, 230);
+            btnGuardar.Margin = new Padding(0, 0, 16, 0);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(130, 34);
-            btnGuardar.TabIndex = 0;
+            btnGuardar.Size = new Size(160, 40);
+            btnGuardar.MinimumSize = new Size(160, 40);
             btnGuardar.Text = "Aceptar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Click += btnGuardar_Click;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.FromArgb(210, 150, 140);
-            btnCancelar.FlatStyle = FlatStyle.Flat;
+
             btnCancelar.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
-            btnCancelar.ForeColor = Color.FromArgb(92, 58, 32);
-            btnCancelar.Location = new Point(144, 0);
+            btnCancelar.ForeColor = Color.FromArgb(245, 239, 230);
             btnCancelar.Margin = new Padding(0);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(130, 34);
-            btnCancelar.TabIndex = 1;
+            btnCancelar.Size = new Size(160, 40);
+            btnCancelar.MinimumSize = new Size(160, 40);
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Click += btnCancelar_Click;
-            // 
-            // labelTitulo
-            // 
-            labelTitulo.Dock = DockStyle.Top;
-            labelTitulo.Font = new Font("Georgia", 15F, FontStyle.Bold);
-            labelTitulo.ForeColor = Color.FromArgb(92, 58, 32);
-            labelTitulo.Location = new Point(18, 14);
-            labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(478, 34);
-            labelTitulo.TabIndex = 100;
-            labelTitulo.Text = "Registrar Caballo";
-            labelTitulo.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // panelRightHost
-            // 
+
+            flowButtons.Controls.Add(btnGuardar);
+            flowButtons.Controls.Add(btnCancelar);
+
+            // =========================
+            // DERECHA
+            // =========================
             panelRightHost.BackColor = Color.Transparent;
             panelRightHost.Controls.Add(panelCardRight);
             panelRightHost.Dock = DockStyle.Fill;
@@ -351,21 +365,20 @@ namespace Proyecto_Integrador.ControlesUsuario
             panelRightHost.Padding = new Padding(18, 0, 0, 0);
             panelRightHost.Size = new Size(534, 564);
             panelRightHost.TabIndex = 1;
-            // 
-            // panelCardRight
-            // 
+
             panelCardRight.BackColor = Color.FromArgb(245, 243, 238);
             panelCardRight.BorderStyle = BorderStyle.FixedSingle;
-            panelCardRight.Controls.Add(pictureBox1);
             panelCardRight.Dock = DockStyle.Fill;
             panelCardRight.Location = new Point(18, 0);
             panelCardRight.Name = "panelCardRight";
             panelCardRight.Padding = new Padding(16);
             panelCardRight.Size = new Size(516, 564);
             panelCardRight.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
+
+            panelCardRight.BackgroundImage = Properties.Resources._5;
+            panelCardRight.BackgroundImageLayout = ImageLayout.Stretch;
+            panelCardRight.Controls.Add(pictureBox1);
+
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = Properties.Resources.cab_a;
@@ -375,27 +388,36 @@ namespace Proyecto_Integrador.ControlesUsuario
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // TurismoRegistrarCaballo
-            // 
+
+            // =========================
+            // Control
+            // =========================
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Name = "TurismoRegistrarCaballo";
             Size = new Size(1200, 650);
+
             panel1.ResumeLayout(false);
             layoutMain.ResumeLayout(false);
+
             panelLeftHost.ResumeLayout(false);
+            layoutLeftHost.ResumeLayout(false);
+            layoutLeftHost.PerformLayout();
             panelCardLeft.ResumeLayout(false);
             layoutLeft.ResumeLayout(false);
             layoutLeft.PerformLayout();
+
             panelButtons.ResumeLayout(false);
             layoutButtonsHost.ResumeLayout(false);
             layoutButtonsHost.PerformLayout();
-            layoutButtons.ResumeLayout(false);
+            flowButtons.ResumeLayout(false);
+            flowButtons.PerformLayout();
+
             panelRightHost.ResumeLayout(false);
             panelCardRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+
             ResumeLayout(false);
         }
 
