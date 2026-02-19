@@ -1,5 +1,6 @@
 ﻿using Proyecto_Integrador.Archivo;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -34,6 +35,29 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void cuEnfermedades_Load(object? sender, EventArgs e)
         {
+            // ===== Tema =====
+            SaludTheme.ApplyRoot(this);
+
+            SaludTheme.MakeCard(panel1, new Padding(18));
+            panel1.Width = 360;
+
+            panel3.Padding = new Padding(14);
+            panel3.BackColor = Color.Transparent;
+            SaludTheme.StyleGrid(dtgv_enfermedades);
+
+            lbl_id.ForeColor = SaludTheme.MutedText;
+            lbl_enfermedad.ForeColor = SaludTheme.MutedText;
+            lbl_sintomas.ForeColor = SaludTheme.MutedText;
+            lbl_descripcion.ForeColor = SaludTheme.MutedText;
+
+            SaludTheme.StyleInput(txt_id);
+            SaludTheme.StyleInput(txt_enfermedad);
+            SaludTheme.StyleInput(txt_sintomas);
+            SaludTheme.StyleInput(txt_descripcion);
+
+            SaludTheme.StylePrimaryButton(btn_guardar, SaludTheme.ResBtnVerde);
+            SaludTheme.StyleDangerButton(btn_eliminar, SaludTheme.ResBtnRojo);
+
             cargarTabla();
         }
 

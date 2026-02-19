@@ -1,8 +1,8 @@
-﻿// TurismoMinijuego.cs  (REEMPLAZA este archivo COMPLETO)
-// ✅ FIX RESPONSIVE: en pantallas pequeñas NO se “pierden” los paneles/imagenes
-// - panelCard ahora se ajusta al tamaño del UserControl (Dock=Fill)
-// - layout se compacta automáticamente según ancho/alto
-// - reduce alturas, márgenes, fuentes y ancho de flechas cuando la ventana es pequeña
+﻿// TurismoMinijuego.cs  (REEMPLAZA COMPLETO)
+// ✅ Scroll inteligente ON/OFF (no barra si no hace falta)
+// ✅ Modal real (overlay arriba del scroll)
+// ✅ Timer: System.Windows.Forms.Timer (sin ambigüedad)
+// ✅ Evita “aplastarse” a la izquierda al achicar
 
 using System;
 using System.Collections.Generic;
@@ -23,6 +23,7 @@ namespace Proyecto_Integrador.ControlesUsuario
         private readonly List<Panel> slots = new();
         private readonly List<Label> slotLabels = new();
 
+        // ✅ Timer WinForms (sin ambigüedad)
         private readonly System.Windows.Forms.Timer timerNivel = new System.Windows.Forms.Timer();
         private int segundosRestantes = 30;
 
@@ -38,13 +39,16 @@ namespace Proyecto_Integrador.ControlesUsuario
         // modal
         private bool _modalEsFinal = false;
 
-        // ===== estilo “papel” =====
+        // estilo
         private readonly Color beigePapel = Color.FromArgb(245, 238, 228);
-        private readonly Color beigeSlot = Color.FromArgb(242, 236, 226);
+        private readonly Color beigeSlot = Color.FromArgb(230, 223, 212);
 
         public TurismoMinijuego()
         {
             InitializeComponent();
+
+            Dock = DockStyle.Fill;
+            DoubleBuffered = true;
 
             // refs
             cartas.AddRange(new[] { card1, card2, card3, card4 });
@@ -52,6 +56,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             slotLabels.AddRange(new[] { lblSlot1, lblSlot2, lblSlot3, lblSlot4 });
 
             // menos parpadeo
+            TrySetDoubleBuffered(scrollHost, true);
             TrySetDoubleBuffered(panelCard, true);
             TrySetDoubleBuffered(root, true);
             TrySetDoubleBuffered(topInfo, true);
@@ -65,28 +70,44 @@ namespace Proyecto_Integrador.ControlesUsuario
             foreach (var c in cartas) c.Click += Carta_Click;
             foreach (var s in slots) s.Click += Slot_Click;
 
-            btnReiniciar.Click += (s, e) => ReiniciarPartidaCompleta();
-            btnAceptar.Click += (s, e) => ValidarOrden();
+            btnReiniciar.Click += (_, __) => ReiniciarPartidaCompleta();
+            btnAceptar.Click += (_, __) => ValidarOrden();
 
-            // un solo handler para Empezar/Cerrar (evita dobles eventos)
             btnEmpezar.Click += BtnEmpezar_Click;
 
-            // ✅ panelCard SIEMPRE se adapta al tamaño disponible
-            panelCard.Dock = DockStyle.Fill;
+            // timer
+            timerNivel.Interval = 1000;
+            timerNivel.Tick += TimerNivel_Tick;
+
+            // colores base
+            panelCard.BackColor = beigePapel;
+            foreach (var p in slots) p.BackColor = beigeSlot;
+
+            foreach (var c in cartas)
+            {
+                c.BackColor = Color.FromArgb(242, 236, 226);
+                c.Image = null;
+                c.SizeMode = PictureBoxSizeMode.Zoom;
+                c.BorderStyle = BorderStyle.None;
+            }
+
+            modal.BackColor = beigePapel;
 
             // resize
-            this.Resize += (s, e) =>
+            Resize += (_, __) =>
             {
                 AjustarResponsiveLayout();
+                AjustarScrollInteligente();
                 CentrarModal();
             };
 
-            this.Load += (s, e) =>
+            Load += (_, __) =>
             {
                 if (_inicializado) return;
                 _inicializado = true;
 
                 AjustarResponsiveLayout();
+                AjustarScrollInteligente();
                 CentrarModal();
 
                 PrepararNivelData();
@@ -95,41 +116,52 @@ namespace Proyecto_Integrador.ControlesUsuario
 
                 BloquearJuego();
             };
-
-            // timer
-            timerNivel.Interval = 1000;
-            timerNivel.Tick += TimerNivel_Tick;
-
-            // aplica colores base
-            panelCard.BackColor = beigePapel;
-            foreach (var p in slots) p.BackColor = beigeSlot;
-
-            foreach (var c in cartas)
-            {
-                c.BackColor = beigeSlot;
-                c.Image = null;
-                c.SizeMode = PictureBoxSizeMode.Zoom; // mejor en pantallas pequeñas
-            }
-
-            modal.BackColor = beigePapel;
-
-            // header
-            if (lblHeaderTitle != null)
-                lblHeaderTitle.Text = "MINIJUEGO: ORDENA LAS ACTIVIDADES";
         }
 
         // =========================
-        // ✅ Responsive layout (NUEVO)
+        // ✅ Scroll inteligente (ON/OFF)
+        // =========================
+        private void AjustarScrollInteligente()
+        {
+            // ancho útil (si hay scrollbar, descuenta)
+            int w = scrollHost.ClientSize.Width;
+            if (w < 10) return;
+
+            // asegurar que el panel no se “aplasté” raro
+            // (mantiene el contenido ocupando todo el ancho disponible)
+            int targetW = w;
+            if (scrollHost.VerticalScroll.Visible)
+                targetW = w - SystemInformation.VerticalScrollBarWidth;
+
+            if (targetW < 10) targetW = w;
+
+            panelCard.Width = targetW;
+
+            // calcula si hace falta scroll vertical
+            int contentH = panelCard.PreferredSize.Height;
+
+            bool necesitaScroll = contentH > scrollHost.ClientSize.Height + 2;
+
+            if (scrollHost.AutoScroll != necesitaScroll)
+            {
+                scrollHost.AutoScroll = necesitaScroll;
+
+                // resetea scroll cuando se apaga
+                if (!necesitaScroll)
+                    scrollHost.AutoScrollPosition = new Point(0, 0);
+            }
+        }
+
+        // =========================
+        // ✅ Responsive (sin destruir diseño)
         // =========================
         private void AjustarResponsiveLayout()
         {
-            int w = this.ClientSize.Width;
-            int h = this.ClientSize.Height;
+            int w = ClientSize.Width;
+            int h = ClientSize.Height;
 
-            // padding general del "papel"
             int padX = 26, padTop = 16, padBottom = 18;
 
-            // compactación por tamaño
             bool muyAngosto = w < 920;
             bool superAngosto = w < 760;
 
@@ -151,32 +183,33 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             panelCard.Padding = new Padding(padX, padTop, padX, padBottom);
 
-            // ========= ajustar alturas de filas del root =========
-            // root: 0 header, 1 topInfo, 2 slots, 3 labels, 4 separator, 5 final
+            // filas root
             float headerH = 66f;
-            float infoH = 92f;
-            float slotsH = 140f;
-            float labelsH = 44f;
+            float infoH = 96f;
+            float slotsH = 150f;
+            float labelsH = 52f;
             float sepH = 50f;
+            float finalH = 320f;
 
             if (bajo)
             {
-                headerH = 56f;
-                infoH = 82f;
-                slotsH = 120f;
-                labelsH = 40f;
-                sepH = 42f;
+                headerH = 58f;
+                infoH = 88f;
+                slotsH = 140f;
+                labelsH = 50f;
+                sepH = 46f;
+                finalH = 300f;
             }
             if (superBajo)
             {
-                headerH = 52f;
-                infoH = 76f;
-                slotsH = 110f;
-                labelsH = 38f;
-                sepH = 38f;
+                headerH = 54f;
+                infoH = 82f;
+                slotsH = 132f;
+                labelsH = 48f;
+                sepH = 44f;
+                finalH = 290f;
             }
 
-            // aplica
             if (root.RowStyles.Count >= 6)
             {
                 root.RowStyles[0].SizeType = SizeType.Absolute;
@@ -194,28 +227,28 @@ namespace Proyecto_Integrador.ControlesUsuario
                 root.RowStyles[4].SizeType = SizeType.Absolute;
                 root.RowStyles[4].Height = sepH;
 
-                root.RowStyles[5].SizeType = SizeType.Percent;
-                root.RowStyles[5].Height = 100f;
+                root.RowStyles[5].SizeType = SizeType.Absolute;
+                root.RowStyles[5].Height = finalH;
             }
 
-            // ========= fuentes =========
-            lblHeaderTitle.Font = new Font("Georgia", muyAngosto ? 11.5f : 13f, FontStyle.Bold);
-            lblTitulo.Font = new Font("Georgia", superAngosto ? 14.5f : (muyAngosto ? 16f : 18f), FontStyle.Bold);
-            lblSubtitulo.Font = new Font("Georgia", superAngosto ? 9.5f : (muyAngosto ? 10f : 11f), FontStyle.Regular);
-            lblNivel.Font = new Font("Georgia", superAngosto ? 9.5f : 11f, FontStyle.Regular);
-            lblTiempo.Font = new Font("Georgia", superAngosto ? 9.5f : 11f, FontStyle.Bold);
-            lblIntentos.Font = new Font("Georgia", superAngosto ? 9.5f : 11f, FontStyle.Bold);
+            // fuentes (más grandes)
+            lblHeaderTitle.Font = new Font("Georgia", superAngosto ? 12.5f : (muyAngosto ? 13.5f : 14.5f), FontStyle.Bold);
+            lblTitulo.Font = new Font("Georgia", superAngosto ? 17f : (muyAngosto ? 19f : 20.5f), FontStyle.Bold);
+            lblSubtitulo.Font = new Font("Georgia", superAngosto ? 11f : 12f, FontStyle.Regular);
+
+            lblNivel.Font = new Font("Georgia", superAngosto ? 11f : 12f, FontStyle.Regular);
+            lblTiempo.Font = new Font("Georgia", superAngosto ? 11f : 12f, FontStyle.Bold);
+            lblIntentos.Font = new Font("Georgia", superAngosto ? 11f : 12f, FontStyle.Bold);
 
             foreach (var l in slotLabels)
-                l.Font = new Font("Georgia", superAngosto ? 8.5f : 10f, FontStyle.Italic);
+                l.Font = new Font("Georgia", superAngosto ? 11f : 12f, FontStyle.Italic);
 
-            // ========= flechas + márgenes slots =========
+            // flechas + slots
             int arrowW = superAngosto ? 34 : (muyAngosto ? 46 : 70);
-            int slotMarginLR = superAngosto ? 6 : (muyAngosto ? 8 : 12);
-            int slotMarginTop = superAngosto ? 10 : (muyAngosto ? 14 : 20);
+            int slotMarginLR = superAngosto ? 6 : (muyAngosto ? 10 : 12);
+            int slotMarginTop = superAngosto ? 12 : (muyAngosto ? 16 : 20);
             int slotMarginBottom = superAngosto ? 10 : (muyAngosto ? 12 : 16);
 
-            // tableSlots: columnas 1,3,5 son flechas (Absolute)
             if (tableSlots.ColumnStyles.Count >= 7)
             {
                 tableSlots.ColumnStyles[1].SizeType = SizeType.Absolute;
@@ -233,30 +266,20 @@ namespace Proyecto_Integrador.ControlesUsuario
             slot3.Margin = new Padding(slotMarginLR, slotMarginTop, slotMarginLR, slotMarginBottom);
             slot4.Margin = new Padding(slotMarginLR, slotMarginTop, slotMarginLR, slotMarginBottom);
 
-            // si está MUY angosto, las flechas se ven enormes -> ponlas en Zoom
-            arrow1.SizeMode = PictureBoxSizeMode.Zoom;
-            arrow2.SizeMode = PictureBoxSizeMode.Zoom;
-            arrow3.SizeMode = PictureBoxSizeMode.Zoom;
-
-            // ========= cartas abajo + botones =========
-            // Si es bajo, reduce la altura del bloque de cartas y del panel de botones
-            tableCards.Height = superBajo ? 140 : (bajo ? 160 : 185);
-            panelBottom.Height = superBajo ? 76 : (bajo ? 84 : 92);
-
-            // márgenes de cartas (para que quepan mejor)
+            // cartas + botones
             int cardMargin = superAngosto ? 6 : 10;
             foreach (var c in cartas)
-                c.Margin = new Padding(cardMargin, 6, cardMargin, 6);
+                c.Margin = new Padding(cardMargin, 10, cardMargin, 10);
 
-            // separador más corto si es angosto (para que no “empuje” todo)
-            if (muyAngosto)
-                lblSeparador.Text = "----------  Ordena las cartas en el orden correcto.  ----------";
-            else
-                lblSeparador.Text = "--------------------  Ordena las cartas en el orden correcto.  --------------------";
+            // texto separador
+            lblSeparador.Font = new Font("Georgia", superAngosto ? 11f : 12f);
+            lblSeparador.Text = muyAngosto
+                ? "----------  Ordena las cartas en el orden correcto.  ----------"
+                : "--------------------  Ordena las cartas en el orden correcto.  --------------------";
         }
 
         // =========================
-        // datos (ACTUALIZADO)
+        // datos
         // =========================
         private void PrepararNivelData()
         {
@@ -278,7 +301,7 @@ namespace Proyecto_Integrador.ControlesUsuario
                 }),
                 new Grupo("Alimentación", new []
                 {
-                    "hambriento",
+                    "Hambriento",
                     "Dar heno",
                     "Dar agua",
                     "Caballo comiendo"
@@ -329,9 +352,9 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             foreach (var c in cartas)
             {
-                c.BorderStyle = BorderStyle.FixedSingle;
                 c.Image = null;
-                c.BackColor = beigeSlot;
+                c.BackColor = Color.FromArgb(242, 236, 226);
+                c.BorderStyle = BorderStyle.None;
                 AjustarCardEnParent(c);
             }
 
@@ -340,6 +363,8 @@ namespace Proyecto_Integrador.ControlesUsuario
             segundosRestantes = 30;
             PintarTiempo();
             PintarIntentos();
+
+            AjustarScrollInteligente();
         }
 
         private void CargarNivel(int nivel)
@@ -358,14 +383,12 @@ namespace Proyecto_Integrador.ControlesUsuario
             DevolverCartasAbajo();
             MezclarCartasAbajo();
 
-            // ✅ Cargar imágenes según el grupo actual (limpieza_1..4, salud_1..4, etc.)
             CargarImagenesDelGrupo(grupoActual.Nombre);
 
             foreach (var c in cartas)
-            {
-                c.BorderStyle = BorderStyle.FixedSingle;
                 c.Cursor = Cursors.Hand;
-            }
+
+            AjustarScrollInteligente();
         }
 
         private int SegundosPorNivel(int nivel)
@@ -418,7 +441,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             if (sender is not PictureBox pb) return;
 
             if (cartaSeleccionada != null)
-                cartaSeleccionada.BorderStyle = BorderStyle.FixedSingle;
+                cartaSeleccionada.BorderStyle = BorderStyle.None;
 
             cartaSeleccionada = pb;
             cartaSeleccionada.BorderStyle = BorderStyle.Fixed3D;
@@ -441,7 +464,7 @@ namespace Proyecto_Integrador.ControlesUsuario
 
             cartaSeleccionada.Parent = destino;
             cartaSeleccionada.Dock = DockStyle.Fill;
-            cartaSeleccionada.Margin = new Padding(0);
+            cartaSeleccionada.Margin = new Padding(3);
             cartaSeleccionada.BorderStyle = BorderStyle.None;
 
             cartaSeleccionada = null;
@@ -452,13 +475,12 @@ namespace Proyecto_Integrador.ControlesUsuario
             if (pb.Parent == tableCards)
             {
                 pb.Dock = DockStyle.Fill;
-                pb.BorderStyle = BorderStyle.FixedSingle;
-                // márgenes se reajustan en AjustarResponsiveLayout()
+                pb.BorderStyle = BorderStyle.None;
             }
             else if (pb.Parent is Panel)
             {
                 pb.Dock = DockStyle.Fill;
-                pb.Margin = new Padding(0);
+                pb.Margin = new Padding(3);
                 pb.BorderStyle = BorderStyle.None;
             }
             else
@@ -603,6 +625,8 @@ namespace Proyecto_Integrador.ControlesUsuario
             foreach (var c in cartas) AjustarCardEnParent(c);
 
             tableCards.ResumeLayout();
+
+            AjustarScrollInteligente();
         }
 
         // =========================
@@ -627,6 +651,7 @@ namespace Proyecto_Integrador.ControlesUsuario
             btnEmpezar.Text = "Cerrar";
 
             overlay.Visible = true;
+            overlay.BringToFront();
             CentrarModal();
         }
 
