@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -21,6 +22,51 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         public cuPrevencion()
         {
             InitializeComponent();
+
+            // ===== Tema =====
+            SaludTheme.ApplyRoot(this);
+            SaludTheme.MakeCard(panelLeft, new Padding(20));
+            // panelFill transparente para que se vea el fondo del módulo
+            panelFill.BackColor = Color.Transparent;
+            panelFill.Padding = new Padding(24);
+
+            SaludTheme.StyleTitle(lblTitulo);
+            SaludTheme.StyleLabel(lblEnfermedad);
+
+            SaludTheme.StyleInput(cmb_enfermedades);
+            // Caja central (no ocupa TODO, deja ver fondo)
+            var card = new Panel
+            {
+                Dock = DockStyle.None,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                Left = 40,
+                Top = 30,
+                Width = Math.Max(300, panelFill.Width - 80),
+                Height = Math.Max(250, panelFill.Height - 60)
+            };
+            SaludTheme.MakeCard(card, new Padding(18));
+
+            // mover el RichTextBox dentro de la tarjeta
+            panelFill.Controls.Clear();
+            panelFill.Controls.Add(card);
+
+            txt_prevencion.Dock = DockStyle.Fill;
+            txt_prevencion.ReadOnly = true;
+            txt_prevencion.BorderStyle = BorderStyle.FixedSingle;
+            txt_prevencion.Font = new Font("Segoe UI", 14.5F);
+            txt_prevencion.BackColor = Color.FromArgb(250, 250, 250);
+            txt_prevencion.ForeColor = SaludTheme.Text;
+            card.Controls.Add(txt_prevencion);
+
+            panelFill.Resize += (_, __) =>
+            {
+                int padX = 80;
+                int padY = 60;
+                card.Left = padX / 2;
+                card.Top = padY / 2;
+                card.Width = Math.Max(300, panelFill.ClientSize.Width - padX);
+                card.Height = Math.Max(250, panelFill.ClientSize.Height - padY);
+            };
 
             CargarCatalogoBase();
             CargarPrevencionBase();

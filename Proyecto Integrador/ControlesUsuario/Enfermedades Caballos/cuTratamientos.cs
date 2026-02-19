@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -53,6 +54,31 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
         private void cuTratamientos_Load(object? sender, EventArgs e)
         {
+            // ===== Tema =====
+            SaludTheme.ApplyRoot(this);
+            // En este control los paneles se llaman panelLeft (form) y panelFill (tabla)
+            SaludTheme.MakeCard(panelLeft, new Padding(18));
+            SaludTheme.MakeCard(panelFill, new Padding(16));
+
+            // Labels reales del designer
+            SaludTheme.StyleLabel(lbl_enfermedad);
+            SaludTheme.StyleLabel(lbl_tratamiento);
+            lbl_id.ForeColor = SaludTheme.MutedText;
+
+            SaludTheme.StyleInput(cmb_enfermedades);
+            SaludTheme.StyleInput(txt_tratamiento);
+            SaludTheme.StyleInput(txt_id);
+
+            // un poco menos "blanco puro" para que se sienta integrado con el fondo
+            cmb_enfermedades.BackColor = SaludTheme.RowAlt;
+            txt_tratamiento.BackColor = Color.FromArgb(252, 250, 246);
+            txt_id.BackColor = Color.FromArgb(252, 250, 246);
+
+            SaludTheme.StylePrimaryButton(btn_guardar, SaludTheme.ResBtnVerde);
+            SaludTheme.StyleDangerButton(btn_eliminar, SaludTheme.ResBtnRojo);
+
+            SaludTheme.StyleGrid(dtgv_tratamiento);
+
             CargarCatalogoBase();
             CargarCatalogoEnCombo();
 

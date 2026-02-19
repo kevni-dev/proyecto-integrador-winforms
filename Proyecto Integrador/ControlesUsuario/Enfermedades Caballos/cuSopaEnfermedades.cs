@@ -21,6 +21,8 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         private readonly HashSet<string> _found = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         private List<string> _words = new List<string>();
 
+        private readonly Dictionary<string, Point> _wordStarts = new Dictionary<string, Point>(StringComparer.OrdinalIgnoreCase);
+
         private Point? _startCell = null;
 
         private TimeSpan _timeLeft;
@@ -37,6 +39,71 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
         {
             InitializeComponent();
 
+            // ===== Tema =====
+            SaludTheme.ApplyRoot(this);
+            pnlTop.BackColor = Color.Transparent;
+            pnlTop.Padding = new Padding(12, 10, 12, 10);
+            pnlLeft.BackColor = Color.Transparent;
+            pnlBottomLeft.BackColor = Color.Transparent;
+
+            // tarjetas (evita panel gigante blanco)
+            SaludTheme.MakeCard(pnlLeft, new Padding(14));
+
+            // tablero en su propia tarjeta (para que el fondo se vea alrededor)
+            var boardCard = new Panel
+            {
+                Dock = DockStyle.Fill,
+                Padding = new Padding(16),
+                BackColor = Color.Transparent
+            };
+            SaludTheme.MakeCard(boardCard, new Padding(16));
+
+            // rearmar jerarquía: reemplaza tblSopa directo
+            Controls.Remove(tblSopa);
+            var pnlBoardScroll = new Panel { Dock = DockStyle.Fill, AutoScroll = true, BackColor = Color.Transparent };
+            pnlBoardScroll.Controls.Add(tblSopa);
+            tblSopa.Dock = DockStyle.None;
+            tblSopa.Location = new Point(0, 0);
+            boardCard.Controls.Add(pnlBoardScroll);
+            Controls.Add(boardCard);
+            boardCard.BringToFront();
+
+            // Centrar el tablero dentro del scroll (para que no quede pegado arriba-izquierda)
+            void CenterBoard()
+            {
+                try
+                {
+                    var p = pnlBoardScroll.ClientSize;
+                    var s = tblSopa.PreferredSize;
+                    int x = Math.Max(0, (p.Width - s.Width) / 2);
+                    int y = Math.Max(0, (p.Height - s.Height) / 2);
+                    tblSopa.Location = new Point(x, y);
+                }
+                catch { }
+            }
+            pnlBoardScroll.Resize += (_, __) => CenterBoard();
+            tblSopa.SizeChanged += (_, __) => CenterBoard();
+
+            // asegura orden visual: top, left, board
+            Controls.SetChildIndex(pnlTop, 0);
+            Controls.SetChildIndex(pnlLeft, 1);
+            Controls.SetChildIndex(boardCard, 2);
+            SaludTheme.StyleTitle(lblTitulo);
+            lblTiempo.ForeColor = SaludTheme.Text;
+            lblTiempo.Font = new Font("Georgia", 12.5F, FontStyle.Bold);
+            lblLista.ForeColor = SaludTheme.MutedText;
+            lblLista.Font = new Font("Georgia", 11.5F, FontStyle.Bold);
+
+            // palabras más grandes (sin negritas aquí)
+            lstPalabras.BorderStyle = BorderStyle.FixedSingle;
+            lstPalabras.Font = new Font("Segoe UI", 13F);
+            lstPalabras.DrawMode = DrawMode.Normal;
+
+
+            SaludTheme.StyleWarningButton(btnReiniciar, SaludTheme.ResBtnAzul);
+            btnReiniciar.ForeColor = Color.White;
+            SaludTheme.StyleDangerButton(btnSalir, SaludTheme.ResBtnRojo);
+
             btnReiniciar.Click += btnReiniciar_Click;
             btnSalir.Click += btnSalir_Click;
 
@@ -44,6 +111,43 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
             CrearGridEnTableLayout();
             StartNewGame();
+        }
+
+        private void LstPalabras_DrawItem(object? sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            if (e.Index < 0 || e.Index >= lstPalabras.Items.Count) return;
+
+            string word = lstPalabras.Items[e.Index]?.ToString() ?? "";
+            bool found = _found.Contains(word);
+
+            var rect = e.Bounds;
+            rect.Inflate(-2, 0);
+
+            // fondo suave al seleccionar
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                using var bsel = new SolidBrush(Color.FromArgb(40, SaludTheme.Selected));
+                e.Graphics.FillRectangle(bsel, e.Bounds);
+            }
+
+            using var brush = new SolidBrush(found ? Color.FromArgb(120, SaludTheme.MutedText) : SaludTheme.Text);
+            using var brushBold = new SolidBrush(found ? Color.FromArgb(120, SaludTheme.MutedText) : SaludTheme.Text);
+            using var fBold = new Font("Segoe UI", 12F, FontStyle.Bold);
+            using var fReg = new Font("Segoe UI", 12F, found ? FontStyle.Strikeout : FontStyle.Regular);
+
+            // primera letra (pista)
+            string first = word.Length > 0 ? word.Substring(0, 1) : "";
+            string rest = word.Length > 1 ? word.Substring(1) : "";
+
+            var x = rect.Left;
+            var y = rect.Top + 3;
+
+            e.Graphics.DrawString(first, fBold, brushBold, x, y);
+            var firstW = e.Graphics.MeasureString(first, fBold).Width;
+            e.Graphics.DrawString(rest, fReg, brush, x + firstW - 2, y);
+
+            e.DrawFocusRectangle();
         }
 
         private void CrearGridEnTableLayout()
@@ -57,9 +161,15 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
             for (int i = 0; i < GridSize; i++)
             {
-                tblSopa.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / GridSize));
-                tblSopa.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / GridSize));
+                // Celdas más grandes (como pediste)
+                tblSopa.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+                tblSopa.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             }
+
+            // tamaño fijo para que no se corte (si falta espacio, que haga scroll)
+            tblSopa.AutoSize = true;
+            tblSopa.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tblSopa.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
 
             for (int r = 0; r < GridSize; r++)
             {
@@ -71,11 +181,14 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                         Margin = new Padding(1),
                         Padding = new Padding(0),
                         FlatStyle = FlatStyle.Flat,
-                        Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                        Font = new Font("Segoe UI", 15.5F, FontStyle.Regular),
                         Tag = new Point(r, c),
                         Text = ""
                     };
                     b.FlatAppearance.BorderSize = 1;
+                    b.FlatAppearance.BorderColor = SaludTheme.Border;
+                    b.BackColor = Color.White;
+                    b.ForeColor = SaludTheme.Text;
 
                     b.Click += Cell_Click;
 
@@ -95,6 +208,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             _timerStarted = false;   // ✅ el timer NO inicia aún
 
             _found.Clear();
+            _wordStarts.Clear();
             _startCell = null;
 
             _words = LoadWordsFromEnfermedadesTxt()
@@ -261,13 +375,25 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             {
                 for (int c = 0; c < GridSize; c++)
                 {
-                    if (_letters[r, c] == '\0')
+                    if (_letters[r, c] == ' ')
                         _letters[r, c] = (char)('A' + _rng.Next(0, 26));
 
                     var b = _cells[r, c];
                     b.Text = _letters[r, c].ToString();
-                    b.BackColor = SystemColors.Control;
-                    b.ForeColor = Color.Black;
+                    b.BackColor = Color.White;
+                    b.ForeColor = SaludTheme.Text;
+                    b.Font = new Font("Segoe UI", 15.5F, FontStyle.Regular);
+                }
+            }
+
+            // pista: SOLO la primera letra de cada palabra en negrita (en el tablero)
+            foreach (var kv in _wordStarts)
+            {
+                var p = kv.Value;
+                if (p.X >= 0 && p.X < GridSize && p.Y >= 0 && p.Y < GridSize)
+                {
+                    var b = _cells[p.X, p.Y];
+                    b.Font = new Font("Segoe UI", 15.5F, FontStyle.Bold);
                 }
             }
         }
@@ -316,6 +442,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
                     }
 
                     placed = true;
+                    _wordStarts[word] = new Point(r0, c0);
                 }
             }
         }
@@ -371,15 +498,9 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             _found.Add(matched);
             HighlightCells(lineCells);
 
-            for (int i = 0; i < lstPalabras.Items.Count; i++)
-            {
-                string item = lstPalabras.Items[i]?.ToString() ?? "";
-                if (string.Equals(item, matched, StringComparison.OrdinalIgnoreCase))
-                {
-                    lstPalabras.Items[i] = "✓ " + matched;
-                    break;
-                }
-            }
+            // refresca la lista (owner draw pinta tachado para encontradas)
+            MarcarEncontradaEnLista(matched);
+            lstPalabras.Invalidate();
 
             if (_found.Count == _words.Count)
             {
@@ -404,7 +525,22 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             }
         }
 
-        private void HighlightCells(List<Point> cells)
+        
+        private void MarcarEncontradaEnLista(string palabra)
+        {
+            for (int i = 0; i < lstPalabras.Items.Count; i++)
+            {
+                var txt = lstPalabras.Items[i]?.ToString() ?? "";
+                var clean = txt.Replace("✔ ", "").Trim();
+                if (string.Equals(clean, palabra, StringComparison.OrdinalIgnoreCase))
+                {
+                    lstPalabras.Items[i] = "✔ " + clean;
+                    break;
+                }
+            }
+        }
+
+private void HighlightCells(List<Point> cells)
         {
             foreach (var pt in cells)
             {

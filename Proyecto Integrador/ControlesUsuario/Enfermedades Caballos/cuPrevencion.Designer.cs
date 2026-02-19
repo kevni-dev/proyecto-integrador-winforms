@@ -27,21 +27,25 @@
 
             // ================= LEFT =================
             panelLeft.Dock = DockStyle.Left;
-            panelLeft.Width = 320;
+            panelLeft.Width = 340;
             panelLeft.Padding = new Padding(20);
 
             lblTitulo.Text = "PREVENCIÓN";
-            lblTitulo.Font = new Font("Stencil", 16F, FontStyle.Bold);
+            lblTitulo.Font = new Font("Georgia", 18F, FontStyle.Bold);
             lblTitulo.Dock = DockStyle.Top;
             lblTitulo.Height = 50;
 
             lblEnfermedad.Text = "ENFERMEDAD";
-            lblEnfermedad.Font = new Font("Stencil", 10F);
-            lblEnfermedad.Top = 70;
+            lblEnfermedad.AutoSize = true;
+            lblEnfermedad.Font = new Font("Georgia", 12F, FontStyle.Bold);
+            lblEnfermedad.Dock = DockStyle.Top;
+            lblEnfermedad.Height = 28;
+            lblEnfermedad.Padding = new Padding(0, 10, 0, 0);
 
             cmb_enfermedades.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_enfermedades.Top = 95;
-            cmb_enfermedades.Width = 260;
+            cmb_enfermedades.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmb_enfermedades.Dock = DockStyle.Top;
+            cmb_enfermedades.Height = 34;
 
             panelLeft.Controls.Add(cmb_enfermedades);
             panelLeft.Controls.Add(lblEnfermedad);

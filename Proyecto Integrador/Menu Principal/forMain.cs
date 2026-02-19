@@ -1,7 +1,4 @@
-﻿// forMain.cs (REEMPLAZA este archivo COMPLETO)
-// - Cerrar sesión vuelve al MISMO FormLogin (no crea uno nuevo)
-// - Fix ObjectDisposedException en sidebar (Paint/Invalidate protegidos)
-// - Botón "Cerrar sesión" un poco más a la izquierda + anclado a la derecha
+﻿
 using Proyecto_Integrador.ControlesUsuario;
 using Proyecto_Integrador.ControlesUsuario.cuModulo4;
 using Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento;
@@ -46,7 +43,7 @@ namespace Proyecto_Integrador
         // evita crash al cerrar
         private bool _cerrandoSesion = false;
 
-        // (tu proyecto también puede tener el constructor viejo; lo dejamos por compatibilidad)
+        // compatibilidad
         public forMain(string usuarioActual) : this(usuarioActual, new FormLogin()) { }
 
         public forMain(string usuarioActual, FormLogin loginRef)
@@ -92,8 +89,14 @@ namespace Proyecto_Integrador
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            _cerrandoSesion = true;
             base.OnFormClosing(e);
+
+            if (!_cerrandoSesion)
+            {
+                // cierre normal (X) -> cerrar también el login
+                if (_loginRef != null && !_loginRef.IsDisposed)
+                    _loginRef.Close();
+            }
         }
 
         // =========================================================
@@ -230,9 +233,16 @@ namespace Proyecto_Integrador
             cerrarSesion_button.Font = new Font("Georgia", 10F, FontStyle.Bold);
             AplicarTexturaBoton(cerrarSesion_button, Properties.Resources.btn_rojo, _txtClaro);
 
-            // posicionarlo "un poco más a la izquierda" pero siempre pegado a la derecha
+            // siempre a la derecha, sin cortarse
             cerrarSesion_button.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            userPanel.SizeChanged += (_, __) => PosicionarCerrarSesion();
+            userPanel.SizeChanged -= UserPanel_SizeChanged;
+            userPanel.SizeChanged += UserPanel_SizeChanged;
+
+            PosicionarCerrarSesion();
+        }
+
+        private void UserPanel_SizeChanged(object? sender, System.EventArgs e)
+        {
             PosicionarCerrarSesion();
         }
 
@@ -241,13 +251,19 @@ namespace Proyecto_Integrador
             if (_cerrandoSesion) return;
             if (cerrarSesion_button.IsDisposed || cerrarSesion_button.Disposing) return;
 
-            int margenDerecho = 22; // sube/baja este número si quieres más a la izquierda/derecha
+            // más pegado a la derecha pero con margen
+            int margenDerecho = 12;
             int x = userPanel.ClientSize.Width - cerrarSesion_button.Width - margenDerecho;
 
-            // evita que se pegue demasiado si el panel se hace muy pequeño
-            if (x < 8) x = 8;
+            // evita que se meta encima del usuario_label si el panel se hace pequeño
+            int limiteIzq = usuario_label.Right + 8;
+            if (x < limiteIzq) x = limiteIzq;
 
-            cerrarSesion_button.Location = new Point(x, cerrarSesion_button.Location.Y);
+            // centra verticalmente
+            int y = (userPanel.ClientSize.Height - cerrarSesion_button.Height) / 2;
+            if (y < 6) y = 6;
+
+            cerrarSesion_button.Location = new Point(x, y);
         }
 
         // =========================================================

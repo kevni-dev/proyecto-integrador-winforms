@@ -1,5 +1,7 @@
-﻿// forMain.Designer.cs (COMPLETO) - Solo cambia el Text del botón a "Cerrar sesión"
-// y deja el resto como lo tenías (sidebar sin textura, menú y cerrar sesión neutros)
+﻿// forMain.Designer.cs (REEMPLAZA este archivo COMPLETO)
+// - Arreglo visual: usuario_picture + usuario_label más a la izquierda
+// - usuario_label más pequeño (no invade al botón)
+// - cerrarSesion_button con tamaño compacto + Anchor Right (posición final la ajusta forMain.cs)
 
 namespace Proyecto_Integrador
 {
@@ -112,9 +114,9 @@ namespace Proyecto_Integrador
             // 
             usuario_picture.BackColor = Color.FromArgb(240, 242, 245);
             usuario_picture.Image = Properties.Resources.potro;
-            usuario_picture.Location = new Point(8, 5);
+            usuario_picture.Location = new Point(6, 6);
             usuario_picture.Name = "usuario_picture";
-            usuario_picture.Size = new Size(40, 40);
+            usuario_picture.Size = new Size(36, 36);
             usuario_picture.SizeMode = PictureBoxSizeMode.Zoom;
             usuario_picture.TabIndex = 0;
             usuario_picture.TabStop = false;
@@ -123,12 +125,13 @@ namespace Proyecto_Integrador
             // 
             usuario_label.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             usuario_label.ForeColor = Color.FromArgb(60, 60, 60);
-            usuario_label.Location = new Point(60, 6);
+            usuario_label.Location = new Point(46, 5);
             usuario_label.Name = "usuario_label";
-            usuario_label.Size = new Size(150, 42);
+            usuario_label.Size = new Size(120, 42);
             usuario_label.TabIndex = 1;
             usuario_label.Text = "Usuario";
             usuario_label.TextAlign = ContentAlignment.MiddleLeft;
+            usuario_label.AutoEllipsis = true;
             // 
             // cerrarSesion_button
             // 
@@ -138,12 +141,13 @@ namespace Proyecto_Integrador
             cerrarSesion_button.FlatStyle = FlatStyle.Flat;
             cerrarSesion_button.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             cerrarSesion_button.ForeColor = Color.White;
-            cerrarSesion_button.Location = new Point(220, 10);
+            cerrarSesion_button.Location = new Point(0, 7);
             cerrarSesion_button.Name = "cerrarSesion_button";
-            cerrarSesion_button.Size = new Size(160, 34);
+            cerrarSesion_button.Size = new Size(130, 34);
             cerrarSesion_button.TabIndex = 2;
             cerrarSesion_button.Text = "Cerrar sesión";
             cerrarSesion_button.UseVisualStyleBackColor = false;
+            cerrarSesion_button.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cerrarSesion_button.Click += cerrarSesion_button_Click;
             // 
             // plModulos

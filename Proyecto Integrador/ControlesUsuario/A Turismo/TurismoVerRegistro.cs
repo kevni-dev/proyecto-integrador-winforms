@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto_Integrador.Datos;
 
@@ -10,22 +12,55 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
     public partial class TurismoVerRegistro : UserControl
     {
         private List<Caballo> listaCaballos = new List<Caballo>();
-        private BindingSource fuenteCaballos = new BindingSource();
+        private readonly BindingSource fuenteCaballos = new BindingSource();
 
         private bool _recargando = false;
+        private bool _inicializando = true;
 
-        // sorting
         private string? _sortProp = null;
         private bool _sortAsc = true;
+
+        private readonly System.Windows.Forms.Timer _tBuscar = new System.Windows.Forms.Timer();
+
+        private string _ultimaClaveImg = "";
 
         public TurismoVerRegistro()
         {
             InitializeComponent();
 
+            Dock = DockStyle.Fill;
+            DoubleBuffered = true;
+
+            // Fondo general (si tienes este recurso, queda brutal)
+            try
+            {
+                BackgroundImage = Properties.Resources.fondoestablo11;
+                BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            catch { }
+
+            // Debounce buscar
+            _tBuscar.Interval = 250;
+            _tBuscar.Tick += (_, __) =>
+            {
+                _tBuscar.Stop();
+                if (!_inicializando) AplicarFiltroYBusqueda();
+            };
+
+            // Eventos
             Load += TurismoVerRegistro_Load;
 
-            txtBuscar.TextChanged += (_, __) => AplicarFiltroYBusqueda();
-            comboFiltro.SelectedIndexChanged += (_, __) => AplicarFiltroYBusqueda();
+            txtBuscar.TextChanged += (_, __) =>
+            {
+                if (_inicializando) return;
+                _tBuscar.Stop();
+                _tBuscar.Start();
+            };
+
+            comboBuscarPor.SelectedIndexChanged += (_, __) => { if (!_inicializando) AplicarFiltroYBusqueda(); };
+            comboRaza.SelectedIndexChanged += (_, __) => { if (!_inicializando) AplicarFiltroYBusqueda(); };
+            comboSexo.SelectedIndexChanged += (_, __) => { if (!_inicializando) AplicarFiltroYBusqueda(); };
+            comboTemperamento.SelectedIndexChanged += (_, __) => { if (!_inicializando) AplicarFiltroYBusqueda(); };
 
             dataGridCaballos.ColumnHeaderMouseClick += DataGridCaballos_ColumnHeaderMouseClick;
             dataGridCaballos.SelectionChanged += (_, __) =>
@@ -33,15 +68,70 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 if (_recargando) return;
                 MostrarVistaPreviaActual();
             };
+
+            // Botones textura
+            PrepararBotonConImagen(btnEditar, Properties.Resources.btn_verde);
+            PrepararBotonConImagen(btnEliminar, Properties.Resources.btn_rojo);
+
+            btnEditar.ForeColor = Color.FromArgb(245, 239, 230);
+            btnEliminar.ForeColor = Color.FromArgb(245, 239, 230);
+
+            // Preview
+            pictureCaballo.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureCaballo.BackColor = Color.Transparent;
         }
 
-        private void TurismoVerRegistro_Load(object? sender, EventArgs e)
+        private async void TurismoVerRegistro_Load(object? sender, EventArgs e)
         {
-            ConfigurarTabla();
-            CargarFiltros();
-            CargarCaballos();
-            AplicarFiltroYBusqueda(); // aplica filtro + orden si existe
-            MostrarVistaPreviaActual();
+            if (_recargando) return;
+
+            _recargando = true;
+            _inicializando = true;
+
+            panelRoot.Visible = false;
+            SuspendLayout();
+            panelRoot.SuspendLayout();
+            dataGridCaballos.SuspendLayout();
+
+            try
+            {
+                ConfigurarTabla();
+                CargarCombos();
+
+                await Task.Delay(1);
+
+                await Task.Run(() => CargarCaballos());
+
+                AplicarFiltroYBusqueda();
+                MostrarVistaPreviaActual();
+            }
+            finally
+            {
+                dataGridCaballos.ResumeLayout(true);
+                panelRoot.ResumeLayout(true);
+                ResumeLayout(true);
+
+                panelRoot.Visible = true;
+                _inicializando = false;
+                _recargando = false;
+            }
+        }
+
+        // -----------------------
+        // Estilos
+        // -----------------------
+        private static void PrepararBotonConImagen(Button btn, Image bg)
+        {
+            btn.BackgroundImage = bg;
+            btn.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+
+            btn.BackColor = Color.Transparent;
+            btn.UseVisualStyleBackColor = false;
         }
 
         private void ConfigurarTabla()
@@ -53,26 +143,60 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
 
             dataGridCaballos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridCaballos.RowHeadersVisible = false;
+            dataGridCaballos.AllowUserToAddRows = false;
+            dataGridCaballos.AllowUserToDeleteRows = false;
+            dataGridCaballos.AllowUserToResizeRows = false;
 
-            // IMPORTANTE: enlazar UNA sola vez
+            // Estilo tipo pergamino
+            dataGridCaballos.BackgroundColor = Color.FromArgb(235, 230, 220);
+            dataGridCaballos.BorderStyle = BorderStyle.None;
+            dataGridCaballos.GridColor = Color.FromArgb(205, 195, 180);
+            dataGridCaballos.EnableHeadersVisualStyles = false;
+
+            dataGridCaballos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(225, 215, 200);
+            dataGridCaballos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(60, 40, 25);
+            dataGridCaballos.ColumnHeadersDefaultCellStyle.Font = new Font("Georgia", 11F, FontStyle.Bold);
+            dataGridCaballos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridCaballos.ColumnHeadersHeight = 38;
+
+            dataGridCaballos.DefaultCellStyle.BackColor = Color.FromArgb(245, 241, 234);
+            dataGridCaballos.DefaultCellStyle.ForeColor = Color.FromArgb(35, 25, 18);
+            dataGridCaballos.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
+            dataGridCaballos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(170, 160, 135);
+            dataGridCaballos.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dataGridCaballos.RowTemplate.Height = 34;
+
+            // DoubleBuffered (para que no parpadee)
+            try
+            {
+                typeof(DataGridView).InvokeMember("DoubleBuffered",
+                    BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+                    null, dataGridCaballos, new object[] { true });
+            }
+            catch { }
+
+            // DataSource una sola vez
             dataGridCaballos.DataSource = fuenteCaballos;
         }
 
-        private void CargarFiltros()
+        private void CargarCombos()
         {
-            comboFiltro.Items.Clear();
-            comboFiltro.Items.AddRange(new object[]
-            {
-                "Nombre",
-                "Raza",
-                "Sexo",
-                "Temperamento",
-                "Imagen",
-                "Todos"
-            });
+            comboBuscarPor.Items.Clear();
+            comboBuscarPor.Items.AddRange(new object[] { "Nombre", "Raza", "Sexo", "Temperamento", "Imagen", "Todos" });
+            comboBuscarPor.SelectedIndex = 0;
 
-            if (comboFiltro.Items.Count > 0)
-                comboFiltro.SelectedIndex = 0; // Nombre
+            comboRaza.Items.Clear();
+            comboRaza.Items.AddRange(new object[] { "Todos", "Árabe", "Criollo", "Cuarto de milla" });
+            comboRaza.SelectedIndex = 0;
+
+            comboSexo.Items.Clear();
+            comboSexo.Items.AddRange(new object[] { "Todos", "Macho", "Hembra" });
+            comboSexo.SelectedIndex = 0;
+
+            comboTemperamento.Items.Clear();
+            comboTemperamento.Items.AddRange(new object[] { "Todos", "Tranquilo", "Nervioso", "Agresivo", "Activo" });
+            comboTemperamento.SelectedIndex = 0;
         }
 
         private void CargarCaballos()
@@ -81,21 +205,35 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             listaCaballos = datos ?? new List<Caballo>();
         }
 
+        // -----------------------
+        // Filtro + búsqueda
+        // -----------------------
         private void AplicarFiltroYBusqueda()
         {
             _recargando = true;
             try
             {
                 string texto = (txtBuscar.Text ?? "").Trim();
-                string filtro = comboFiltro.SelectedItem?.ToString() ?? "Nombre";
+                string buscarPor = comboBuscarPor.SelectedItem?.ToString() ?? "Nombre";
 
                 IEnumerable<Caballo> query = listaCaballos;
 
+                // Filtros extra
+                if (comboRaza.Text != "Todos")
+                    query = query.Where(c => (c.Raza ?? "") == comboRaza.Text);
+
+                if (comboSexo.Text != "Todos")
+                    query = query.Where(c => (c.Sexo ?? "") == comboSexo.Text);
+
+                if (comboTemperamento.Text != "Todos")
+                    query = query.Where(c => (c.Temperamento ?? "") == comboTemperamento.Text);
+
+                // Búsqueda
                 if (!string.IsNullOrWhiteSpace(texto))
                 {
                     string t = texto.ToLower();
 
-                    query = filtro switch
+                    query = buscarPor switch
                     {
                         "Nombre" => query.Where(c => (c.Nombre ?? "").ToLower().Contains(t)),
                         "Raza" => query.Where(c => (c.Raza ?? "").ToLower().Contains(t)),
@@ -113,24 +251,30 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                     };
                 }
 
-                // aplicar orden si existe
                 var listaVista = query.ToList();
                 listaVista = AplicarOrden(listaVista);
 
-                // ✅ NO poner DataSource = null (evita que se rompan columnas)
-                fuenteCaballos.DataSource = listaVista;
-                fuenteCaballos.ResetBindings(false);
-
-                // selección segura
-                dataGridCaballos.ClearSelection();
-                if (dataGridCaballos.Rows.Count > 0)
+                dataGridCaballos.SuspendLayout();
+                try
                 {
-                    dataGridCaballos.Rows[0].Selected = true;
-                    dataGridCaballos.CurrentCell = dataGridCaballos.Rows[0].Cells[0];
-                }
+                    fuenteCaballos.DataSource = listaVista;
+                    fuenteCaballos.ResetBindings(false);
 
-                // flechita segura (buscar columna otra vez)
-                AplicarFlechitaSort();
+                    lblTotal.Text = $"Total: {listaVista.Count}";
+
+                    dataGridCaballos.ClearSelection();
+                    if (dataGridCaballos.Rows.Count > 0)
+                    {
+                        dataGridCaballos.Rows[0].Selected = true;
+                        dataGridCaballos.CurrentCell = dataGridCaballos.Rows[0].Cells[0];
+                    }
+
+                    AplicarFlechitaSort();
+                }
+                finally
+                {
+                    dataGridCaballos.ResumeLayout(true);
+                }
             }
             finally
             {
@@ -151,7 +295,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             if (prop == null)
                 return lista;
 
-            // Edad (int) como número
             if (prop.PropertyType == typeof(int))
             {
                 return _sortAsc
@@ -159,7 +302,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                     : lista.OrderByDescending(c => (int)(prop.GetValue(c) ?? 0)).ToList();
             }
 
-            // texto
             return _sortAsc
                 ? lista.OrderBy(c => (prop.GetValue(c)?.ToString() ?? "")).ToList()
                 : lista.OrderByDescending(c => (prop.GetValue(c)?.ToString() ?? "")).ToList();
@@ -172,14 +314,12 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             var colClick = dataGridCaballos.Columns[e.ColumnIndex];
             if (colClick == null) return;
 
-            // propiedad real (Nombre, Edad, Raza...)
             string prop = !string.IsNullOrWhiteSpace(colClick.DataPropertyName)
                 ? colClick.DataPropertyName
                 : colClick.Name;
 
             if (string.IsNullOrWhiteSpace(prop)) return;
 
-            // toggle asc/desc
             if (string.Equals(_sortProp, prop, StringComparison.OrdinalIgnoreCase))
                 _sortAsc = !_sortAsc;
             else
@@ -188,20 +328,17 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 _sortAsc = true;
             }
 
-            // vuelve a aplicar todo (filtro + orden)
             AplicarFiltroYBusqueda();
         }
 
         private void AplicarFlechitaSort()
         {
-            // limpiar flechas
             foreach (DataGridViewColumn c in dataGridCaballos.Columns)
                 c.HeaderCell.SortGlyphDirection = SortOrder.None;
 
             if (string.IsNullOrWhiteSpace(_sortProp))
                 return;
 
-            // buscar la columna actual que corresponde a _sortProp
             DataGridViewColumn? col = null;
 
             foreach (DataGridViewColumn c in dataGridCaballos.Columns)
@@ -215,21 +352,21 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             }
 
             if (col == null) return;
-            if (col.DataGridView == null) return; // seguridad total
+            if (col.DataGridView == null) return;
 
             col.HeaderCell.SortGlyphDirection = _sortAsc ? SortOrder.Ascending : SortOrder.Descending;
         }
 
+        // -----------------------
+        // Selección + preview
+        // -----------------------
         private Caballo? CaballoSeleccionado()
         {
             if (_recargando) return null;
-
-            if (dataGridCaballos.SelectedRows.Count == 0)
-                return null;
+            if (dataGridCaballos.SelectedRows.Count == 0) return null;
 
             var row = dataGridCaballos.SelectedRows[0];
-            if (row == null || row.IsNewRow)
-                return null;
+            if (row == null || row.IsNewRow) return null;
 
             return row.DataBoundItem as Caballo;
         }
@@ -242,10 +379,21 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
             if (item == null)
             {
                 pictureCaballo.Image = null;
+                lblPrevNombre.Text = "—";
+                lblPrevRaza.Text = "—";
+                lblPrevEdad.Text = "—";
+                lblPrevSexo.Text = "—";
                 return;
             }
 
+            lblPrevNombre.Text = item.Nombre ?? "—";
+            lblPrevRaza.Text = item.Raza ?? "—";
+            lblPrevEdad.Text = $"{item.Edad} años";
+            lblPrevSexo.Text = item.Sexo ?? "—";
+
             string clave = item.ImagenRecurso ?? "";
+            if (clave == _ultimaClaveImg) return;
+            _ultimaClaveImg = clave;
 
             if (clave == "Caballo_Cuarto")
                 pictureCaballo.Image = Properties.Resources.Caballo_Cuarto;
@@ -257,6 +405,9 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 pictureCaballo.Image = null;
         }
 
+        // -----------------------
+        // Acciones
+        // -----------------------
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var item = CaballoSeleccionado();
@@ -282,7 +433,6 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 return;
             }
 
-            // recargar lista base y reaplicar vista
             CargarCaballos();
             AplicarFiltroYBusqueda();
         }
@@ -314,126 +464,8 @@ namespace Proyecto_Integrador.ControlesUsuario.A_Turismo
                 }
             }
 
-            // recargar lista base y reaplicar vista
             CargarCaballos();
             AplicarFiltroYBusqueda();
-        }
-    }
-
-    // ==================================================
-    //  FORM PARA EDITAR
-    // ==================================================
-    internal class FormEditarCaballo : Form
-    {
-        public Caballo CaballoActualizado { get; private set; } = new Caballo();
-
-        private TextBox txtNombre = new TextBox();
-        private TextBox txtEdad = new TextBox();
-        private ComboBox cbRaza = new ComboBox();
-        private ComboBox cbSexo = new ComboBox();
-        private ComboBox cbTemperamento = new ComboBox();
-        private ComboBox cbImagen = new ComboBox();
-        private Button btnOk = new Button();
-        private Button btnCancel = new Button();
-
-        public FormEditarCaballo(Caballo original)
-        {
-            Text = "Editar Caballo";
-            Width = 420;
-            Height = 360;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            StartPosition = FormStartPosition.CenterParent;
-
-            Label L(string t, int y)
-            {
-                var l = new Label { Text = t, Left = 20, Top = y, Width = 120 };
-                Controls.Add(l);
-                return l;
-            }
-
-            void Place(Control c, int y)
-            {
-                c.Left = 150;
-                c.Top = y;
-                c.Width = 220;
-                Controls.Add(c);
-            }
-
-            L("Nombre:", 20); Place(txtNombre, 18);
-            L("Edad:", 60); Place(txtEdad, 58);
-            L("Raza:", 100); Place(cbRaza, 98);
-            L("Sexo:", 140); Place(cbSexo, 138);
-            L("Temperamento:", 180); Place(cbTemperamento, 178);
-            L("Imagen:", 220); Place(cbImagen, 218);
-
-            cbRaza.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbSexo.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbTemperamento.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbImagen.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            cbRaza.Items.AddRange(new object[] { "Árabe", "Criollo", "Cuarto de milla" });
-            cbSexo.Items.AddRange(new object[] { "Macho", "Hembra" });
-            cbTemperamento.Items.AddRange(new object[] { "Tranquilo", "Nervioso", "Agresivo", "Activo" });
-            cbImagen.Items.AddRange(new object[] { "Caballo_Arabe", "Caballo_Criollo", "Caballo_Cuarto" });
-
-            // cargar datos originales
-            txtNombre.Text = original.Nombre ?? "";
-            txtEdad.Text = original.Edad.ToString();
-            cbRaza.SelectedItem = original.Raza;
-            cbSexo.SelectedItem = original.Sexo;
-            cbTemperamento.SelectedItem = original.Temperamento;
-            cbImagen.SelectedItem = original.ImagenRecurso;
-
-            if (cbRaza.SelectedIndex < 0) cbRaza.SelectedIndex = 0;
-            if (cbSexo.SelectedIndex < 0) cbSexo.SelectedIndex = 0;
-            if (cbTemperamento.SelectedIndex < 0) cbTemperamento.SelectedIndex = 0;
-            if (cbImagen.SelectedIndex < 0) cbImagen.SelectedIndex = 0;
-
-            btnOk.Text = "Guardar";
-            btnOk.Left = 150;
-            btnOk.Top = 260;
-            btnOk.Width = 100;
-            btnOk.Click += (_, __) => Guardar();
-
-            btnCancel.Text = "Cancelar";
-            btnCancel.Left = 270;
-            btnCancel.Top = 260;
-            btnCancel.Width = 100;
-            btnCancel.Click += (_, __) => { DialogResult = DialogResult.Cancel; Close(); };
-
-            Controls.Add(btnOk);
-            Controls.Add(btnCancel);
-        }
-
-        
-        private void Guardar()
-        {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text.Trim()))
-            {
-                MessageBox.Show("Nombre vacío");
-                return;
-            }
-
-            if (!int.TryParse(txtEdad.Text.Trim(), out int edad))
-            {
-                MessageBox.Show("Edad inválida");
-                return;
-            }
-
-            CaballoActualizado = new Caballo
-            {
-                Nombre = txtNombre.Text.Trim(),
-                Edad = edad,
-                Raza = cbRaza.Text,
-                Sexo = cbSexo.Text,
-                Temperamento = cbTemperamento.Text,
-                ImagenRecurso = cbImagen.Text
-            };
-
-            DialogResult = DialogResult.OK;
-            Close();
         }
     }
 }

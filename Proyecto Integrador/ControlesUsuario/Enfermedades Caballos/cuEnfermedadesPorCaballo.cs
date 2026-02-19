@@ -1,5 +1,6 @@
 ﻿using Proyecto_Integrador.Datos;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,6 +17,41 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             InitializeComponent();
             _caballo = caballo;
 
+            // ===== Tema =====
+            SaludTheme.ApplyRoot(this);
+
+            panelTop.BackColor = Color.Transparent;
+            panelTop.Padding = new Padding(12, 10, 12, 10);
+
+            SaludTheme.MakeCard(panelLeft, new Padding(16));
+            SaludTheme.MakeCard(panelRight, new Padding(16));
+
+            SaludTheme.StyleTitle(lblCaballo);
+            lblTotal.ForeColor = SaludTheme.MutedText;
+            lblTotal.Font = new Font("Georgia", 10.5F, FontStyle.Bold);
+
+            lblEnfermedad.ForeColor = SaludTheme.Text;
+            lblFecha.ForeColor = SaludTheme.Text;
+            lblNotas.ForeColor = SaludTheme.Text;
+            lblEnfermedad.Font = new Font("Georgia", 11F, FontStyle.Bold);
+            lblFecha.Font = new Font("Georgia", 11F, FontStyle.Bold);
+            lblNotas.Font = new Font("Georgia", 11F, FontStyle.Bold);
+
+            SaludTheme.StyleInput(txtEnfermedad);
+            txtEnfermedad.Font = new Font("Segoe UI", 12F);
+            SaludTheme.StyleInput(txtNotas);
+            txtNotas.Font = new Font("Segoe UI", 12F);
+
+            btnVolver.Text = "Volver";
+            SaludTheme.StyleWarningButton(btnVolver, SaludTheme.ResBtnAzul);
+            btnVolver.ForeColor = Color.White;
+
+            SaludTheme.StylePrimaryButton(btnAgregar, SaludTheme.ResBtnVerde);
+            SaludTheme.StyleDangerButton(btnEliminar, SaludTheme.ResBtnRojo);
+            SaludTheme.StyleWarningButton(btnMarcarCurada, SaludTheme.ResBtnAmarillo);
+
+            SaludTheme.StyleGrid(dtgvHistorial);
+
             lblCaballo.Text = $"Enfermedades de: {_caballo.Nombre}";
 
             // Eventos
@@ -26,10 +62,74 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
 
             dtgvHistorial.SelectionChanged += dtgvHistorial_SelectionChanged;
 
+            dtpFecha.Font = new Font("Segoe UI", 12F);
             dtpFecha.Value = DateTime.Now;
             chkActiva.Checked = true;
 
+            // ===== Layout (evita que las etiquetas queden pegadas / "descuadradas") =====
+            void RelayoutLeft()
+            {
+                try
+                {
+                    int x = 16;
+                    int w = Math.Max(220, panelLeft.ClientSize.Width - (x * 2));
+                    int y = 22;
+
+                    lblEnfermedad.Text = "Enfermedad:";
+                    lblFecha.Text = "Fecha:";
+                    lblNotas.Text = "Notas:";
+
+                    lblEnfermedad.Location = new Point(x, y);
+                    txtEnfermedad.Location = new Point(x, y + 26);
+                    txtEnfermedad.Width = w;
+
+                    y += 70;
+                    lblFecha.Location = new Point(x, y);
+                    dtpFecha.Location = new Point(x, y + 26);
+                    dtpFecha.Width = w;
+
+                    y += 70;
+                    lblNotas.Location = new Point(x, y);
+                    txtNotas.Location = new Point(x, y + 26);
+                    txtNotas.Width = w;
+                    txtNotas.Height = 86;
+
+                    y += 126;
+                    chkActiva.Location = new Point(x + 2, y);
+
+                    y += 30;
+                    btnAgregar.Location = new Point(x, y);
+                    btnAgregar.Width = w;
+                    btnAgregar.Height = 36;
+
+                    y += 44;
+                    btnEliminar.Location = new Point(x, y);
+                    btnEliminar.Width = w;
+                    btnEliminar.Height = 36;
+
+                    y += 44;
+                    btnMarcarCurada.Location = new Point(x, y);
+                    btnMarcarCurada.Width = w;
+                    btnMarcarCurada.Height = 36;
+                }
+                catch { }
+            }
+
+            panelLeft.Resize += (_, __) => RelayoutLeft();
+            RelayoutLeft();
+
             RefrescarHistorial();
+        }
+
+        // Para cuando se abre desde "Agregar enfermedad" en la vista previa del caballo
+        public void PrepararParaAgregar()
+        {
+            try
+            {
+                txtEnfermedad.Focus();
+                txtEnfermedad.SelectAll();
+            }
+            catch { }
         }
 
         private void RefrescarHistorial()
@@ -93,6 +193,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             txtEnfermedad.Text = "";
             txtNotas.Text = "";
             chkActiva.Checked = true;
+            dtpFecha.Font = new Font("Segoe UI", 12F);
             dtpFecha.Value = DateTime.Now;
         }
 
@@ -125,6 +226,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Enfermedades_Caballos
             txtEnfermedad.Text = "";
             txtNotas.Text = "";
             chkActiva.Checked = true;
+            dtpFecha.Font = new Font("Segoe UI", 12F);
             dtpFecha.Value = DateTime.Now;
         }
 
