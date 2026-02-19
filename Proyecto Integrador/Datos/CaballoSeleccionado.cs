@@ -5,7 +5,7 @@ namespace Proyecto_Integrador.Datos
     public static class CaballoSeleccionado
     {
         private static Caballo _caballoActual;
-
+        public static int VinculoActual { get; set; } = 0;
         public static event EventHandler CaballoActualizado;
 
         public static Caballo Actual
@@ -28,5 +28,6 @@ namespace Proyecto_Integrador.Datos
             _caballoActual = null;
             CaballoActualizado?.Invoke(null, EventArgs.Empty);
         }
+
     }
 }

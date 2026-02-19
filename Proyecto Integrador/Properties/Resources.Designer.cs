@@ -293,7 +293,17 @@ namespace Proyecto_Integrador.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Caballo_Girar {
+        internal static System.Drawing.Bitmap Caballo_Galopar {
+            get {
+                object obj = ResourceManager.GetObject("Caballo_Galopar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Caballo_Girar {
             get {
                 object obj = ResourceManager.GetObject("Caballo_Girar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +333,7 @@ namespace Proyecto_Integrador.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Caballo_Trotar {
+        internal static System.Drawing.Bitmap Caballo_Trotar {
             get {
                 object obj = ResourceManager.GetObject("Caballo_Trotar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
