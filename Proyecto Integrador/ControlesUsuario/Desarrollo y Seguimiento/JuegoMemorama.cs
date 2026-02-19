@@ -14,6 +14,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         int TamanioColumnasFilas = 4;
         int Movimientos = 0;
         int CantidadDeCartasVolteadas = 0;
+        int TiempoRestante = 30;
         List<string> CartasEnumeradas;
         List<string> CartasRevueltas;
         ArrayList CartasSeleccionadas;
@@ -30,6 +31,10 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         }
         public void InicializarJuego()
         {
+            timerCronometro.Stop();
+            TiempoRestante = 20;
+            lblTiempo.Text = "Tiempo: 20";
+
             timer2.Stop();
 
             timer1.Enabled = true;
@@ -97,6 +102,7 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             InicializarJuego();
+            timerCronometro.Start();
         }
         private void btnCarta_Click(object sender, EventArgs e)
         {
@@ -130,8 +136,11 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
                     else
                     {
                         CantidadDeCartasVolteadas++;
+                        TiempoRestante = 20;
+                        lblTiempo.Text = "Tiempo: 20";
                         if (CantidadDeCartasVolteadas > 7)
                         {
+                            timerCronometro.Stop();
                             MessageBox.Show("Felicidades el juego termino");
                         }
                         CartaTemporal1.Enabled = false;
@@ -186,13 +195,36 @@ namespace Proyecto_Integrador.ControlesUsuario.Desarrollo_y_Seguimiento
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            datocurioso uc = new datocurioso();  
+            JuegoMemoramaFacil uc = new JuegoMemoramaFacil();
 
             Control parent = this.Parent;
             parent.Controls.Clear();
 
             uc.Dock = DockStyle.Fill;
             parent.Controls.Add(uc);
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            panelInstrucciones.Visible = true;
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            panelInstrucciones.Visible = false;
+        }
+
+        private void timerCronometro_Tick(object sender, EventArgs e)
+        {
+            TiempoRestante--;
+            lblTiempo.Text = "Tiempo: " + TiempoRestante;
+
+            if (TiempoRestante == 0)
+            {
+                timerCronometro.Stop();
+                MessageBox.Show("Se acabó el tiempo ");
+            }
+
         }
     }
 }
