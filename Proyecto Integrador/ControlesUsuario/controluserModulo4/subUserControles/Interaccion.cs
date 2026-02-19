@@ -12,6 +12,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
 {
     public partial class Interaccion : UserControl
     {
+        public int NivelVinculo => _nivelVinculo;
         private int _nivelEstres;
         private int _nivelEnergia;
         private int _nivelVinculo;
@@ -68,7 +69,8 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             _nivelEstres = perfil.NivelEstres;
             _nivelEnergia = perfil.NivelActivacion;
 
-            _nivelVinculo = (int)(perfil.NivelConfianza * 0.3); 
+            _nivelVinculo = perfil.NivelConfianza;
+            CaballoSeleccionado.VinculoActual = _nivelVinculo;
 
             lblNombreCaballo.Text = caballo.Nombre;
             lblFeedback.Text = $"Has comenzado una sesión con {caballo.Nombre}. Su estado es: {perfil.EstadoGeneral}.";
@@ -165,7 +167,7 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             }
 
             LimitarValores();
-
+            CaballoSeleccionado.VinculoActual = _nivelVinculo; 
             ActualizarBarrasUI();
 
             lblFeedback.Text = mensaje;
@@ -234,7 +236,8 @@ namespace Proyecto_Integrador.ControlesUsuario.controluserModulo4.subUserControl
             _nivelEnergia = 50;
             flpAcciones.Enabled = true;
             _contadorInteracciones = 0;
-
+            LimitarValores();
+            CaballoSeleccionado.VinculoActual = _nivelVinculo;
             ActualizarBarrasUI();
             lblFeedback.Text = "Sesión reiniciada. ¡Comienza de nuevo!";
             lblFeedback.BackColor = Color.LightBlue;
